@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SLIDESHOW & MULTI-LANGUAGE ERASER/TYPEWRITER SYSTEM
+   SLIDESHOW & MULTI-LANGUAGE ERASER/TYPEWRITER SYSTEM (STOPS AT FINAL SLIDE)
    ========================================================================== */
 
 const slidesData = [
@@ -41,6 +41,15 @@ const slidesData = [
   },
   {
     messages: [
+      "[English]: Strategic alignment delivering grassroots empowerment and federal projects for Etche/Omuma Constituency.",
+      "[Ikwerre]: Rep. Kelechi Nwogu na-ezisa mmepe na ikike n'obodo Etche na Omuma.",
+      "[Etche]: Onyenwe anyi Rep. Kelechi Nwogu na-eweta ilu olu na mmepe puru iche n'ala Etche.",
+      "[Okrika]: Rep. Kelechi Nwogu dey carry federal project and progress enter every corner for Etche/Omuma.",
+      "[Pidgin]: Rep. Kelechi Nwogu dey work hand-in-hand with the people to bring real mmepe and youth empowerment!"
+    ]
+  },
+  {
+    messages: [
       "[English]: Unified vision connecting state development plans with Senator Onyesoh’s legislative agenda.",
       "[Ikwerre]: Governorship Candidate anyi no-zi kpa state ayi ga-eme nweru mmepe.",
       "[Etche]: Onyenwe anyi na-azọ Governor na-eweta amamihe na ihu n'anya na Rivers.",
@@ -70,17 +79,18 @@ const slidesData = [
 ];
 
 let currentSlideIndex = 0;
-let isTyping = false;
 let typewriterTimeout = null;
 
 // Initialize Dots Navigation
 const dotsContainer = document.getElementById('dotsContainer');
-slidesData.forEach((_, idx) => {
-  const dot = document.createElement('div');
-  dot.className = `dot ${idx === 0 ? 'active' : ''}`;
-  dot.addEventListener('click', () => jumpToSlide(idx));
-  dotsContainer.appendChild(dot);
-});
+if (dotsContainer) {
+  slidesData.forEach((_, idx) => {
+    const dot = document.createElement('div');
+    dot.className = `dot ${idx === 0 ? 'active' : ''}`;
+    dot.addEventListener('click', () => jumpToSlide(idx));
+    dotsContainer.appendChild(dot);
+  });
+}
 
 function updateDots() {
   const dots = document.querySelectorAll('.dot');
@@ -92,7 +102,11 @@ function updateDots() {
 // Typewriter & Erase Engine
 function typeAndEraseText(elementId, messages, msgIndex = 0, onComplete) {
   const element = document.getElementById(elementId);
-  if (!element) return;
+  
+  if (!element) {
+    if (onComplete && currentSlideIndex < slidesData.length - 1) onComplete();
+    return;
+  }
 
   const currentText = messages[msgIndex];
   let charIndex = 0;
@@ -103,13 +117,18 @@ function typeAndEraseText(elementId, messages, msgIndex = 0, onComplete) {
       charIndex++;
       typewriterTimeout = setTimeout(typeChar, 35); // Typing speed
     } else {
-      // Pause at full text before erasing (unless it's the last message in this slide)
       typewriterTimeout = setTimeout(() => {
-        if (msgIndex < messages.length - 1) {
+        const isLastSlide = currentSlideIndex === slidesData.length - 1;
+        const isLastMessage = msgIndex === messages.length - 1;
+
+        if (!isLastMessage) {
+          // Erase text to type the next message in this slide
           eraseChar();
-        } else if (onComplete) {
+        } else if (!isLastSlide && onComplete) {
+          // Move to the next slide only if it's NOT the last slide
           onComplete();
         }
+        // If it is the last slide & last message, execution stops naturally here.
       }, 1200);
     }
   }
@@ -119,7 +138,6 @@ function typeAndEraseText(elementId, messages, msgIndex = 0, onComplete) {
       element.textContent = element.textContent.substring(0, element.textContent.length - 1);
       typewriterTimeout = setTimeout(eraseChar, 18); // Erasing speed
     } else {
-      // Move to next language text
       typeAndEraseText(elementId, messages, msgIndex + 1, onComplete);
     }
   }
@@ -128,7 +146,7 @@ function typeAndEraseText(elementId, messages, msgIndex = 0, onComplete) {
   typeChar();
 }
 
-// Slide Controller (10-second duration per slide)
+// Slide Controller
 function showSlide(index) {
   clearTimeout(typewriterTimeout);
 
@@ -136,24 +154,25 @@ function showSlide(index) {
   slides.forEach(slide => slide.classList.remove('active'));
 
   currentSlideIndex = index;
-  const activeSlide = slides[currentSlideIndex];
-  activeSlide.classList.add('active');
+  if (slides[currentSlideIndex]) {
+    slides[currentSlideIndex].classList.add('active');
+  }
 
   updateDots();
 
   const textElementId = `text-slide-${currentSlideIndex}`;
   const currentMessages = slidesData[currentSlideIndex].messages;
 
-  // Run Typewriter engine over the 10-second window
   typeAndEraseText(textElementId, currentMessages, 0, () => {
-    // Automatically transition to the next slide after completion
     nextSlide();
   });
 }
 
 function nextSlide() {
-  const nextIdx = (currentSlideIndex + 1) % slidesData.length;
-  showSlide(nextIdx);
+  // Stop when reaching the last slide instead of cycling back to index 0
+  if (currentSlideIndex < slidesData.length - 1) {
+    showSlide(currentSlideIndex + 1);
+  }
 }
 
 function jumpToSlide(index) {

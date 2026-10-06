@@ -958,3 +958,87 @@ html, body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   DYNAMIC LANGUAGE SECTION & CARD STYLING
+   ========================================================================== */
+
+/* Ensures the text container elements are explicitly visible */
+[id^="pillar-title-"],
+[id^="pillar-desc-"],
+[id^="deliv-title-"],
+[id^="deliv-desc-"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1;
+  color: inherit;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Base card styling to prevent collapsed height when content updates */
+.card, 
+.pillar-card, 
+.deliverable-card {
+  min-height: 180px; /* Adjust based on your preferred card height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   ACCORDION STYLING
+   ========================================================================== */
+.accordion-item .accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+.accordion-item.active .accordion-body {
+  max-height: 500px; /* Expands accordion when active */
+  padding: 1rem 0;
+}
+
+/* ==========================================================================
+   GALLERY FILTER STYLING
+   ========================================================================== */
+.gallery-card {
+  transition: all 0.3s ease-in-out;
+}
+
+.gallery-card[style*="display: none"] {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Custom Volume Button Styling */
+.volume-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(4px);
+}
+
+.volume-btn:hover {
+  background: #0056b3; /* Primary accent color */
+  border-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Ensure the title overlay doesn't block clicks */
+.img-overlay {
+  pointer-events: none;
+}
