@@ -186,13 +186,58 @@
   </div>
 </div>
 
-        <div class="gallery-card" data-category="projects">
-          <div class="img-wrapper">
-            <img src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=600&q=80" alt="Empowerment Grants" />
-            <div class="img-overlay">Youth & Women Micro-Grant Launch</div>
-          </div>
-        </div>
+       <div class="gallery-card" data-category="projects">
+  <div class="slideshow-container">
+    
+    <!-- 7 Slide Images (Replace image paths with your own files) -->
+    <div class="mySlides fade">
+      <img src="senatorallwellonyesoh_71d9ae224c334f1eb1d8612f55461ea4.jpg" style="width:100%" alt="Slide 1">
+      <div class="img-overlay">Employment Opportunities Initiative</div>
+    </div>
 
+    <div class="mySlides fade">
+      <img src="senatorallwellonyesoh_83a920217b264ef1b4ab697dd17998c4.jpg" style="width:100%" alt="Slide 2">
+      <div class="img-overlay">Employment Opportunities Initiative</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img src="senatorallwellonyesoh_109f729c1322465cbc121a4f2e58a4a5.jpg" style="width:100%" alt="Slide 3">
+      <div class="img-overlay">Employment Opportunities Initiative</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img src="senatorallwellonyesoh_ba394db1edee4ad7a287fcc74ccdbd8f.jpg" style="width:100%" alt="Slide 4">
+      <div class="img-overlay">Employment Opportunities Initiative</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img src="senatorallwellonyesoh_d78e6b3d55684fcc8f9a76d81fecd4e5.jpg" style="width:100%" alt="Slide 5">
+      <div class="img-overlay">Employment Opportunities Initiative</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img src="senatorallwellonyesoh_e48a50f3c9a545978aff4f6015b21e28.jpg" style="width:100%" alt="Slide 6">
+      <div class="img-overlay">Employment Opportunities Initiative</div>
+    </div>
+
+    <div class="mySlides fade">
+      <img src="senatorallwellonyesoh_f2f6f10d1c664e5dac8b1cc13f36d392.jpg" style="width:100%" alt="Slide 7">
+      <div class="img-overlay">Employment Opportunities Initiative</div>
+    </div>
+
+    <!-- Navigation Dots Container -->
+    <div class="dots-container">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+      <span class="dot" onclick="currentSlide(4)"></span>
+      <span class="dot" onclick="currentSlide(5)"></span>
+      <span class="dot" onclick="currentSlide(6)"></span>
+      <span class="dot" onclick="currentSlide(7)"></span>
+    </div>
+
+  </div>
+</div>
         <div class="gallery-card" data-category="outreach">
           <div class="img-wrapper">
             <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80" alt="Agrarian Community Tour" />
@@ -203,11 +248,20 @@
     </div>
   </section>
 
-  <!-- Video Message Section -->
-  <section class="section video-section">
-    <div class="container text-center">
-      <h2 class="section-title text-white">Direct Message To Rivers East</h2>
-      <p class="text-white">Watch Senator Allwell Onyesoh outline the strategy for consolidating progress across Rivers East.</p>
+ <!-- Video Message Section -->
+<section class="section video-section">
+  <div class="container text-center">
+    
+    <h2 class="section-title text-white">All Is Well With Rivers East</h2>
+  
+    <div class="marquee-wrapper">
+      <p class="rolling-text" style="font-size: 1.05rem; color: #ffffff; margin: 0;">
+        Watch Senator Allwell Onyesoh share his vision and strategic plan for effective representation.
+      </p>
+    </div>
+
+  </div>
+</section>
       
       <div class="video-container">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Senator Onyesoh Address" allowfullscreen></iframe>
@@ -219,24 +273,44 @@
   <section class="campaign-interactive-section" id="live-and-support">
     <div class="container">
       
-      <!-- Live Campaign Broadcast Stream -->
-      <div class="interactive-card live-stream-card">
-        <div class="card-header">
+     <!-- Live Broadcast & Financial Support Section -->
+<section class="campaign-interactive-section" id="live-and-support">
+  <div class="container">
+    
+    <!-- Live Campaign Broadcast Stream -->
+    <div class="interactive-card live-stream-card">
+      <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
           <span class="badge-live"><i class="fa-solid fa-circle"></i> LIVE NOW</span>
-          <h3><i class="fa-solid fa-tv"></i> Campaign Live Stream</h3>
+          <h3 style="margin: 0; display: inline-block; margin-left: 8px;"><i class="fa-solid fa-tv"></i> Campaign Live Stream</h3>
         </div>
-        <p>Watch Senator Allwell Onyesoh’s live town halls, rallies, and legislative briefings directly from Rivers East.</p>
-        
-        <div class="video-embed-container">
-          <iframe 
-            src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" 
-            title="Senator Allwell Onyesoh Live Stream" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
-        </div>
+        <a href="livesteam.html" class="btn-primary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none; border-radius: 4px;">
+          Full Interactive Feed <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
+      
+      <p>Watch Senator Allwell Onyesoh’s live town halls, rallies, and legislative briefings directly from Rivers East.</p>
+      
+      <div class="video-embed-container">
+        <iframe 
+          src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" 
+          title="Senator Allwell Onyesoh Live Stream" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Full Interactive Hub Launcher Button -->
+      <div style="margin-top: 1rem; text-align: center;">
+        <a href="livesteam.html" class="btn-primary" style="background: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;">
+          <i class="fa-solid fa-comments"></i> Open Live Stream Chat & Public Q&A
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
 
       <!-- Official Campaign Donation Account -->
       <div class="interactive-card donation-card">
@@ -316,22 +390,176 @@
     </a>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>&copy; 2027 Senator Allwell Heacho Onyesoh Campaign Committee | Rivers East Senatorial District.</p>
-      <p>For national voter registration details and election schedules, visit the <a href="https://inecnigeria.org/" target="_blank" rel="noopener">INEC Nigeria Official Portal</a>.</p>
-    </div>
-  </footer>
+ <!-- Election Countdown & Citizen Preparedness Section -->
+<section class="section election-countdown-section" style="background: #002b5b; color: #ffffff; padding: 3rem 0;">
+  <div class="container text-center">
+    
+    <span class="badge" style="background: #dc3545; color: #fff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">
+      <i class="fa-solid fa-flag"></i> Countdown to General Election
+    </span>
 
-  <!-- Helper Scripts -->
-  <script src="style.js"></script>
-  <script>
-    function copyAccountNumber() {
-      const accNum = document.getElementById("accountNum").innerText;
-      navigator.clipboard.writeText(accNum);
-      alert("Campaign Account Number copied: " + accNum);
-    }
-  </script>
+    <h2 style="color: #ffffff; font-size: 2rem; margin-bottom: 0.5rem;">2027 Nigeria General Elections</h2>
+    <p style="max-width: 650px; margin: 0 auto 2rem auto; font-size: 1.05rem; opacity: 0.9;">
+      Saturday, January 16, 2027 — Presidential & National Assembly Elections
+    </p>
+
+    <!-- Real-Time 4-Box Countdown Grid (Option B) -->
+    <div class="countdown-container" style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+      
+      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+        <span id="cd-days" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
+        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Days</span>
+      </div>
+
+      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+        <span id="cd-hours" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
+        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Hours</span>
+      </div>
+
+      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+        <span id="cd-minutes" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
+        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Minutes</span>
+      </div>
+
+      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+        <span id="cd-seconds" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffc107;">00</span>
+        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Seconds</span>
+      </div>
+
+    </div>
+
+    <!-- Why Citizens Must Be Prepared -->
+    <div class="preparedness-card" style="background: #ffffff; color: #212529; max-width: 850px; margin: 0 auto; padding: 2rem; border-radius: 12px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+      <h3 style="color: #002b5b; font-size: 1.3rem; margin-top: 0; margin-bottom: 1rem; border-bottom: 2px solid #e9ecef; padding-bottom: 0.5rem;">
+        <i class="fa-solid fa-id-card" style="color: #0056b3;"></i> Why Every Citizen of Rivers East Must Be Prepared
+      </h3>
+      
+      <p style="line-height: 1.6; font-size: 0.98rem; margin-bottom: 1.2rem;">
+        Democracy is built on active civic participation. Senator Allwell Onyesoh believes that effective legislative representation begins long before election day it starts with an informed and fully empowered electorate across Port Harcourt, Obio/Akpor, Ikwerre, Emohua, Etche, Omuma, and Okrika LGAs.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #0056b3;">
+          <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #0056b3;"><i class="fa-solid fa-check-double"></i> Verify Your PVC</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: #6c757d;">Ensure your Permanent Voter Card (PVC) is valid and registered in your local voting unit.</p>
+        </div>
+
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #28a745;">
+          <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #28a745;"><i class="fa-solid fa-bullhorn"></i> Mobilize Your Community</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: #6c757d;">Encourage family, youth, and local stakeholders in your LGA to engage in peaceful civic participation.</p>
+        </div>
+
+        <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #ffc107;">
+          <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #b8860b;"><i class="fa-solid fa-comments"></i> Shape Legislation</h4>
+          <p style="margin: 0; font-size: 0.85rem; color: #6c757d;">Participate in live constituency town halls to submit policy suggestions directly to the Senator's office.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <a href="townhall-live.html" class="btn-primary" style="background: #0056b3; color: #fff; padding: 10px 22px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;">
+          Join the Senator's Live campaign & Q&A <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Campaign Downloads & Branding Kit Section -->
+<section class="section campaign-media-section" style="background: #f8f9fa; padding: 3.5rem 0; border-top: 2px solid #e9ecef;">
+  <div class="container text-center">
+    
+    <span class="badge" style="background: #0056b3; color: #ffffff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; display: inline-block; margin-bottom: 0.8rem;">
+      <i class="fa-solid fa-download"></i> Official Campaign Media Kit
+    </span>
+
+    <h2 style="color: #002b5b; font-size: 2rem; margin-bottom: 0.5rem; font-weight: 800;">
+      Download Official Campaign Materials
+    </h2>
+    <p style="max-width: 700px; margin: 0 auto 2.5rem auto; font-size: 1rem; color: #495057;">
+      Empower your local ward and community. Download high-resolution campaign posters, social media banners, and print-ready branding files directly to your gallery or device.
+    </p>
+
+    <!-- Media Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
+      
+      <!-- Material 1: Official Campaign Poster/Flyer -->
+      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 2.8rem; color: #002b5b; margin-bottom: 1rem;">
+            <i class="fa-solid fa-file-image"></i>
+          </div>
+          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">2027 General Campaign Flyer</h3>
+          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">High-resolution poster for social media sharing and local community distribution across Rivers East LGAs.</p>
+        </div>
+        <a href="assets/downloads/senator-onyesoh-official-flyer.png" download="Senator_Onyesoh_2027_Flyer.png" style="background: #0056b3; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
+          <i class="fa-solid fa-download"></i> Save to Gallery (PNG)
+        </a>
+      </div>
+
+      <!-- Material 2: Billboard & Digital Banner -->
+      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 2.8rem; color: #28a745; margin-bottom: 1rem;">
+            <i class="fa-solid fa-scroll"></i>
+          </div>
+          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">Street Banner & Flex Mockup</h3>
+          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">Large-format banner design (HQ Print PDF & JPEG) ready for local printing presses in Port Harcourt.</p>
+        </div>
+        <a href="assets/downloads/rivers-east-campaign-banner.pdf" download="Rivers_East_Banner_Print.pdf" style="background: #28a745; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
+          <i class="fa-solid fa-download"></i> Save Banner (PDF/HD)
+        </a>
+      </div>
+
+      <!-- Material 3: Campaign Polo Shirt Print Template -->
+      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 2.8rem; color: #dc3545; margin-bottom: 1rem;">
+            <i class="fa-solid fa-shirt"></i>
+          </div>
+          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">Campaign Polo Shirt Mockup</h3>
+          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">Front & back vectorized chest branding vector file for custom polo shirt screen printing.</p>
+        </div>
+        <a href="assets/downloads/polo-shirt-branding-template.png" download="Onyesoh_PoloShirt_Design.png" style="background: #dc3545; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
+          <i class="fa-solid fa-download"></i> Save Polo Template
+        </a>
+      </div>
+
+      <!-- Material 4: Branded Cap & Sticker Art -->
+      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div style="font-size: 2.8rem; color: #ffc107; margin-bottom: 1rem;">
+            <i class="fa-solid fa-hat-cowboy-side"></i>
+          </div>
+          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">Cap & Sticker Branding Pack</h3>
+          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">Circular sticker badges, car bumpers stickers, and cap embroidery templates bundled together.</p>
+        </div>
+        <a href="assets/downloads/cap-and-stickers-branding.zip" download="Cap_and_Stickers_Branding_Pack.zip" style="background: #b8860b; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
+          <i class="fa-solid fa-download"></i> Save Zip Pack
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-content">
+    <p>&copy; 2027 Senator Allwell Heacho Onyesoh Campaign Committee | Rivers East Senatorial District.</p>
+    <p>For national voter registration details and election schedules, visit the <a href="https://inecnigeria.org/" target="_blank" rel="noopener">INEC Nigeria Official Portal</a>.</p>
+  </div>
+</footer>
+
+<!-- Helper Scripts -->
+<script src="style.js"></script>
+<script>
+  function copyAccountNumber() {
+    const accNum = document.getElementById("accountNum").innerText;
+    navigator.clipboard.writeText(accNum);
+    alert("Campaign Account Number copied: " + accNum);
+  }
+</script>
 </body>
 </html>

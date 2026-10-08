@@ -20,15 +20,7 @@ const slidesData = [
       "[Okrika]: Senate President-mẹ na wa piri priority le-mẹ na bill-mẹ kụrọ-mẹ.",
       "[Pidgin]: Senate President Akpabio dey make sure federal allocation reach our side!"
     ]
-  },
-  {
-    messages: [
-      "[English]: Bicameral unity ensuring smooth passage of development bills and grassroots empowerment funds.",
-      "[Ikwerre]: Onye-ishi House of Reps no-kwado oru ike kpa obodo ayi ga-agba mepe.",
-      "[Etche]: Onwe-ike nime ulo nlo-iwu na-enyere anyi aka na inweta kpam kpam nkwado.",
-      "[Okrika]: Speaker Abbas na wa piri bill mangi so-mẹ na wa piri favor-mẹ.",
-      "[Pidgin]: Speaker Abbas dey pass critical bills to support our youth and community projects!"
-    ]
+  
   },
   {
     messages: [

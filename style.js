@@ -263,3 +263,90 @@ if (video && unmuteBtn) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Target: January 16, 2027 at 08:00 AM WAT
+  const targetDate = new Date("2027-01-16T08:00:00+01:00").getTime();
+
+  function updateLiveClock() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    const elDays = document.getElementById("cd-days");
+    const elHours = document.getElementById("cd-hours");
+    const elMinutes = document.getElementById("cd-minutes");
+    const elSeconds = document.getElementById("cd-seconds");
+
+    if (!elDays || !elHours || !elMinutes || !elSeconds) return;
+
+    if (difference <= 0) {
+      const container = document.querySelector(".countdown-container");
+      if (container) {
+        container.innerHTML = "<h3 style='color: #28a745;'>Elections Are Live Today!</h3>";
+      }
+      return;
+    }
+
+    // Math for Total Days + Remainder Hours, Minutes, and Seconds
+    const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    // Format display output
+    elDays.textContent = String(totalDays).padStart(2, "0");
+    elHours.textContent = String(hours).padStart(2, "0");
+    elMinutes.textContent = String(minutes).padStart(2, "0");
+    elSeconds.textContent = String(seconds).padStart(2, "0");
+  }
+
+  updateLiveClock();
+  setInterval(updateLiveClock, 1000);
+});
+
+// Gallery Card Slideshow Logic
+let slideIndex = 0;
+let slideTimer;
+
+function showSlides() {
+  const slides = document.getElementsByClassName("mySlides");
+  const dots = document.getElementsByClassName("dot");
+
+  if (!slides || slides.length === 0) return;
+
+  // Hide all slides
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+
+  // Remove active state from all dots
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  // Display current slide and highlight matching dot
+  slides[slideIndex - 1].style.display = "block";
+  if (dots[slideIndex - 1]) {
+    dots[slideIndex - 1].className += " active";
+  }
+
+  // Auto-advance slide every 3.5 seconds
+  clearTimeout(slideTimer);
+  slideTimer = setTimeout(showSlides, 3500);
+}
+
+// Manual Dot Click Action
+function currentSlide(n) {
+  slideIndex = n - 1;
+  showSlides();
+}
+
+// Initialize slideshow on page load
+document.addEventListener("DOMContentLoaded", () => {
+  showSlides();
+});

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Town Hall & Interactive Chat | Senator Allwell Onyesoh</title>
+  
+  <!-- Font Awesome Icons & Stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-light">
+
+  <!-- Header Navigation -->
+  <header style="background: #002b5b; color: #fff; padding: 1rem 0;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 style="font-size: 1.25rem; margin: 0;">Senator Allwell Onyesoh — Live Broadcast</h1>
+      <a href="campaign-landing.html" class="btn-primary" style="text-decoration: none; font-size: 0.85rem; padding: 8px 16px;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Landing Page
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Broadcast Hub -->
+  <main class="container" style="margin-top: 2rem; margin-bottom: 3rem;">
+    
+    <div class="hub-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+      
+      <!-- Live Video Player -->
+      <div class="stream-container card" style="background: #fff; padding: 1rem; border-radius: 8px;">
+        <div class="stream-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <div>
+            <span class="live-badge" style="background: #dc3545; color: #fff; padding: 4px 8px; border-radius: 12px; font-weight: 700; font-size: 0.75rem;">
+              <i class="fa-solid fa-circle"></i> LIVE NOW
+            </span>
+            <h2 style="font-size: 1.1rem; display: inline; margin-left: 8px;">Rivers East Town Hall Broadcast</h2>
+          </div>
+        </div>
+
+        <div class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000;">
+          <iframe 
+            id="liveStreamIframe"
+            src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" 
+            title="Senator Allwell Onyesoh Live Stream" 
+            style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Live Chat Sidebar -->
+      <div class="chat-container card" style="background: #fff; padding: 1rem; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; height: 450px;">
+        <div class="chat-header" style="font-weight: 700; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+          <i class="fa-solid fa-comments"></i> Live Citizen Discussion
+        </div>
+        
+        <!-- Chat Output Feed -->
+        <div class="chat-messages" id="chatMessages" style="flex-grow: 1; overflow-y: auto; margin: 10px 0; display: flex; flex-direction: column; gap: 8px;">
+          <div class="chat-msg" style="background: #f8f9fa; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem;">
+            <strong>System:</strong> Welcome to Senator Onyesoh's official live broadcast chat!
+          </div>
+        </div>
+
+        <!-- Chat Submission Form -->
+        <form id="chatForm" style="display: flex; gap: 6px;">
+          <input type="text" id="chatInput" placeholder="Type a message or question..." required style="flex-grow: 1; padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px;" />
+          <button type="submit" class="btn-primary" style="background: #0056b3; color: #fff; border: 0; padding: 8px 14px; border-radius: 4px; cursor: pointer;">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- External JavaScript Link -->
+  <script src="livestream.js"></script>
+</body>
+</html>
