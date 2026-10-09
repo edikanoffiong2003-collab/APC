@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Page Title</title>
+  
+  <!-- Link Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body style="background-color: #f8f9fa; font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0;">
+
+  <!-- Header / Navigation -->
+  <header style="background-color: #002b5b; color: #ffffff; padding: 1rem 0;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 1rem; display: flex; justify-content: space-between; align-items: center;">
+      <h2 style="margin: 0; font-size: 1.25rem;">Campaign Portal</h2>
+      <a href="campaign-landing.html" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
+        <i class="fa-solid fa-arrow-right"></i> Return to Home
+      </a>
+    </div>
+  </header>
+
+
+  <!-- Community Mobilization Hub Section -->
+<section id="mobilize" class="section" style="padding: 4rem 0; background-color: #0f172a; color: #ffffff;">
+  <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 1rem;">
+    
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <span style="background: #1e293b; color: #38bdf8; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Grassroots Engine</span>
+      <h2 style="font-size: 2.2rem; color: #ffffff; margin: 0.8rem 0 0.5rem 0;">Mobilize Your Community</h2>
+      <p style="color: #94a3b8; max-width: 650px; margin: 0 auto; font-size: 1rem;">
+        Lead local ward teams, host meetings, stream live sessions, access online posting guides, and submit direct policy recommendations to Senator Allwell Onyesoh.
+      </p>
+    </div>
+
+    <!-- 4-Feature Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem;">
+
+      <!-- Feature 1: Community Organizer Sign-Up & Backend Access -->
+      <div style="background: #1e293b; border-radius: 12px; padding: 1.8rem; border: 1px solid #334155;">
+        <div style="display: flex; align-items: center; margin-bottom: 1.2rem;">
+          <div style="background: rgba(56, 189, 248, 0.1); padding: 12px; border-radius: 8px; margin-right: 1rem;">
+            <i class="fa-solid fa-users-gear" style="font-size: 1.5rem; color: #38bdf8;"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.2rem; color: #ffffff;">1. Ward Leadership Sign-Up</h3>
+            <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">Become a verified community coordinator</p>
+          </div>
+        </div>
+
+        <form id="organizerForm">
+          <div style="margin-bottom: 1rem;">
+            <input type="text" id="orgName" placeholder="Full Name" required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: #fff; box-sizing: border-box;" />
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <input type="tel" id="orgPhone" placeholder="Phone Number" required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: #fff; box-sizing: border-box;" />
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <select id="orgRole" required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: #fff; box-sizing: border-box;">
+              <option value="" disabled selected>Select Mobilization Role</option>
+              <option value="Ward Coordinator">Ward Coordinator</option>
+              <option value="Youth Canvasser Leader">Youth Canvasser Leader</option>
+              <option value="Digital Media Lead">Digital Media Lead</option>
+              <option value="Polling Unit Mobilizer">Polling Unit Mobilizer</option>
+            </select>
+          </div>
+          <button type="submit" id="orgSubmitBtn" style="width: 100%; background: #0284c7; color: #ffffff; padding: 12px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer;">
+            Request Organizer Backend Access
+          </button>
+        </form>
+        <p id="orgStatus" style="margin-top: 10px; font-size: 0.85rem; text-align: center; font-weight: 600;"></p>
+      </div>
+
+      <!-- Feature 2: Live Meetings & Streaming Broadcast -->
+      <div style="background: #1e293b; border-radius: 12px; padding: 1.8rem; border: 1px solid #334155;">
+        <div style="display: flex; align-items: center; margin-bottom: 1.2rem;">
+          <div style="background: rgba(239, 68, 68, 0.1); padding: 12px; border-radius: 8px; margin-right: 1rem;">
+            <i class="fa-solid fa-tower-broadcast" style="font-size: 1.5rem; color: #ef4444;"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.2rem; color: #ffffff;">2. Meetings & Live Broadcasts</h3>
+            <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">Coordinate townhalls & watch live streams</p>
+          </div>
+        </div>
+
+        <!-- Live Stream Player Container -->
+        <div style="background: #000; height: 160px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid #334155; margin-bottom: 1rem; text-align: center; padding: 10px;">
+          <i class="fa-solid fa-circle-play" style="font-size: 2.5rem; color: #ef4444; margin-bottom: 0.5rem; cursor: pointer;"></i>
+          <span style="font-size: 0.9rem; font-weight: 600;">Next Live Stream: Townhall Meeting</span>
+          <span style="font-size: 0.75rem; color: #94a3b8;">Stream key dynamically loaded from backend</span>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem;">
+          <a href="#schedule" style="flex: 1; text-align: center; background: #334155; color: #fff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">
+            <i class="fa-solid fa-calendar-days"></i> Schedule Meeting
+          </a>
+          <a href="#stream" style="flex: 1; text-align: center; background: #dc2626; color: #fff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">
+            <i class="fa-solid fa-video"></i> Go Live
+          </a>
+        </div>
+      </div>
+
+      <!-- Feature 3: Digital Posting Guide & Online Guidelines -->
+      <div style="background: #1e293b; border-radius: 12px; padding: 1.8rem; border: 1px solid #334155;">
+        <div style="display: flex; align-items: center; margin-bottom: 1.2rem;">
+          <div style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 8px; margin-right: 1rem;">
+            <i class="fa-solid fa-share-nodes" style="font-size: 1.5rem; color: #10b981;"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.2rem; color: #ffffff;">3. Digital Media Guidelines</h3>
+            <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">Official posting templates & campaign messaging</p>
+          </div>
+        </div>
+
+        <ul style="list-style: none; padding: 0; margin: 0 0 1.2rem 0; font-size: 0.88rem; color: #cbd5e1; line-height: 1.8;">
+          <li><i class="fa-solid fa-check" style="color: #10b981; margin-right: 8px;"></i> <strong>Approved Hashtags:</strong> #RiversEast2027 #OnyesohConsolidation</li>
+          <li><i class="fa-solid fa-check" style="color: #10b981; margin-right: 8px;"></i> <strong>Approved Messaging:</strong> Focus on education, infrastructure, and ward development.</li>
+          <li><i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 8px;"></i> <strong>Zero Tolerance:</strong> Avoid inflammatory remarks or unverified claims online.</li>
+        </ul>
+
+        <a href="#download-kit" style="display: block; text-align: center; background: #059669; color: #ffffff; text-decoration: none; padding: 10px; border-radius: 6px; font-size: 0.88rem; font-weight: 700;">
+          <i class="fa-solid fa-download"></i> Download Social Media Graphics Kit
+        </a>
+      </div>
+
+      <!-- Feature 4: Policy Suggestions directly to Senator's Office -->
+      <div style="background: #1e293b; border-radius: 12px; padding: 1.8rem; border: 1px solid #334155;">
+        <div style="display: flex; align-items: center; margin-bottom: 1.2rem;">
+          <div style="background: rgba(245, 158, 11, 0.1); padding: 12px; border-radius: 8px; margin-right: 1rem;">
+            <i class="fa-solid fa-lightbulb" style="font-size: 1.5rem; color: #f59e0b;"></i>
+          </div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.2rem; color: #ffffff;">4. Direct Policy Desk</h3>
+            <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">Submit proposals straight to the Senator</p>
+          </div>
+        </div>
+
+        <form id="policyForm">
+          <div style="margin-bottom: 0.8rem;">
+            <input type="text" id="policyTopic" placeholder="Policy Category (e.g., Youth Empowerment, Roads)" required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: #fff; box-sizing: border-box;" />
+          </div>
+          <div style="margin-bottom: 0.8rem;">
+            <textarea id="policyDetails" rows="3" placeholder="Describe your proposal or community need..." required style="width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; border-radius: 6px; color: #fff; box-sizing: border-box; resize: none;"></textarea>
+          </div>
+          <button type="submit" id="policyBtn" style="width: 100%; background: #d97706; color: #ffffff; padding: 10px; border: none; border-radius: 6px; font-weight: 700; cursor: pointer;">
+            Submit Suggestion to Senator's Office
+          </button>
+        </form>
+        <p id="policyStatus" style="margin-top: 10px; font-size: 0.85rem; text-align: center; font-weight: 600;"></p>
+      </div>
+
+    </div>
+  </div>
+</section>
+ <footer style="background-color: #0f172a; color: #94a3b8; text-align: center; padding: 1.5rem 0; margin-top: 3rem;">
+    <p style="margin: 0; font-size: 0.9rem;">&copy; 2027 Rivers East Campaign Movement. All rights reserved.</p>
+  </footer>
+
+
+
+  <!-- External Script -->
+  <script src="register.js"></script>
+</body>
+</html>
