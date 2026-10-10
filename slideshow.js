@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SLIDESHOW & MULTI-LANGUAGE ERASER/TYPEWRITER SYSTEM (STOPS AT FINAL SLIDE)
+   SLIDESHOW & MULTI-LANGUAGE ERASER/TYPEWRITER SYSTEM (LOOPS INFINITELY)
    ========================================================================== */
 
 const slidesData = [
@@ -20,7 +20,6 @@ const slidesData = [
       "[Okrika]: Senate President-mẹ na wa piri priority le-mẹ na bill-mẹ kụrọ-mẹ.",
       "[Pidgin]: Senate President Akpabio dey make sure federal allocation reach our side!"
     ]
-  
   },
   {
     messages: [
@@ -33,15 +32,6 @@ const slidesData = [
   },
   {
     messages: [
-      "[English]: Strategic alignment delivering grassroots empowerment and federal projects for Etche/Omuma Constituency.",
-      "[Ikwerre]: Rep. Kelechi Nwogu na-ezisa mmepe na ikike n'obodo Etche na Omuma.",
-      "[Etche]: Onyenwe anyi Rep. Kelechi Nwogu na-eweta ilu olu na mmepe puru iche n'ala Etche.",
-      "[Okrika]: Rep. Kelechi Nwogu dey carry federal project and progress enter every corner for Etche/Omuma.",
-      "[Pidgin]: Rep. Kelechi Nwogu dey work hand-in-hand with the people to bring real mmepe and youth empowerment!"
-    ]
-  },
-  {
-    messages: [
       "[English]: Unified vision connecting state development plans with Senator Onyesoh’s legislative agenda.",
       "[Ikwerre]: Governorship Candidate anyi no-zi kpa state ayi ga-eme nweru mmepe.",
       "[Etche]: Onyenwe anyi na-azọ Governor na-eweta amamihe na ihu n'anya na Rivers.",
@@ -50,16 +40,7 @@ const slidesData = [
     ]
   },
   {
-    messages: [
-      "[English]: Direct ward-level implementation of Senator Onyesoh’s local welfare and scholarship programs.",
-      "[Ikwerre]: Leadership LGA anyi no-meje oru riali na ward dum kpa ayi na-adima.",
-      "[Etche]: Chairman LGA na-eweta nkwado Senator gaa na ward nile.",
-      "[Okrika]: Chairman-mẹ na grassroots piri community empowerment mangi.",
-      "[Pidgin]: Local Government Chairman dey deliver Senator's empowerment direct to every ward!"
-    ]
-  },
-  {
-    // FINAL SLIDE: SENATOR ALLWELL ONYESOH
+    // FINAL SLIDE: SENATOR ALLWELL ONYESOH (Index 4)
     messages: [
       "[English - Past Achievements]: Facilitated key bills, sponsored hundreds of university scholarships, and empowered local businesses.",
       "[English - Future Commitment]: Re-elect Senator Onyesoh for expanded industrial growth, continuous pipelines, and youth employment!",
@@ -96,7 +77,7 @@ function typeAndEraseText(elementId, messages, msgIndex = 0, onComplete) {
   const element = document.getElementById(elementId);
   
   if (!element) {
-    if (onComplete && currentSlideIndex < slidesData.length - 1) onComplete();
+    if (onComplete) onComplete();
     return;
   }
 
@@ -110,17 +91,15 @@ function typeAndEraseText(elementId, messages, msgIndex = 0, onComplete) {
       typewriterTimeout = setTimeout(typeChar, 35); // Typing speed
     } else {
       typewriterTimeout = setTimeout(() => {
-        const isLastSlide = currentSlideIndex === slidesData.length - 1;
         const isLastMessage = msgIndex === messages.length - 1;
 
         if (!isLastMessage) {
           // Erase text to type the next message in this slide
           eraseChar();
-        } else if (!isLastSlide && onComplete) {
-          // Move to the next slide only if it's NOT the last slide
+        } else if (onComplete) {
+          // Move to the next slide once all messages for this slide finish
           onComplete();
         }
-        // If it is the last slide & last message, execution stops naturally here.
       }, 1200);
     }
   }
@@ -161,10 +140,9 @@ function showSlide(index) {
 }
 
 function nextSlide() {
-  // Stop when reaching the last slide instead of cycling back to index 0
-  if (currentSlideIndex < slidesData.length - 1) {
-    showSlide(currentSlideIndex + 1);
-  }
+  // Loop back to index 0 seamlessly when reaching the end
+  const nextIndex = (currentSlideIndex + 1) % slidesData.length;
+  showSlide(nextIndex);
 }
 
 function jumpToSlide(index) {

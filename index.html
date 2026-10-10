@@ -2,10 +2,218 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1200, initial-scale=0.35, minimum-scale=0.2, maximum-scale=3.0, user-scalable=yes"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strategic Alliances & Leadership | Senator Allwell Onyesoh</title>
-  <link rel="stylesheet" href="styles.css" />
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background: rgba(18, 18, 18, 0.95);
+      border-bottom: 1px solid #2a2a2a;
+      padding: 1rem 5%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; }
+    .apc-green { color: #10b981; }
+    .tag { color: #38bdf8; font-size: 0.85rem; margin-left: 5px; }
+    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links a { color: #e2e8f0; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s ease; }
+    .nav-links a:hover { color: #38bdf8; }
+
+    /* Slideshow Container */
+    .slideshow-container {
+      position: relative;
+      min-height: calc(100vh - 70px);
+      width: 100%;
+      background: #121212;
+      overflow: hidden;
+    }
+
+    /* Individual Slide */
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0 0 5%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+      z-index: 1;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+    }
+
+    /* Left Text Content Box */
+    .hero-left-content {
+      flex: 1;
+      max-width: 650px;
+      padding-right: 2rem;
+      z-index: 3;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .gold-tag {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .hero-main-title {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 0.6rem;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .hero-role-title {
+      font-size: 1.15rem;
+      color: #38bdf8;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Typewriter Box Container */
+    .typewriter-container {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid #334155;
+      padding: 1.2rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+    }
+
+    .typewriter-text {
+      font-size: 1.05rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+      font-family: monospace;
+    }
+
+    .hero-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 34px;
+      border: 2px solid #ffffff;
+      border-radius: 50px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    .hero-cta-btn:hover {
+      background: #ffffff;
+      color: #121212;
+      transform: translateY(-2px);
+    }
+
+    /* Right Side Portrait Wrapper */
+    .hero-right-image {
+      flex: 1.1;
+      height: calc(100vh - 70px);
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .hero-right-image img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: top center;
+      mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 22%);
+      -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 22%);
+    }
+
+    /* Carousel Indicator Dots */
+    .slideshow-dots {
+      position: absolute;
+      bottom: 25px;
+      left: 5%;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: #38bdf8;
+      width: 32px;
+      border-radius: 12px;
+    }
+
+    .bottom-nav {
+      text-align: center;
+      padding: 30px 0;
+      background: #0a0a0a;
+      border-top: 1px solid #1e1e1e;
+    }
+
+    @media (max-width: 992px) {
+      .slideshow-container { min-height: auto; height: auto; }
+      .slide { position: relative; flex-direction: column; padding: 2.5rem 1.5rem 0 1.5rem; display: none; opacity: 1; visibility: visible; }
+      .slide.active { display: flex; }
+      .hero-left-content { max-width: 100%; padding-right: 0; text-align: center; }
+      .hero-main-title { font-size: 2.2rem; }
+      .hero-right-image { width: 100%; height: 420px; margin-top: 2rem; }
+      .hero-right-image img {
+        mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 25%);
+        -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 25%);
+      }
+      .slideshow-dots { position: relative; bottom: 0; left: 0; justify-content: center; padding: 15px 0 25px 0; }
+    }
+  </style>
 </head>
 <body class="leadership-page">
 
@@ -15,130 +223,106 @@
       <div class="logo">
         <a href="index.html" style="text-decoration: none; color: inherit;">
           <span class="apc-green">APC</span> 2027 <span class="tag">RIVERS EAST</span>
-      </a>
+        </a>
       </div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Senator Onyesoh</a></li>
-        
+        <li><a href="campaign-landing.html">Campaign Portal</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Section Showcase Header -->
-  <header class="showcase-header" style="background-image: linear-gradient(90deg, rgba(0, 135, 81, 0.7) 0%, rgba(15, 23, 42, 0.85) 50%, rgba(163, 29, 29, 0.7) 100%), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-    <div class="container">
-      <h2>Unshakable Loyalty & Strategic Governance</h2>
-      <p>Building Rivers East through National Alignment, Regional Cooperation, and Grassroots Loyalty</p>
-    </div>
-  </header>
-    
-
   <!-- Main Slideshow Section -->
   <section class="slideshow-container">
     
-    <!-- SLIDE 1: President Tinubu -->
+    <!-- SLIDE 0: President Tinubu -->
     <div class="slide active" data-slide="0">
-      <div class="slide-image-box" style="background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-        <img src="c959b20afb59da87d8478d2647a3f7a8.jpg" onerror="this.onerror=null; this.src='c959b20afb59da87d8478d2647a3f7a8.jpg';" alt="President Bola Ahmed Tinubu">
-      </div>
-      <div class="slide-content-box">
-        <span class="leader-tag">Federal Executive Alignment</span>
-        <h3 class="leader-name">His Excellency, Bola Ahmed Tinubu (GCFR)</h3>
-        <span class="leader-title">President, Federal Republic of Nigeria</span>
-        <div class="typewriter-container" style="background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'); background-size: cover; background-position: center;">
+      <div class="hero-left-content">
+        <span class="hero-badge">Federal Executive Alignment</span>
+        <h1 class="hero-main-title">His Excellency, Bola Ahmed Tinubu (GCFR)</h1>
+        <div class="hero-role-title">President, Federal Republic of Nigeria</div>
+        <div class="typewriter-container">
           <p class="typewriter-text" id="text-slide-0"></p>
         </div>
+        <a href="campaign-landing.html" class="hero-cta-btn">
+          ENTER CAMPAIGN PORTAL <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="hero-right-image">
+        <img src="c959b20afb59da87d8478d2647a3f7a8.jpg" alt="President Bola Ahmed Tinubu">
       </div>
     </div>
 
-    <!-- SLIDE 2: Senate President -->
+    <!-- SLIDE 1: Senate President Akpabio -->
     <div class="slide" data-slide="1">
-      <div class="slide-image-box" style="background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-        <img src="images (21).jpeg" onerror="this.onerror=null; this.src='images (21).jpeg';" alt="Senate President Godswill Akpabio">
-      </div>
-      <div class="slide-content-box">
-        <span class="leader-tag">Legislative Leadership</span>
-        <h3 class="leader-name">His Excellency, Senator Godswill Akpabio (GCON)</h3>
-        <span class="leader-title">President of the Senate</span>
-        <div class="typewriter-container" style="background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'); background-size: cover; background-position: center;">
+      <div class="hero-left-content">
+        <span class="hero-badge">Legislative Leadership</span>
+        <h1 class="hero-main-title">His Excellency, Senator Godswill Akpabio (GCON)</h1>
+        <div class="hero-role-title">President of the Senate</div>
+        <div class="typewriter-container">
           <p class="typewriter-text" id="text-slide-1"></p>
         </div>
+        <a href="campaign-landing.html" class="hero-cta-btn">
+          ENTER CAMPAIGN PORTAL <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="hero-right-image">
+        <img src="images (21).jpeg" alt="Senate President Godswill Akpabio">
       </div>
     </div>
 
-    <!-- SLIDE 4: Minister of FCT -->
-    <div class="slide" data-slide="3">
-      <div class="slide-image-box" style="background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-        <img src="images (22).jpeg" onerror="this.onerror=null; this.src='images (22).jpeg';" alt="Chief Nyesom Wike">
+    <!-- SLIDE 2: Minister Wike -->
+    <div class="slide" data-slide="2">
+      <div class="hero-left-content">
+        <span class="hero-badge">Regional Strategic Leader</span>
+        <h1 class="hero-main-title"> His Execellency, Chief Barr. Nyesom Ezenwo Wike</h1>
+        <div class="hero-role-title">Minister of the Federal Capital Territory</div>
+        <div class="typewriter-container">
+          <p class="typewriter-text" id="text-slide-2"></p>
+        </div>
+        <a href="campaign-landing.html" class="hero-cta-btn">
+          ENTER CAMPAIGN PORTAL <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
-      <div class="slide-content-box">
-        <span class="leader-tag">Regional Strategic Leader</span>
-        <h3 class="leader-name">Chief Barr. Nyesom Ezenwo Wike</h3>
-        <span class="leader-title">Minister of the Federal Capital Territory</span>
-        <div class="typewriter-container" style="background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'); background-size: cover; background-position: center;">
+      <div class="hero-right-image">
+        <img src="images (22).jpeg" alt="Chief Nyesom Wike">
+      </div>
+    </div>
+
+    <!-- SLIDE 3: APC Governorship Candidate -->
+    <div class="slide" data-slide="3">
+      <div class="hero-left-content">
+        <span class="hero-badge">State Executive Vision</span>
+        <h1 class="hero-main-title">Rt. Hon. Kingsley Ogundu Chinda.</h1>
+        <div class="hero-role-title">Rivers State Consolidation</div>
+        <div class="typewriter-container">
           <p class="typewriter-text" id="text-slide-3"></p>
         </div>
+        <a href="campaign-landing.html" class="hero-cta-btn">
+          ENTER CAMPAIGN PORTAL <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="hero-right-image">
+        <img src="img-20260914-wa0006-qzhla.jpg" alt="APC Governorship Candidate">
       </div>
     </div>
 
-    <!-- SLIDE 5: Hon Kelechi Nwogu -->
+    <!-- SLIDE 4: Senator Allwell Onyesoh -->
     <div class="slide" data-slide="4">
-      <div class="slide-image-box" style="background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-        <img src="images (25).jpeg" onerror="this.onerror=null; this.src='images (25).jpeg';" alt="Hon Kelechi Nwogu">
-      </div>
-      <div class="slide-content-box">
-        <span class="leader-tag">Federal Legislative Leader</span>
-        <h3 class="leader-name">Hon. Kelechi Nwogu</h3>
-        <span class="leader-title">House Of Representatives (Etche/Omuma Constituency)</span>
-        <div class="typewriter-container" style="background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'); background-size: cover; background-position: center;">
+      <div class="hero-left-content">
+        <span class="hero-badge gold-tag">The Visionary Champion</span>
+        <h1 class="hero-main-title">Senator Allwell Heacho Onyesoh</h1>
+        <div class="hero-role-title">Senator Representing Rivers East Senatorial District</div>
+        <div class="typewriter-container">
           <p class="typewriter-text" id="text-slide-4"></p>
         </div>
+        <a href="campaign-landing.html" class="hero-cta-btn">
+          ENTER CAMPAIGN PORTAL <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
-    </div>
-
-    <!-- SLIDE 6: APC Governorship Candidate -->
-    <div class="slide" data-slide="5">
-      <div class="slide-image-box" style="background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-        <img src="img-20260914-wa0006-qzhla.jpg" onerror="this.onerror=null; this.src='img-20260914-wa0006-qzhla.jpg';" alt="APC Governorship Candidate">
-      </div>
-      <div class="slide-content-box">
-        <span class="leader-tag">State Executive Vision</span>
-        <h3 class="leader-name">Hon. Kingsley Ogundu Chinda</h3>
-        <span class="leader-title">APC Governorship Candidate, Rivers State</span>
-        <div class="typewriter-container" style="background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'); background-size: cover; background-position: center;">
-          <p class="typewriter-text" id="text-slide-5"></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 7: Local Government Chairman -->
-    <div class="slide" data-slide="6">
-      <div class="slide-image-box" style="background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-        <img src="images (24).jpeg" onerror="this.onerror=null; this.src='images (24).jpeg';" alt="Local Government Chairman">
-      </div>
-      <div class="slide-content-box">
-        <span class="leader-tag">Grassroots Coordination</span>
-        <h3 class="leader-name">Executive Local Government Leadership</h3>
-        <span class="leader-title">Etche & Rivers East LGA Chairmanship</span>
-        <div class="typewriter-container" style="background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'); background-size: cover; background-position: center;">
-          <p class="typewriter-text" id="text-slide-6"></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- FINAL SLIDE 8: Senator Allwell Onyesoh -->
-    <div class="slide" data-slide="7">
-      <div class="slide-image-box" style="background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.3)), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg'); background-size: cover; background-position: center;">
-        <img src="src/images (17).jpeg" onerror="this.onerror=null; this.src='src/images (17).jpeg';" alt="Senator Allwell Onyesoh">
-      </div>
-      <div class="slide-content-box highlight-senator">
-        <span class="leader-tag gold-tag">The Visionary Champion</span>
-        <h3 class="leader-name">Senator Allwell Heacho Onyesoh</h3>
-        <span class="leader-title">Senator Representing Rivers East Senatorial District</span>
-        <div class="typewriter-container" style="background-image: linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'); background-size: cover; background-position: center;">
-          <p class="typewriter-text" id="text-slide-7"></p>
-        </div>
+      <div class="hero-right-image">
+        <img src="src/images (17).jpeg" alt="Senator Allwell Onyesoh">
       </div>
     </div>
 
@@ -147,13 +331,14 @@
 
   </section>
 
-  </section>
-
-  <!-- Navigation Link Back to Main Campaign -->
-  <div style="text-align: center; margin: 40px 0;">
-    <a href="campaign-landing.html" class="btn-primary"><i class="fa-solid fa-arrow-left"></i> Return to Main Campaign Home Page</a>
+  <!-- Bottom Navigation Link -->
+  <div class="bottom-nav">
+    <a href="campaign-landing.html" class="hero-cta-btn" style="border-radius: 8px; font-size: 0.85rem; padding: 12px 24px;">
+      <i class="fa-solid fa-arrow-left"></i> Return to Main Campaign Home Page
+    </a>
   </div>
 
+  <!-- Link your external slideshow JS script -->
   <script src="slideshow.js"></script>
 </body>
 </html>
