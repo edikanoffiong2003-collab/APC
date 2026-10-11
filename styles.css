@@ -1071,3 +1071,44 @@ html, body {
   to { opacity: 1; }
 }
 
+/* Password Field Wrapper & Show/Hide Eye Toggle Icon */
+.password-field-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 0.4rem;
+}
+
+.password-field-wrapper input {
+  width: 100%;
+  padding: 10px 42px 10px 10px; /* Extra right padding prevents text from overlapping the icon */
+  background: #0f172a;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  color: #ffffff;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.password-field-wrapper input:focus {
+  border-color: #38bdf8;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 10;
+  padding: 4px;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+  color: #38bdf8;
+}
