@@ -1112,3 +1112,15 @@ html, body {
 .password-toggle-btn:hover {
   color: #38bdf8;
 }
+
+/* Container for Side-by-Side Symmetrical Cards */
+.campaign-support-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
