@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senator Allwell Onyesoh - Projects & Empowerment Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --apc-green: #28a745;
+      --apc-blue: #38bdf8;
+      --apc-navy: #0f172a;
+      --gray-dark: #1e293b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f172a;
+      color: #0f172a;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* UNIFIED FULL-WIDTH CANVAS - NO INNER CARD BOXES */
+    .main-container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px 50px;
+      position: relative;
+    }
+
+    /* HEADER BANNER */
+    .header-section {
+      position: relative;
+      padding-bottom: 30px;
+      margin-bottom: 40px;
+      border-bottom: 3px double #e2e8f0;
+      overflow: hidden;
+    }
+
+    .header-section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('src/rivers_state_map.jpg');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-badge {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .header-badge img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid var(--apc-green);
+      object-fit: cover;
+      margin: 0 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--apc-navy);
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    p.sub-heading {
+      text-align: center;
+      color: #475569;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /* SECTIONS - SEAMLESS CONTINUOUS FLOW (NO BOXES, NO EXTRA PADDING) */
+    .section-block {
+      position: relative;
+      padding: 35px 0;
+      border-bottom: 1px solid #e2e8f0;
+      overflow: hidden;
+    }
+
+    .section-block:last-child {
+      border-bottom: none;
+    }
+
+    /* MAP WATERMARK BEHIND ALL CONTENT */
+    .section-block::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('src/images_f7743603-cc75-43.jpg');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.10; /* Watermark opacity */
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .section-title {
+      position: relative;
+      z-index: 2;
+      color: var(--apc-navy);
+      font-size: 22px;
+      text-transform: uppercase;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .section-title i {
+      color: var(--apc-green);
+    }
+
+    .section-content-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr; /* Left: Write-up, Right: Media */
+      gap: 35px;
+      align-items: start;
+    }
+
+    ul.section-list {
+      padding-left: 20px;
+      line-height: 1.85;
+      color: var(--gray-dark);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    ul.section-list li {
+      margin-bottom: 14px;
+    }
+
+    /* LANDSCAPE SLIDESHOW CONTAINER */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      background-color: #000;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      z-index: 1;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 12px 18px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      z-index: 5;
+    }
+
+    .slide-prev, .slide-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(40, 167, 69, 0.9);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+
+    .slide-prev:hover, .slide-next:hover {
+      background: #218838;
+    }
+
+    .slide-prev { left: 12px; }
+    .slide-next { right: 12px; }
+
+    /* RESPONSIVE FALLBACK */
+    @media (max-width: 900px) {
+      .section-content-grid {
+        grid-template-columns: 1fr;
+      }
+      .slideshow-container {
+        height: 300px;
+      }
+      .main-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+
+    <!-- HEADER TITLE BANNER -->
+    <div class="header-section">
+      <div class="header-content">
+        <div class="header-badge">
+          <img src="src/images (17).jpeg" alt="Senator Allwell Onyesoh">
+          <img src="src/IMG_dd95ee30-33af-4814-8c14-b0cdb9d8ba09.jpg" alt="Senator Allwell Onyesoh">
+        </div>
+        <h1>SENATOR ALLWELL ONYESOH — PROJECTS & GALLERY</h1>
+        <p class="sub-heading">Rivers East Senatorial District — 10th National Assembly</p>
+      </div>
+    </div>
+
+    <!-- ================= 1. EMPOWERMENT SCHEMES ================= -->
+    <div class="section-block">
+      <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> 1. Empowerment Schemes &amp; Human Capital</h2>
+      
+      <div class="section-content-grid">
+        <!-- LEFT: WRITE UP -->
+        <ul class="section-list">
+          <li><strong>Employment Facilitation (200+ Beneficiaries):</strong> Facilitated direct employment opportunities across federal agencies (including NCAA) and key public institutions for over 200 constituents across Rivers East.</li>
+          <li><strong>Law School "Call to Bar" Educational Grant (₦23.85 Million):</strong> Disbursed ₦150,000 cash grants to 159 law graduates from Rivers East to cover Call to Bar fees, wigs, gowns, and logistical expenses.</li>
+          <li><strong>Postgraduate Legal Scholarships:</strong> Awarded full postgraduate law (LL.M.) scholarships to two young lawyers—Azunda Blessing and Fortunatus Chisom Njoku.</li>
+          <li><strong>Alternative Dispute Resolution (ADR) Training (₦6.7 Million):</strong> Sponsored specialized ADR certification and capacity-building training for young legal professionals.</li>
+          <li><strong>Vulnerable Constituents Support:</strong> Sustains vocational training, skill acquisition, and financial support through his constituency office.</li>
+        </ul>
+
+        <!-- RIGHT: LANDSCAPE SLIDESHOW -->
+        <div class="slideshow-container">
+          <div class="slide-group-0">
+            <div class="slide active" style="background-image: url('src/download.jpeg');"><div class="slide-caption">1/9: ₦23.85M Call To Bar Grant Presentation</div></div>
+            <div class="slide" style="background-image: url('senatorallwellonyesoh_ba394db1edee4ad7a287fcc74ccdbd8f.jpg');"><div class="slide-caption">2/9: Employment Beneficiaries Delegation Visit</div></div>
+            <div class="slide" style="background-image: url('src/WhatsApp-Image-2025-07-20-at-12.43.45_3f15a709.jpg');"><div class="slide-caption">3/9: Young Lawyers Class Abuja Office Courtesy Visit</div></div>
+            <div class="slide" style="background-image: url('src/empowerment4.jpg');"><div class="slide-caption">4/9: Presentation of Law School Support Cheques</div></div>
+            <div class="slide" style="background-image: url('src/empowerment5.jpg');"><div class="slide-caption">5/9: ADR Professional Certificate Award Ceremony</div></div>
+            <div class="slide" style="background-image: url('src/empowerment6.jpg');"><div class="slide-caption">6/9: Post-Graduate Scholarship Recipients Recognition</div></div>
+            <div class="slide" style="background-image: url('src/empowerment7.jpg');"><div class="slide-caption">7/9: Youth Vocational Skills Empowerment Workshop</div></div>
+            <div class="slide" style="background-image: url('src/empowerment8.jpg');"><div class="slide-caption">8/9: Artisans & Small Business Equipment Distribution</div></div>
+            <div class="slide" style="background-image: url('src/empowerment9.jpg');"><div class="slide-caption">9/9: Educational Grant Beneficiaries Group Photograph</div></div>
+          </div>
+          <button class="slide-prev" onclick="prevSlide(0)">&#10094;</button>
+          <button class="slide-next" onclick="nextSlide(0)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 2. CONSTITUENCY OUTREACH ================= -->
+    <div class="section-block">
+      <h2 class="section-title"><i class="fa-solid fa-people-roof"></i> 2. Constituency Outreach &amp; Grassroots</h2>
+      
+      <div class="section-content-grid">
+        <!-- LEFT: WRITE UP -->
+        <ul class="section-list">
+          <li><strong>Open-Door Grassroots Dialogue:</strong> Operates an accessible constituency headquarters in Port Harcourt, hosting regular interactive sessions with community leaders, youth groups, and women associations.</li>
+          <li><strong>Grassroots Legislative Collaboration:</strong> Hosted joint courtesy delegations from the Etche 10th and Omuma 7th Legislative Councils, reinforcing grassroots synergy under the Rainbow Coalition.</li>
+          <li><strong>Ward-Level Structural Inclusion:</strong> Integrating local councillors into his outreach structure, appointing experienced leaders as Ward Coordinators to deliver democratic dividends across all wards.</li>
+        </ul>
+
+        <!-- RIGHT: LANDSCAPE SLIDESHOW -->
+        <div class="slideshow-container">
+          <div class="slide-group-1">
+            <div class="slide active" style="background-image: url('src/outreach1.jpg');"><div class="slide-caption">1/9: Etche & Omuma Councillors Courtesy Visit</div></div>
+            <div class="slide" style="background-image: url('src/outreach2.jpg');"><div class="slide-caption">2/9: Port Harcourt Constituency Office Interactive Session</div></div>
+            <div class="slide" style="background-image: url('src/outreach3.jpg');"><div class="slide-caption">3/9: Community Leaders & Elders Stakeholders Meeting</div></div>
+            <div class="slide" style="background-image: url('src/outreach4.jpg');"><div class="slide-caption">4/9: Grassroots Ward Coordinators Engagement</div></div>
+            <div class="slide" style="background-image: url('src/outreach5.jpg');"><div class="slide-caption">5/9: Women Mobilization Leadership Meeting</div></div>
+            <div class="slide" style="background-image: url('src/outreach6.jpg');"><div class="slide-caption">6/9: Obio-Akpor & Port Harcourt Youth Townhall</div></div>
+            <div class="slide" style="background-image: url('src/outreach7.jpg');"><div class="slide-caption">7/9: Traditional Rulers Consultative Engagement</div></div>
+            <div class="slide" style="background-image: url('src/outreach8.jpg');"><div class="slide-caption">8/9: Okrika & Ogu-Bolo Stakeholders Reception</div></div>
+            <div class="slide" style="background-image: url('src/outreach9.jpg');"><div class="slide-caption">9/9: Emohua & Ikwerre Ward Delegation Visit</div></div>
+          </div>
+          <button class="slide-prev" onclick="prevSlide(1)">&#10094;</button>
+          <button class="slide-next" onclick="nextSlide(1)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 3. LEGISLATIVE RECORD ================= -->
+    <div class="section-block">
+      <h2 class="section-title"><i class="fa-solid fa-scroll"></i> 3. Legislative Record &amp; Oversight</h2>
+      
+      <div class="section-content-grid">
+        <!-- LEFT: WRITE UP -->
+        <ul class="section-list">
+          <li><strong>Key Legislation Sponsored:</strong> Sponsored the <em>Federal Character Commission Act (Amendment) Bill, 2025</em>, to enforce transparency and equity in recruitment across Nigeria.</li>
+          <li><strong>Senate Committee Leadership:</strong> Appointed as <strong>Chairman of the Senate Committee on Works</strong>, leading national oversight on federal road infrastructure and budget execution.</li>
+          <li><strong>Institutional Oversight:</strong> Performs legislative oversight functions across statutory bodies including NNPCL, NUPRC, and NAFDAC.</li>
+        </ul>
+
+        <!-- RIGHT: LANDSCAPE SLIDESHOW -->
+        <div class="slideshow-container">
+          <div class="slide-group-2">
+            <div class="slide active" style="background-image: url('src/Senator-Allwell-Onyesoh.png');"><div class="slide-caption">1/9: Plenary Session at the Senate Chamber, Abuja</div></div>
+            <div class="slide" style="background-image: url('src/senate2.jpg');"><div class="slide-caption">2/9: Senate Committee on Works Leadership Meeting</div></div>
+            <div class="slide" style="background-image: url('src/senate3.jpg');"><div class="slide-caption">3/9: Inspection of Federal Road Construction Projects</div></div>
+            <div class="slide" style="background-image: url('src/senate4.jpg');"><div class="slide-caption">4/9: NUPRC & NNPCL Executive Oversight Meeting</div></div>
+            <div class="slide" style="background-image: url('src/images.jpg');"><div class="slide-caption">5/9: Public Hearing on Federal Character Commission Bill</div></div>
+            <div class="slide" style="background-image: url('src/senate6.jpg');"><div class="slide-caption">6/9: Senate Committee Budget Defence Hearing</div></div>
+            <div class="slide" style="background-image: url('src/senate7.jpg');"><div class="slide-caption">7/9: Strategic Infrastructure Engagement with Federal Ministry</div></div>
+            <div class="slide" style="background-image: url('src/senate8.jpg');"><div class="slide-caption">8/9: NAFDAC Oversight Assessment Interactive Session</div></div>
+            <div class="slide" style="background-image: url('src/senate9.jpg');"><div class="slide-caption">9/9: National Assembly Joint Leadership Conference</div></div>
+          </div>
+          <button class="slide-prev" onclick="prevSlide(2)">&#10094;</button>
+          <button class="slide-next" onclick="nextSlide(2)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 4. RE-ELECTION & ENDORSEMENTS ================= -->
+    <div class="section-block">
+      <h2 class="section-title"><i class="fa-solid fa-handshake-angle"></i> 4. Grassroots Endorsements &amp; 2027 Movement</h2>
+      
+      <div class="section-content-grid">
+        <!-- LEFT: WRITE UP -->
+        <ul class="section-list">
+          <li>
+            <strong>Town Hall Consultations with FCT Minister Nyesom Wike:</strong> Senator Onyesoh hosted high-level town hall meetings and grassroots stakeholder engagements alongside the Minister of the Federal Capital Territory (FCT), Chief (Barr.) Nyesom Ezenwo Wike, in Etche Council Secretariat (Okehi) and across Rivers East, reinforcing party cohesion, grassroots synergy, and collective political direction under the Rainbow Coalition.
+          </li>
+          <li>
+            <strong>APC Platform Re-Election Bid:</strong> Reaffirming his commitment to continuous governance, Senator Onyesoh officially declared his candidacy for a second term in the Senate under the platform of the <strong>All Progressives Congress (APC)</strong>.
+          </li>
+          <li>
+            <strong>District-Wide Endorsements:</strong> His re-election movement has garnered firm backing and endorsements from local legislative assemblies (including the Etche 10th and Omuma 7th Legislative Councils), traditional councils, youth groups, and key political blocs across all 8 LGAs of Rivers East.
+          </li>
+        </ul>
+
+        <!-- RIGHT: LANDSCAPE SLIDESHOW WITH PHOTOS & VIDEO PLAYERS -->
+        <div class="slideshow-container">
+          <div class="slide-group-3">
+            <!-- PHOTO SLIDES (1-7) -->
+            <div class="slide active" style="background-image: url('src/campaign1.jpg');"><div class="slide-caption">1/9: Town Hall Interactive Meeting with FCT Minister Nyesom Wike</div></div>
+            <div class="slide" style="background-image: url('src/campaign2.jpg');"><div class="slide-caption">2/9: FCT Minister Nyesom Wike & Senator Onyesoh Stakeholders Reception</div></div>
+            <div class="slide" style="background-image: url('src/campaign3.jpg');"><div class="slide-caption">3/9: 2027 APC Campaign Mobilization Launch</div></div>
+            <div class="slide" style="background-image: url('src/campaign4.jpg');"><div class="slide-caption">4/9: Rainbow Coalition Grassroots Declaration</div></div>
+            <div class="slide" style="background-image: url('src/campaign5.jpg');"><div class="slide-caption">5/9: Rivers East Grassroots Unity & Strategic Rally</div></div>
+            <div class="slide" style="background-image: url('src/campaign6.jpg');"><div class="slide-caption">6/9: Etche & Omuma Local Government Endorsement Summit</div></div>
+            <div class="slide" style="background-image: url('src/campaign7.jpg');"><div class="slide-caption">7/9: Obio-Akpor Youth Alliance Support Declaration</div></div>
+
+            <!-- VIDEO SLIDES (8 & 9) -->
+            <div class="slide video-slide">
+              <video controls poster="src/townhall_video1_poster.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="src/townhall_wike_meeting1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="slide-caption">8/9: VIDEO — Town Hall Highlights with FCT Minister Nyesom Wike</div>
+            </div>
+
+            <div class="slide video-slide">
+              <video controls poster="src/townhall_video2_poster.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="src/AhaTik_skyhand_p_fc4316a2-0b99-47b0-8c97-c51d02f1ad2e_.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <div class="slide-caption">9/9: VIDEO — Senator Allwell Onyesoh Address at Etche Assembly</div>
+            </div>
+          </div>
+
+          <button class="slide-prev" onclick="prevSlide(3)">&#10094;</button>
+          <button class="slide-next" onclick="nextSlide(3)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT FOR SLIDESHOW ROTATION & VIDEO MANAGEMENT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const groups = [
+        document.querySelectorAll(".slide-group-0 .slide"),
+        document.querySelectorAll(".slide-group-1 .slide"),
+        document.querySelectorAll(".slide-group-2 .slide"),
+        document.querySelectorAll(".slide-group-3 .slide")
+      ];
+
+      let currentIndexes = [0, 0, 0, 0];
+
+      window.showSlide = (groupIdx, slideIdx) => {
+        const slides = groups[groupIdx];
+        if (!slides || slides.length === 0) return;
+
+        // Pause video if currently playing
+        const currentSlide = slides[currentIndexes[groupIdx]];
+        const currentVideo = currentSlide.querySelector("video");
+        if (currentVideo) {
+          currentVideo.pause();
+        }
+
+        currentSlide.classList.remove("active");
+        currentIndexes[groupIdx] = (slideIdx + slides.length) % slides.length;
+        
+        const newSlide = slides[currentIndexes[groupIdx]];
+        newSlide.classList.add("active");
+      };
+
+      window.nextSlide = (groupIdx) => {
+        showSlide(groupIdx, currentIndexes[groupIdx] + 1);
+      };
+
+      window.prevSlide = (groupIdx) => {
+        showSlide(groupIdx, currentIndexes[groupIdx] - 1);
+      };
+
+      // Auto-rotate each section slideshow every 4.5 seconds
+      groups.forEach((group, idx) => {
+        if (group.length > 0) {
+          setInterval(() => {
+            const currentSlide = group[currentIndexes[idx]];
+            const video = currentSlide.querySelector("video");
+            // Only auto-advance if no video is currently playing
+            if (!video || video.paused) {
+              nextSlide(idx);
+            }
+          }, 4500);
+        }
+      });
+    });
+  </script>
+  <div style="text-align: center; margin: 50px auto;">
+    <a href="campaign-landing.html" class="btn-primary" style="display: inline-block; padding: 12px 24px; background-color: #0f172a; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 700;">
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Return to Campaign
+    </a>
+  </div>
+</body>
+</html>
+
+
+ 
