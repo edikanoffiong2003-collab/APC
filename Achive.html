@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Senator Allwell Onyesoh - Projects & Empowerment Gallery</title>
+  <title data-translate="ach_page_title">Senator Allwell Onyesoh - Projects & Empowerment Gallery</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
   <style>
     :root {
       --apc-green: #28a745;
@@ -22,6 +23,87 @@
       min-height: 100vh;
       margin: 0;
       padding: 0;
+    }
+
+    /* RIVERS EAST LANGUAGE SELECTOR DROPDOWN STYLING */
+    .lang-dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-left: 10px;
+      vertical-align: middle;
+      z-index: 1000;
+    }
+    .lang-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+    .lang-dropdown-btn:hover {
+      background-color: #e2e8f0;
+    }
+    .lang-dropdown-btn i.fa-globe {
+      color: #28a745;
+    }
+    .lang-dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 38px;
+      background-color: #ffffff;
+      min-width: 240px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 8px 0;
+      z-index: 1001;
+    }
+    .lang-dropdown-menu.show {
+      display: block;
+    }
+    .lang-dropdown-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      color: #1e293b;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .lang-dropdown-menu a:hover {
+      background-color: #f8fafc;
+      color: #28a745;
+    }
+    .lang-dropdown-menu .badge {
+      font-size: 10px;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background-color: #e2e8f0;
+      margin: 6px 0;
+    }
+    .dropdown-header {
+      padding: 4px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
     }
 
     /* UNIFIED FULL-WIDTH CANVAS - NO INNER CARD BOXES */
@@ -93,7 +175,7 @@
       font-weight: 700;
     }
 
-    /* SECTIONS - SEAMLESS CONTINUOUS FLOW (NO BOXES, NO EXTRA PADDING) */
+    /* SECTIONS - SEAMLESS CONTINUOUS FLOW */
     .section-block {
       position: relative;
       padding: 35px 0;
@@ -105,7 +187,6 @@
       border-bottom: none;
     }
 
-    /* MAP WATERMARK BEHIND ALL CONTENT */
     .section-block::before {
       content: "";
       position: absolute;
@@ -117,7 +198,7 @@
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.10; /* Watermark opacity */
+      opacity: 0.10;
       pointer-events: none;
       z-index: 1;
     }
@@ -143,7 +224,7 @@
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr; /* Left: Write-up, Right: Media */
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 35px;
       align-items: start;
     }
@@ -226,7 +307,6 @@
     .slide-prev { left: 12px; }
     .slide-next { right: 12px; }
 
-    /* RESPONSIVE FALLBACK */
     @media (max-width: 900px) {
       .section-content-grid {
         grid-template-columns: 1fr;
@@ -242,6 +322,49 @@
 </head>
 <body>
 
+  <!-- Navigation Bar with Integrated Language Selector -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="apc-green">APC</span> 2027 <span class="tag" data-translate="nav_tag">RIVERS EAST</span>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+        <li><a href="about.html" data-translate="nav_about">About Senator Allwell</a></li>
+        <li><a href="Achive.html" class="active" data-translate="nav_achievements">Explore Achievements</a></li>
+        <li><a href="register.html" class="btn-primary" data-translate="nav_join">Join Movement</a></li>
+
+        <!-- RIVERS EAST LANGUAGE SELECTOR -->
+        <li>
+          <div class="lang-dropdown-wrapper">
+            <button class="lang-dropdown-btn" onclick="toggleLangMenu()" type="button">
+              <i class="fa-solid fa-globe"></i>
+              <span id="current-lang-text">EN</span>
+              <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
+            </button>
+
+            <div class="lang-dropdown-menu" id="langMenu">
+              <a href="javascript:void(0)" onclick="switchLanguage('en', 'English')">English <span class="badge">EN</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('pcm', 'Nigerian Pidgin')">Nigerian Pidgin <span class="badge">PCM</span></a>
+              
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-header" data-translate="dropdown_header">Rivers East Local Languages</div>
+              
+              <a href="javascript:void(0)" onclick="switchLanguage('okrika', 'Okrika (Kirike)')">Okrika (Kirike) <span class="badge">OKR</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('kalabari', 'Kalabari')">Kalabari Language <span class="badge">KAL</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('obolo', 'Andoni (Obolo)')">Andoni (Obolo) <span class="badge">OBL</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('ibani', 'Ibani / Bonny')">Ibani / Bonny <span class="badge">IBA</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('nkoroo', 'Nkoroo')">Nkoroo Language <span class="badge">NKO</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('ogoni', 'Ogoni (Khana/Eleme)')">Ogoni (Khana, Gokana, Eleme) <span class="badge">OGO</span></a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="main-container">
 
     <!-- HEADER TITLE BANNER -->
@@ -251,23 +374,25 @@
           <img src="src/images (17).jpeg" alt="Senator Allwell Onyesoh">
           <img src="src/IMG_dd95ee30-33af-4814-8c14-b0cdb9d8ba09.jpg" alt="Senator Allwell Onyesoh">
         </div>
-        <h1>SENATOR ALLWELL ONYESOH — PROJECTS & GALLERY</h1>
-        <p class="sub-heading">Rivers East Senatorial District — 10th National Assembly</p>
+        <h1 data-translate="ach_main_title">SENATOR ALLWELL ONYESOH — PROJECTS & GALLERY</h1>
+        <p class="sub-heading" data-translate="ach_main_subtitle">Rivers East Senatorial District — 10th National Assembly</p>
       </div>
     </div>
 
     <!-- ================= 1. EMPOWERMENT SCHEMES ================= -->
     <div class="section-block">
-      <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> 1. Empowerment Schemes &amp; Human Capital</h2>
+      <h2 class="section-title" data-translate="ach_sec1_title">
+        <i class="fa-solid fa-graduation-cap"></i>1. Empowerment Schemes &amp; Human Capital
+      </h2>
       
       <div class="section-content-grid">
         <!-- LEFT: WRITE UP -->
         <ul class="section-list">
-          <li><strong>Employment Facilitation (200+ Beneficiaries):</strong> Facilitated direct employment opportunities across federal agencies (including NCAA) and key public institutions for over 200 constituents across Rivers East.</li>
-          <li><strong>Law School "Call to Bar" Educational Grant (₦23.85 Million):</strong> Disbursed ₦150,000 cash grants to 159 law graduates from Rivers East to cover Call to Bar fees, wigs, gowns, and logistical expenses.</li>
-          <li><strong>Postgraduate Legal Scholarships:</strong> Awarded full postgraduate law (LL.M.) scholarships to two young lawyers—Azunda Blessing and Fortunatus Chisom Njoku.</li>
-          <li><strong>Alternative Dispute Resolution (ADR) Training (₦6.7 Million):</strong> Sponsored specialized ADR certification and capacity-building training for young legal professionals.</li>
-          <li><strong>Vulnerable Constituents Support:</strong> Sustains vocational training, skill acquisition, and financial support through his constituency office.</li>
+          <li data-translate="ach_sec1_item1"><strong>Employment Facilitation (200+ Beneficiaries):</strong> Facilitated direct employment opportunities across federal agencies (including NCAA) and key public institutions for over 200 constituents across Rivers East.</li>
+          <li data-translate="ach_sec1_item2"><strong>Law School "Call to Bar" Educational Grant (₦23.85 Million):</strong> Disbursed ₦150,000 cash grants to 159 law graduates from Rivers East to cover Call to Bar fees, wigs, gowns, and logistical expenses.</li>
+          <li data-translate="ach_sec1_item3"><strong>Postgraduate Legal Scholarships:</strong> Awarded full postgraduate law (LL.M.) scholarships to two young lawyers—Azunda Blessing and Fortunatus Chisom Njoku.</li>
+          <li data-translate="ach_sec1_item4"><strong>Alternative Dispute Resolution (ADR) Training (₦6.7 Million):</strong> Sponsored specialized ADR certification and capacity-building training for young legal professionals.</li>
+          <li data-translate="ach_sec1_item5"><strong>Vulnerable Constituents Support:</strong> Sustains vocational training, skill acquisition, and financial support through his constituency office.</li>
         </ul>
 
         <!-- RIGHT: LANDSCAPE SLIDESHOW -->
@@ -291,14 +416,16 @@
 
     <!-- ================= 2. CONSTITUENCY OUTREACH ================= -->
     <div class="section-block">
-      <h2 class="section-title"><i class="fa-solid fa-people-roof"></i> 2. Constituency Outreach &amp; Grassroots</h2>
+      <h2 class="section-title" data-translate="ach_sec2_title">
+        <i class="fa-solid fa-people-roof"></i> 2. Constituency Outreach &amp; Grassroots
+      </h2>
       
       <div class="section-content-grid">
         <!-- LEFT: WRITE UP -->
         <ul class="section-list">
-          <li><strong>Open-Door Grassroots Dialogue:</strong> Operates an accessible constituency headquarters in Port Harcourt, hosting regular interactive sessions with community leaders, youth groups, and women associations.</li>
-          <li><strong>Grassroots Legislative Collaboration:</strong> Hosted joint courtesy delegations from the Etche 10th and Omuma 7th Legislative Councils, reinforcing grassroots synergy under the Rainbow Coalition.</li>
-          <li><strong>Ward-Level Structural Inclusion:</strong> Integrating local councillors into his outreach structure, appointing experienced leaders as Ward Coordinators to deliver democratic dividends across all wards.</li>
+          <li data-translate="ach_sec2_item1"><strong>Open-Door Grassroots Dialogue:</strong> Operates an accessible constituency headquarters in Port Harcourt, hosting regular interactive sessions with community leaders, youth groups, and women associations.</li>
+          <li data-translate="ach_sec2_item2"><strong>Grassroots Legislative Collaboration:</strong> Hosted joint courtesy delegations from the Etche 10th and Omuma 7th Legislative Councils, reinforcing grassroots synergy under the Rainbow Coalition.</li>
+          <li data-translate="ach_sec2_item3"><strong>Ward-Level Structural Inclusion:</strong> Integrating local councillors into his outreach structure, appointing experienced leaders as Ward Coordinators to deliver democratic dividends across all wards.</li>
         </ul>
 
         <!-- RIGHT: LANDSCAPE SLIDESHOW -->
@@ -322,14 +449,16 @@
 
     <!-- ================= 3. LEGISLATIVE RECORD ================= -->
     <div class="section-block">
-      <h2 class="section-title"><i class="fa-solid fa-scroll"></i> 3. Legislative Record &amp; Oversight</h2>
+      <h2 class="section-title" data-translate="ach_sec3_title">
+        <i class="fa-solid fa-scroll"></i> 3. Legislative Record &amp; Oversight
+      </h2>
       
       <div class="section-content-grid">
         <!-- LEFT: WRITE UP -->
         <ul class="section-list">
-          <li><strong>Key Legislation Sponsored:</strong> Sponsored the <em>Federal Character Commission Act (Amendment) Bill, 2025</em>, to enforce transparency and equity in recruitment across Nigeria.</li>
-          <li><strong>Senate Committee Leadership:</strong> Appointed as <strong>Chairman of the Senate Committee on Works</strong>, leading national oversight on federal road infrastructure and budget execution.</li>
-          <li><strong>Institutional Oversight:</strong> Performs legislative oversight functions across statutory bodies including NNPCL, NUPRC, and NAFDAC.</li>
+          <li data-translate="ach_sec3_item1"><strong>Key Legislation Sponsored:</strong> Sponsored the <em>Federal Character Commission Act (Amendment) Bill, 2025</em>, to enforce transparency and equity in recruitment across Nigeria.</li>
+          <li data-translate="ach_sec3_item2"><strong>Senate Committee Leadership:</strong> Appointed as <strong>Chairman of the Senate Committee on Works</strong>, leading national oversight on federal road infrastructure and budget execution.</li>
+          <li data-translate="ach_sec3_item3"><strong>Institutional Oversight:</strong> Performs legislative oversight functions across statutory bodies including NNPCL, NUPRC, and NAFDAC.</li>
         </ul>
 
         <!-- RIGHT: LANDSCAPE SLIDESHOW -->
@@ -353,18 +482,20 @@
 
     <!-- ================= 4. RE-ELECTION & ENDORSEMENTS ================= -->
     <div class="section-block">
-      <h2 class="section-title"><i class="fa-solid fa-handshake-angle"></i> 4. Grassroots Endorsements &amp; 2027 Movement</h2>
+      <h2 class="section-title" data-translate="ach_sec4_title">
+        <i class="fa-solid fa-handshake-angle"></i> 4. Grassroots Endorsements &amp; 2027 Movement
+      </h2>
       
       <div class="section-content-grid">
         <!-- LEFT: WRITE UP -->
         <ul class="section-list">
-          <li>
+          <li data-translate="ach_sec4_item1">
             <strong>Town Hall Consultations with FCT Minister Nyesom Wike:</strong> Senator Onyesoh hosted high-level town hall meetings and grassroots stakeholder engagements alongside the Minister of the Federal Capital Territory (FCT), Chief (Barr.) Nyesom Ezenwo Wike, in Etche Council Secretariat (Okehi) and across Rivers East, reinforcing party cohesion, grassroots synergy, and collective political direction under the Rainbow Coalition.
           </li>
-          <li>
+          <li data-translate="ach_sec4_item2">
             <strong>APC Platform Re-Election Bid:</strong> Reaffirming his commitment to continuous governance, Senator Onyesoh officially declared his candidacy for a second term in the Senate under the platform of the <strong>All Progressives Congress (APC)</strong>.
           </li>
-          <li>
+          <li data-translate="ach_sec4_item3">
             <strong>District-Wide Endorsements:</strong> His re-election movement has garnered firm backing and endorsements from local legislative assemblies (including the Etche 10th and Omuma 7th Legislative Councils), traditional councils, youth groups, and key political blocs across all 8 LGAs of Rivers East.
           </li>
         </ul>
@@ -407,6 +538,12 @@
 
   </div>
 
+  <div style="text-align: center; margin: 40px auto 60px auto;">
+    <a href="campaign-landing.html" class="btn-primary" style="display: inline-block; padding: 12px 24px; background-color: #0f172a; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 700;" data-translate="btn_return_campaign">
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Return to Campaign
+    </a>
+  </div>
+
   <!-- JAVASCRIPT FOR SLIDESHOW ROTATION & VIDEO MANAGEMENT -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -423,7 +560,6 @@
         const slides = groups[groupIdx];
         if (!slides || slides.length === 0) return;
 
-        // Pause video if currently playing
         const currentSlide = slides[currentIndexes[groupIdx]];
         const currentVideo = currentSlide.querySelector("video");
         if (currentVideo) {
@@ -445,13 +581,11 @@
         showSlide(groupIdx, currentIndexes[groupIdx] - 1);
       };
 
-      // Auto-rotate each section slideshow every 4.5 seconds
       groups.forEach((group, idx) => {
         if (group.length > 0) {
           setInterval(() => {
             const currentSlide = group[currentIndexes[idx]];
             const video = currentSlide.querySelector("video");
-            // Only auto-advance if no video is currently playing
             if (!video || video.paused) {
               nextSlide(idx);
             }
@@ -460,13 +594,31 @@
       });
     });
   </script>
-  <div style="text-align: center; margin: 50px auto;">
-    <a href="campaign-landing.html" class="btn-primary" style="display: inline-block; padding: 12px 24px; background-color: #0f172a; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 700;">
-      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Return to Campaign
-    </a>
-  </div>
+
+  <!-- Google Translate Hidden Container & Initialization Scripts -->
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Load Individual Translation Dictionaries -->
+  <script src="translations-en.js"></script>
+  <script src="translations-pcm.js"></script>
+  <script src="translations-okrika.js"></script>
+  <script src="translations-kalabari.js"></script>
+  <script src="translations-obolo.js"></script>
+  <script src="translations-ibani.js"></script>
+  <script src="translations-nkoroo.js"></script>
+  <script src="translations-ogoni.js"></script>
+
+  <!-- Core Translation Engine -->
+  <script src="style.js"></script>
 </body>
 </html>
-
-
- 

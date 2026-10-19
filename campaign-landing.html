@@ -3,478 +3,543 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=1200, initial-scale=0.35, minimum-scale=0.2, maximum-scale=3.0, user-scalable=yes"/>
-  <title>Senator Allwell Onyesoh | Consolidating Progress 2027</title>
+  <title data-translate="page_title">Senator Allwell Onyesoh | Consolidating Progress 2027</title>
   <link rel="stylesheet" href="styles.css" />
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <style>
+    /* RIVERS EAST LANGUAGE SELECTOR DROPDOWN STYLING */
+    .lang-dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-left: 10px;
+      vertical-align: middle;
+      z-index: 1000;
+    }
+    .lang-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+    .lang-dropdown-btn:hover {
+      background-color: #e2e8f0;
+    }
+    .lang-dropdown-btn i.fa-globe {
+      color: #28a745;
+    }
+    .lang-dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 38px;
+      background-color: #ffffff;
+      min-width: 240px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 8px 0;
+      z-index: 1001;
+    }
+    .lang-dropdown-menu.show {
+      display: block;
+    }
+    .lang-dropdown-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      color: #1e293b;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .lang-dropdown-menu a:hover {
+      background-color: #f8fafc;
+      color: #28a745;
+    }
+    .lang-dropdown-menu .badge {
+      font-size: 10px;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background-color: #e2e8f0;
+      margin: 6px 0;
+    }
+    .dropdown-header {
+      padding: 4px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  
   <nav class="navbar">
     <div class="nav-container">
       <div class="logo">
-        <span class="apc-green">APC</span> 2027 <span class="tag">RIVERS EAST</span>
+        <span class="apc-green">APC</span> 2027 <span class="tag" data-translate="nav_tag">RIVERS EAST</span>
       </div>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Senator Allwell </a></li>
-        <li><a href="#live-and-support">Live & Support</a></li>
-<li><a href="Achive.html">Explore Achievements</a></li>
-<li><a href="register.html" class="btn-primary">Join Movement</a></li>
-      </ul>
-    </div>
-  </nav>
+        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+        <li><a href="about.html" data-translate="nav_about">About Senator Allwell</a></li>
+        <li><a href="#live-and-support" data-translate="nav_live">Live & Support</a></li>
+        <li><a href="Achive.html" data-translate="nav_achievements">Explore Achievements</a></li>
+        <li><a href="register.html" class="btn-primary" data-translate="nav_join">Join Movement</a></li>
+        
+        
+       <li>
+      <div class="lang-dropdown-wrapper">
+        <button class="lang-dropdown-btn" onclick="toggleLangMenu()" type="button">
+          <i class="fa-solid fa-globe"></i>
+          <span id="current-lang-text">EN</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
+        </button>
+
+        <div class="lang-dropdown-menu" id="langMenu">
+          <a href="javascript:void(0)" onclick="switchLanguage('en', 'English')">English <span class="badge">EN</span></a>
+          <a href="javascript:void(0)" onclick="switchLanguage('pcm', 'Nigerian Pidgin')">Nigerian Pidgin <span class="badge">PCM</span></a>
+          
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-header" data-translate="dropdown_header">Rivers East Local Languages</div>
+          
+          <a href="javascript:void(0)" onclick="switchLanguage('okrika', 'Okrika (Kirike)')">Okrika (Kirike) <span class="badge">OKR</span></a>
+          <a href="javascript:void(0)" onclick="switchLanguage('kalabari', 'Kalabari')">Kalabari Language <span class="badge">KAL</span></a>
+          <a href="javascript:void(0)" onclick="switchLanguage('obolo', 'Andoni (Obolo)')">Andoni (Obolo) <span class="badge">OBL</span></a>
+          <a href="javascript:void(0)" onclick="switchLanguage('ibani', 'Ibani / Bonny')">Ibani / Bonny <span class="badge">IBA</span></a>
+          <a href="javascript:void(0)" onclick="switchLanguage('nkoroo', 'Nkoroo')">Nkoroo Language <span class="badge">NKO</span></a>
+          <a href="javascript:void(0)" onclick="switchLanguage('ogoni', 'Ogoni (Khana/Eleme)')">Ogoni (Khana, Gokana, Eleme) <span class="badge">OGO</span></a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+</nav>
+
+<!-- Google Translate Hidden Container & Initialization Scripts -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <!-- Hero Section -->
-<section class="hero" style="background-image: linear-gradient(90deg, rgba(0, 135, 81, 0.75) 0%, rgba(15, 23, 42, 0.88) 35%, rgba(15, 23, 42, 0.95) 50%, rgba(15, 23, 42, 0.88) 65%, rgba(163, 29, 29, 0.75) 100%), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg');">
-  <div class="container hero-container">
-    <!-- Left Column: Campaign Messaging -->
-    <div class="hero-text">
-      <span class="badge">CONSOLIDATING PROGRESS • RIVERS EAST 2027</span>
-      <h1>Senator Allwell Heacho Onyesoh</h1>
-      <p class="hero-slogan">"People, Purpose & Quality Representation"</p>
-      <p class="hero-tagline">Consolidating Progress: Deliverables, Dedication, and the Future of Rivers East Senatorial District.</p>
-      
-      <div class="hero-actions">
-        <a href="mobilization.html" class="btn-primary"><i class="fa-solid fa-users"></i> Mobilize your community. </a>
-      </div>
-    </div>
-
-    <!-- Right Column: Candidate Circular Image -->
-    <div class="hero-image-wrapper">
-      <div class="candidate-img-circle">
-        <img src="src/Senator-Allwell-Onyesoh.png" onerror="this.onerror=null; this.src='src/images (17).jpeg';" alt="Senator Allwell Heacho Onyesoh" class="candidate-img" />
-      </div>
-    </div>
-  </div>
-</section>
-
- <!-- Core Campaign Pillars Section -->
-<section id="pillars" class="section">
-  <div class="container">
-    <h2 class="section-title">Core Strategic Pillars</h2>
-    <p class="section-subtitle">A proven agenda built on people-first legislation and tangible constituency impact.</p>
-
-    <div class="cards-grid">
-      <!-- Pillar 1 -->
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-oil-well"></i></div>
-        <h3 id="pillar-title-0">1. Effective Legislation & Energy Oversight</h3>
-        <p id="pillar-desc-0">Serving as Deputy Chairman of the Senate Committee on Petroleum Resources (Upstream), ensuring local content compliance, policy stability, and host community rights under the PIA.</p>
-      </div>
-
-      <!-- Pillar 2 -->
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-        <h3 id="pillar-title-1">2. Education & Human Capital Investment</h3>
-        <p id="pillar-desc-1">Leveraging former Senior Lecturer and Education Commissioner experience to champion tertiary institution grants, scholarships, and women educational support.</p>
-      </div>
-
-      <!-- Pillar 3 -->
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-briefcase"></i></div>
-        <h3 id="pillar-title-2">3. Youth Empowerment & Job Creation</h3>
-        <p id="pillar-desc-2">Establishing federal technology hubs, vocational training centers, and micro-loan access tailored for digital and industrial careers across Rivers East.</p>
-      </div>
-
-      <!-- Pillar 4 -->
-      <div class="card">
-        <div class="card-icon"><i class="fa-solid fa-road"></i></div>
-        <h3 id="pillar-title-3">4. Grassroots Accessibility & Infrastructure</h3>
-        <p id="pillar-desc-3">Maintaining an open-door Port Harcourt Constituency Office while lobbying for key federal road corridors connecting Port Harcourt, Etche, Ikwerre, and adjoining LGAs.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Record of Deliverables & Vision Ahead -->
-<section id="deliverables" class="section bg-light">
-  <div class="container">
-    <h2 class="section-title">Record of Deliverables & Future Vision</h2>
-    <p class="section-subtitle">Click each category to view key achievements and upcoming project pipelines.</p>
-
-    <div class="accordion">
-      <!-- Deliverable 1 -->
-      <div class="accordion-item active">
-        <button class="accordion-header" type="button">
-          <span><i class="fa-solid fa-coins"></i> <span id="deliv-title-0">Host Community Development & PIA Enforcement</span></span>
-          <i class="fa-solid fa-chevron-down icon"></i>
-        </button>
-        <div class="accordion-body">
-          <p id="deliv-desc-0">Directing regulatory focus toward strict enforcement of Petroleum Industry Act (PIA) Host Community Development Funds so oil and gas host communities in Rivers East receive direct development allocations.</p>
+  <section class="hero" style="background-image: linear-gradient(90deg, rgba(0, 135, 81, 0.75) 0%, rgba(15, 23, 42, 0.88) 35%, rgba(15, 23, 42, 0.95) 50%, rgba(15, 23, 42, 0.88) 65%, rgba(163, 29, 29, 0.75) 100%), url('src/3bbb85ae8f4f4ab6b544b5eac383f249.jpg'), url('src/0aea4e6823f5abef2ad9ab0a8b0942b1.jpg');">
+    <div class="container hero-container">
+      <div class="hero-text">
+        <span class="badge" data-translate="badge_header">CONSOLIDATING PROGRESS • RIVERS EAST 2027</span>
+        <h1 data-translate="hero_title">Senator Allwell Heacho Onyesoh</h1>
+        <p class="hero-slogan" data-translate="hero_slogan">"People, Purpose & Quality Representation"</p>
+        <p class="hero-tagline" data-translate="hero_tagline">Consolidating Progress: Deliverables, Dedication, and the Future of Rivers East Senatorial District.</p>
+        
+        <div class="hero-actions">
+          <a href="mobilization.html" class="btn-primary" data-translate="mobilize_btn"><i class="fa-solid fa-users"></i> Mobilize your community.</a>
         </div>
       </div>
 
-      <!-- Deliverable 2 -->
-      <div class="accordion-item">
-        <button class="accordion-header" type="button">
-          <span><i class="fa-solid fa-laptop-code"></i> <span id="deliv-title-1">Technology & Vocational Innovation Hubs</span></span>
-          <i class="fa-solid fa-chevron-down icon"></i>
-        </button>
-        <div class="accordion-body">
-          <p id="deliv-desc-1">Partnering with federal agencies to build tech innovation centers and vocational hubs in Port Harcourt, Obio/Akpor, and surrounding LGAs for young adult workforce transformation.</p>
-        </div>
-      </div>
-
-      <!-- Deliverable 3 -->
-      <div class="accordion-item">
-        <button class="accordion-header" type="button">
-          <span><i class="fa-solid fa-truck-fast"></i> <span id="deliv-title-2">South-South Federal Corridor Infrastructure</span></span>
-          <i class="fa-solid fa-chevron-down icon"></i>
-        </button>
-        <div class="accordion-body">
-          <p id="deliv-desc-2">Lobbying federal ministries to accelerate road rehabilitation and transport route upgrades linking Rivers East to broader South-South regional economic centers.</p>
-        </div>
-      </div>
-
-      <!-- Deliverable 4 -->
-      <div class="accordion-item">
-        <button class="accordion-header" type="button">
-          <span><i class="fa-solid fa-wheat-awn"></i> <span id="deliv-title-3">Targeted Micro-Credit & Agrarian Support</span></span>
-          <i class="fa-solid fa-chevron-down icon"></i>
-        </button>
-        <div class="accordion-body">
-          <p id="deliv-desc-3">Expanding low-interest micro-grants and subsidized agricultural inputs for farming communities in Etche, Ikwerre, Omuma, and Emohua.</p>
+      <div class="hero-image-wrapper">
+        <div class="candidate-img-circle">
+          <img src="src/Senator-Allwell-Onyesoh.png" onerror="this.onerror=null; this.src='src/images (17).jpeg';" alt="Senator Allwell Heacho Onyesoh" class="candidate-img" />
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Core Campaign Pillars Section -->
+  <section id="pillars" class="section">
+    <div class="container">
+      <h2 class="section-title" data-translate="pillars_heading">Core Strategic Pillars</h2>
+      <p class="section-subtitle" data-translate="pillars_subheading">A proven agenda built on people-first legislation and tangible constituency impact.</p>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-oil-well"></i></div>
+          <h3 data-translate="pillar_1_title">1. Effective Legislation & Energy Oversight</h3>
+          <p data-translate="pillar_1_desc">Serving as Deputy Chairman of the Senate Committee on Petroleum Resources (Upstream), ensuring local content compliance, policy stability, and host community rights under the PIA.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3 data-translate="pillar_2_title">2. Education & Human Capital Investment</h3>
+          <p data-translate="pillar_2_desc">Leveraging former Senior Lecturer and Education Commissioner experience to champion tertiary institution grants, scholarships, and women educational support.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <h3 data-translate="pillar_3_title">3. Youth Empowerment & Job Creation</h3>
+          <p data-translate="pillar_3_desc">Establishing federal technology hubs, vocational training centers, and micro-loan access tailored for digital and industrial careers across Rivers East.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon"><i class="fa-solid fa-road"></i></div>
+          <h3 data-translate="pillar_4_title">4. Grassroots Accessibility & Infrastructure</h3>
+          <p data-translate="pillar_4_desc">Maintaining an open-door Port Harcourt Constituency Office while lobbying for key federal road corridors connecting Port Harcourt, Etche, Ikwerre, and adjoining LGAs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Record of Deliverables & Vision Ahead -->
+  <section id="deliverables" class="section bg-light">
+    <div class="container">
+      <h2 class="section-title" data-translate="deliverables_heading">Record of Deliverables & Future Vision</h2>
+      <p class="section-subtitle" data-translate="deliverables_subheading">Click each category to view key achievements and upcoming project pipelines.</p>
+
+      <div class="accordion">
+        <div class="accordion-item active">
+          <button class="accordion-header" type="button">
+            <span><i class="fa-solid fa-coins"></i> <span data-translate="deliv_1_title">Host Community Development & PIA Enforcement</span></span>
+            <i class="fa-solid fa-chevron-down icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p data-translate="deliv_1_desc">Directing regulatory focus toward strict enforcement of Petroleum Industry Act (PIA) Host Community Development Funds so oil and gas host communities in Rivers East receive direct development allocations.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" type="button">
+            <span><i class="fa-solid fa-laptop-code"></i> <span data-translate="deliv_2_title">Technology & Vocational Innovation Hubs</span></span>
+            <i class="fa-solid fa-chevron-down icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p data-translate="deliv_2_desc">Partnering with federal agencies to build tech innovation centers and vocational hubs in Port Harcourt, Obio/Akpor, and surrounding LGAs for young adult workforce transformation.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" type="button">
+            <span><i class="fa-solid fa-truck-fast"></i> <span data-translate="deliv_3_title">South-South Federal Corridor Infrastructure</span></span>
+            <i class="fa-solid fa-chevron-down icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p data-translate="deliv_3_desc">Lobbying federal ministries to accelerate road rehabilitation and transport route upgrades linking Rivers East to broader South-South regional economic centers.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" type="button">
+            <span><i class="fa-solid fa-wheat-awn"></i> <span data-translate="deliv_4_title">Targeted Micro-Credit & Agrarian Support</span></span>
+            <i class="fa-solid fa-chevron-down icon"></i>
+          </button>
+          <div class="accordion-body">
+            <p data-translate="deliv_4_desc">Expanding low-interest micro-grants and subsidized agricultural inputs for farming communities in Etche, Ikwerre, Omuma, and Emohua.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
- <!-- Video Message Section -->
-<section class="section video-section">
-  <div class="container text-center">
-    
-    <h2 class="section-title text-white">Senator Allwell Onyesoh's Message</h2>
-  
-    <div class="marquee-wrapper">
-      <p class="rolling-text" style="font-size: 1.05rem; color: #ffffff; margin: 0;">
-        Watch Senator Allwell Onyesoh share his vision and strategic plan for effective representation.
-      </p>
-    </div>
-
-  </div>
-</section>
-      
-      <div class="video-container">
+  <!-- Video Message Section -->
+  <section class="section video-section">
+    <div class="container text-center">
+      <h2 class="section-title text-white" data-translate="video_section_heading">Senator Allwell Onyesoh's Message</h2>
+      <div class="marquee-wrapper">
+        <p class="rolling-text" style="font-size: 1.05rem; color: #ffffff; margin: 0;" data-translate="video_section_subheading">
+          Watch Senator Allwell Onyesoh share his vision and strategic plan for effective representation.
+        </p>
+      </div>
+      <div class="video-container" style="margin-top: 20px;">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Senator Onyesoh Address" allowfullscreen></iframe>
       </div>
     </div>
   </section>
 
   <!-- Live Broadcast & Financial Support Section -->
-  <section class="campaign-interactive-section" id="live-and-support">
+  <section class="campaign-interactive-section" id="live-and-support" style="padding: 3.5rem 0;">
     <div class="container">
       
-     <!-- Live Broadcast & Financial Support Section -->
-<section class="campaign-interactive-section" id="live-and-support">
-  <div class="container">
-    
-    <!-- Live Campaign Broadcast Stream -->
-    <div class="interactive-card live-stream-card">
-      <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        <div>
-          <span class="badge-live"><i class="fa-solid fa-circle"></i> LIVE NOW</span>
-          <h3 style="margin: 0; display: inline-block; margin-left: 8px;"><i class="fa-solid fa-tv"></i> Campaign Live Stream</h3>
+      <!-- Live Campaign Broadcast Stream -->
+      <div class="interactive-card live-stream-card" style="margin-bottom: 2rem;">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <span class="badge-live"><i class="fa-solid fa-circle"></i> LIVE NOW</span>
+            <h3 style="margin: 0; display: inline-block; margin-left: 8px;" data-translate="live_stream_heading"><i class="fa-solid fa-tv"></i> Campaign Live Stream</h3>
+          </div>
+          <a href="livesteam.html" class="btn-primary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none; border-radius: 4px;" data-translate="live_stream_btn">
+            Full Interactive Feed <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
-        <a href="livesteam.html" class="btn-primary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none; border-radius: 4px;">
-          Full Interactive Feed <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-      
-      <p>Watch Senator Allwell Onyesoh’s live town halls, rallies, and legislative briefings directly from Rivers East.</p>
-      
-      <div class="video-embed-container">
-        <iframe 
-          src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" 
-          title="Senator Allwell Onyesoh Live Stream" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      </div>
+        
+        <p data-translate="live_stream_desc">Watch Senator Allwell Onyesoh’s live town halls, rallies, and legislative briefings directly from Rivers East.</p>
+        
+        <div class="video-embed-container">
+          <iframe 
+            src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" 
+            title="Senator Allwell Onyesoh Live Stream" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
 
-      <!-- Full Interactive Hub Launcher Button -->
-      <div style="margin-top: 1rem; text-align: center;">
-        <a href="livesteam.html" class="btn-primary" style="background: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;">
-          <i class="fa-solid fa-comments"></i> Open Live Stream Chat & Public Q&A
-        </a>
+        <div style="margin-top: 1rem; text-align: center;">
+          <a href="livesteam.html" class="btn-primary" style="background: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;" data-translate="live_chat_btn">
+            <i class="fa-solid fa-comments"></i> Open Live Stream Chat & Public Q&A
+          </a>
+        </div>
       </div>
-    </div>
-
-  </div>
-</section>
 
       <!-- Official Campaign Donation Account -->
       <div class="interactive-card donation-card">
         <div class="card-header">
           <span class="badge-gold"><i class="fa-solid fa-hand-holding-dollar"></i> OFFICIAL ACCOUNT</span>
-          <h3><i class="fa-solid fa-building-columns"></i> Support the Campaign</h3>
+          <h3 data-translate="support_heading"><i class="fa-solid fa-building-columns"></i> Support the Campaign</h3>
         </div>
-        <p>Fuel the movement for strategic governance and development in Rivers East. Every contribution counts.</p>
+        <p data-translate="support_desc">Fuel the movement for strategic governance and development in Rivers East. Every contribution counts.</p>
         
         <div class="bank-details-box">
           <div class="bank-row">
-            <span class="label">Bank Name:</span>
+            <span class="label" data-translate="bank_name_label">Bank Name:</span>
             <span class="value">Zenith Bank Plc</span>
           </div>
           <div class="bank-row">
-            <span class="label">Account Name:</span>
+            <span class="label" data-translate="account_name_label">Account Name:</span>
             <span class="value">Allwell Onyesoh Campaign Support Fund</span>
           </div>
           <div class="bank-row highlight-account">
-            <span class="label">Account Number:</span>
+            <span class="label" data-translate="account_num_label">Account Number:</span>
             <span class="value" id="accountNum">1234567890</span>
-            <button class="btn-copy" onclick="copyAccountNumber()"><i class="fa-solid fa-copy"></i> Copy</button>
+            <button class="btn-copy" onclick="copyAccountNumber()"><i class="fa-solid fa-copy"></i> <span data-translate="copy_btn">Copy</span></button>
           </div>
         </div>
-        <small class="donation-note"><i class="fa-solid fa-shield-halved"></i> Authorized by the Rivers East Campaign Finance Committee.</small>
+        <small class="donation-note" data-translate="donation_auth_note"><i class="fa-solid fa-shield-halved"></i> Authorized by the Rivers East Campaign Finance Committee.</small>
       </div>
 
     </div>
   </section>
 
- <!-- Join Campaign Team Call-To-Action Banner -->
-<section class="section bg-light text-center" style="padding: 3.5rem 0;">
-  <div class="container">
-    <h2 class="section-title" style="color: #002b5b; font-size: 2rem; margin-bottom: 0.5rem;">Join The Campaign Team</h2>
-    <p class="section-subtitle" style="color: #6c757d; max-width: 650px; margin: 0 auto 1.8rem auto; font-size: 1.05rem;">
-      Support ward coordination, canvassing, or grassroots mobilization across Rivers East LGAs.
-    </p>
-    <a href="register.html" class="btn-primary" style="display: inline-block; background: #198754; color: #ffffff; padding: 14px 32px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-      <i class="fa-solid fa-user-plus"></i> Register To Join Team
-    </a>
-  </div>
-</section>
+  <!-- Join Campaign Team Call-To-Action Banner -->
+  <section class="section bg-light text-center" style="padding: 3.5rem 0;">
+    <div class="container">
+      <h2 class="section-title" style="color: #002b5b; font-size: 2rem; margin-bottom: 0.5rem;" data-translate="join_banner_heading">Join The Campaign Team</h2>
+      <p class="section-subtitle" style="color: #6c757d; max-width: 650px; margin: 0 auto 1.8rem auto; font-size: 1.05rem;" data-translate="join_banner_subheading">
+        Support ward coordination, canvassing, or grassroots mobilization across Rivers East LGAs.
+      </p>
+      <a href="register.html" class="btn-primary" style="display: inline-block; background: #198754; color: #ffffff; padding: 14px 32px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" data-translate="register_team_btn">
+        <i class="fa-solid fa-user-plus"></i> Register To Join Team
+      </a>
+    </div>
+  </section>
   
-
   <!-- Floating Live Chat Widget -->
   <div class="live-chat-widget">
     <a href="https://wa.me/2340000000000?text=Hello%20Senator%20Allwell%20Onyesoh%20Campaign%20Team,%20I%20would%20like%20to%20connect." target="_blank" class="chat-button whatsapp-chat" title="Chat with Campaign Team">
       <i class="fa-brands fa-whatsapp"></i>
-      <span class="chat-label">Live Chat</span>
+      <span class="chat-label" data-translate="whatsapp_label">Live Chat</span>
     </a>
   </div>
 
- <!-- Election Countdown & Citizen Preparedness Section -->
-<section class="section election-countdown-section" style="background: #002b5b; color: #ffffff; padding: 3rem 0;">
-  <div class="container text-center">
-    
-    <span class="badge" style="background: #dc3545; color: #fff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;">
-      <i class="fa-solid fa-flag"></i> Countdown to General Election
-    </span>
-
-    <h2 style="color: #ffffff; font-size: 2rem; margin-bottom: 0.5rem;">2027 Nigeria General Elections</h2>
-    <p style="max-width: 650px; margin: 0 auto 2rem auto; font-size: 1.05rem; opacity: 0.9;">
-      Saturday, January 16, 2027 — Presidential & National Assembly Elections
-    </p>
-
-    <!-- Real-Time 4-Box Countdown Grid (Option B) -->
-    <div class="countdown-container" style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+  <!-- Election Countdown & Citizen Preparedness Section -->
+  <section class="section election-countdown-section" style="background: #002b5b; color: #ffffff; padding: 3rem 0;">
+    <div class="container text-center">
       
-      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
-        <span id="cd-days" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
-        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Days</span>
+      <span class="badge" style="background: #dc3545; color: #fff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; display: inline-block; margin-bottom: 1rem;" data-translate="countdown_badge">
+        <i class="fa-solid fa-flag"></i> Countdown to General Election
+      </span>
+
+      <h2 style="color: #ffffff; font-size: 2rem; margin-bottom: 0.5rem;" data-translate="election_title">2027 Nigeria General Elections</h2>
+      <p style="max-width: 650px; margin: 0 auto 2rem auto; font-size: 1.05rem; opacity: 0.9;" data-translate="election_date">
+        Saturday, January 16, 2027 — Presidential & National Assembly Elections
+      </p>
+      
+      <div class="countdown-container" style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
+        <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+          <span id="cd-days" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
+          <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;" data-translate="label_days">Days</span>
+        </div>
+        <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+          <span id="cd-hours" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
+          <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;" data-translate="label_hours">Hours</span>
+        </div>
+        <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+          <span id="cd-minutes" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
+          <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;" data-translate="label_minutes">Minutes</span>
+        </div>
+        <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
+          <span id="cd-seconds" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffc107;">00</span>
+          <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;" data-translate="label_seconds">Seconds</span>
+        </div>
       </div>
 
-      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
-        <span id="cd-hours" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
-        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Hours</span>
-      </div>
+      <!-- Citizen Preparedness Box -->
+      <div class="preparedness-card" style="background: #ffffff; color: #212529; max-width: 850px; margin: 0 auto; padding: 2rem; border-radius: 12px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+        <h3 style="color: #002b5b; font-size: 1.3rem; margin-top: 0; margin-bottom: 1rem; border-bottom: 2px solid #e9ecef; padding-bottom: 0.5rem;" data-translate="prep_heading">
+          <i class="fa-solid fa-id-card" style="color: #0056b3;"></i> Why Every Citizen of Rivers East Must Be Prepared
+        </h3>
+        
+        <p style="line-height: 1.6; font-size: 0.98rem; margin-bottom: 1.2rem;" data-translate="prep_desc">
+          Democracy is built on active civic participation. Senator Allwell Onyesoh believes that effective legislative representation begins long before election day—it starts with an informed and fully empowered electorate across Port Harcourt, Obio/Akpor, Ikwerre, Emohua, Etche, Omuma, Ogu/Bolo and Okrika LGAs.
+        </p>
 
-      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
-        <span id="cd-minutes" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffffff;">00</span>
-        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Minutes</span>
-      </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #0056b3;">
+            <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #0056b3;" data-translate="prep_box1_title"><i class="fa-solid fa-check-double"></i> Verify Your PVC</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: #6c757d;" data-translate="prep_box1_desc">Ensure your Permanent Voter Card (PVC) is valid and registered in your local voting unit.</p>
+          </div>
 
-      <div class="countdown-box" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 1rem 1.5rem; min-width: 90px;">
-        <span id="cd-seconds" style="display: block; font-size: 2.2rem; font-weight: 800; color: #ffc107;">00</span>
-        <span style="font-size: 0.8rem; text-transform: uppercase; opacity: 0.8;">Seconds</span>
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #28a745;">
+            <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #28a745;" data-translate="prep_box2_title"><i class="fa-solid fa-bullhorn"></i> Mobilize Your Community</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: #6c757d;" data-translate="prep_box2_desc">Encourage family, youth, and local stakeholders in your LGA to engage in peaceful civic participation.</p>
+          </div>
+
+          <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #ffc107;">
+            <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #b8860b;" data-translate="prep_box3_title"><i class="fa-solid fa-comments"></i> Shape Legislation</h4>
+            <p style="margin: 0; font-size: 0.85rem; color: #6c757d;" data-translate="prep_box3_desc">Participate in live constituency town halls to submit policy suggestions directly to the Senator's office.</p>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="livesteam.html" class="btn-primary" style="background: #0056b3; color: #fff; padding: 10px 22px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;" data-translate="prep_btn">
+            Join the Senator's Live campaign & Q&A <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
 
     </div>
+  </section>
 
-    <!-- Why Citizens Must Be Prepared -->
-    <div class="preparedness-card" style="background: #ffffff; color: #212529; max-width: 850px; margin: 0 auto; padding: 2rem; border-radius: 12px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
-      <h3 style="color: #002b5b; font-size: 1.3rem; margin-top: 0; margin-bottom: 1rem; border-bottom: 2px solid #e9ecef; padding-bottom: 0.5rem;">
-        <i class="fa-solid fa-id-card" style="color: #0056b3;"></i> Why Every Citizen of Rivers East Must Be Prepared
-      </h3>
+  <!-- RESTORED: Campaign Downloads & Branding Kit Section -->
+  <section class="section campaign-media-section" style="background: #f8f9fa; padding: 3.5rem 0; border-top: 2px solid #e9ecef;">
+    <div class="container text-center">
       
-      <p style="line-height: 1.6; font-size: 0.98rem; margin-bottom: 1.2rem;">
-        Democracy is built on active civic participation. Senator Allwell Onyesoh believes that effective legislative representation begins long before election day it starts with an informed and fully empowered electorate across Port Harcourt, Obio/Akpor, Ikwerre, Emohua, Etche, Omuma,Ogu/Bolo and Okrika LGAs.
+      <span class="badge" style="background: #0056b3; color: #ffffff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; display: inline-block; margin-bottom: 0.8rem;" data-translate="dl_badge">
+        <i class="fa-solid fa-download"></i> Official Campaign Media Kit
+      </span>
+
+      <h2 style="color: #002b5b; font-size: 2rem; margin-bottom: 0.5rem; font-weight: 800;" data-translate="dl_title">
+        Download Official Campaign Materials
+      </h2>
+      <p style="max-width: 700px; margin: 0 auto 2.5rem auto; font-size: 1rem; color: #495057;" data-translate="dl_sub">
+        Empower your local ward and community. Download high-resolution campaign posters, social media banners, and print-ready branding files directly to your gallery or device.
       </p>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-        <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #0056b3;">
-          <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #0056b3;"><i class="fa-solid fa-check-double"></i> Verify Your PVC</h4>
-          <p style="margin: 0; font-size: 0.85rem; color: #6c757d;">Ensure your Permanent Voter Card (PVC) is valid and registered in your local voting unit.  <a href="https://inecnigeria.org/" target="_blank" rel="noopener">INEC Nigeria Official Portal</a>.</p></p>
-        </div>
-
-        <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #28a745;">
-          <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #28a745;"><i class="fa-solid fa-bullhorn"></i> Mobilize Your Community</h4>
-          <p style="margin: 0; font-size: 0.85rem; color: #6c757d;">Encourage family, youth, and local stakeholders in your LGA to engage in peaceful civic participation.</p>
-           <a href="mobilization.html" target="_blank" rel="noopener">
-           <a href="mobilization.html" target="_blank" rel="noopener">mobilize your community</a>.</p></p>
-        </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
         
-
-        <div style="background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #ffc107;">
-          <h4 style="margin: 0 0 5px 0; font-size: 0.95rem; color: #b8860b;"><i class="fa-solid fa-comments"></i> Shape Legislation</h4>
-          <p style="margin: 0; font-size: 0.85rem; color: #6c757d;">Participate in live constituency town halls to submit policy suggestions directly to the Senator's office.</p>
+        <!-- Material 1 -->
+        <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2.8rem; color: #002b5b; margin-bottom: 1rem;"><i class="fa-solid fa-file-image"></i></div>
+            <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;" data-translate="dl_item1_title">2027 General Campaign Flyer</h3>
+            <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;" data-translate="dl_item1_desc">High-resolution poster for social media sharing and local community distribution across Rivers East LGAs.</p>
+          </div>
+          <a href="assets/downloads/senator-onyesoh-official-flyer.png" download="Senator_Onyesoh_2027_Flyer.png" style="background: #0056b3; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;" data-translate="dl_item1_btn">
+            <i class="fa-solid fa-download"></i> Save to Gallery (PNG)
+          </a>
         </div>
-      </div>
 
-      <div style="text-align: center;">
-        <a href="livesteam.html" class="btn-primary" style="background: #0056b3; color: #fff; padding: 10px 22px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;">
-          Join the Senator's Live campaign & Q&A <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        <!-- Material 2 -->
+        <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2.8rem; color: #28a745; margin-bottom: 1rem;"><i class="fa-solid fa-scroll"></i></div>
+            <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;" data-translate="dl_item2_title">Street Banner & Flex Mockup</h3>
+            <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;" data-translate="dl_item2_desc">Large-format banner design (HQ Print PDF & JPEG) ready for local printing presses in Port Harcourt.</p>
+          </div>
+          <a href="assets/downloads/rivers-east-campaign-banner.pdf" download="Rivers_East_Banner_Print.pdf" style="background: #28a745; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;" data-translate="dl_item2_btn">
+            <i class="fa-solid fa-download"></i> Save Banner (PDF/HD)
+          </a>
+        </div>
+
+        <!-- Material 3 -->
+        <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2.8rem; color: #dc3545; margin-bottom: 1rem;"><i class="fa-solid fa-shirt"></i></div>
+            <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;" data-translate="dl_item3_title">Campaign Polo Shirt Mockup</h3>
+            <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;" data-translate="dl_item3_desc">Front & back vectorized chest branding vector file for custom polo shirt screen printing.</p>
+          </div>
+          <a href="assets/downloads/polo-shirt-branding-template.png" download="Onyesoh_PoloShirt_Design.png" style="background: #dc3545; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;" data-translate="dl_item3_btn">
+            <i class="fa-solid fa-download"></i> Save Polo Template
+          </a>
+        </div>
+
+        <!-- Material 4 -->
+        <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2.8rem; color: #ffc107; margin-bottom: 1rem;"><i class="fa-solid fa-hat-cowboy-side"></i></div>
+            <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;" data-translate="dl_item4_title">Cap & Sticker Branding Pack</h3>
+            <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;" data-translate="dl_item4_desc">Circular sticker badges, car bumpers stickers, and cap embroidery templates bundled together.</p>
+          </div>
+          <a href="src/Screenshot 2026-10-13 154653.png" download="Cap_and_Stickers_Branding_Pack.zip" style="background: #b8860b; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;" data-translate="dl_item4_btn">
+            <i class="fa-solid fa-download"></i> Save Zip Pack
+          </a>
+        </div>
+
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- RESTORED: Contact & Campaign Office Section -->
+  <section id="contact" class="section" style="padding: 3.5rem 0; background-color: #ffffff; border-top: 1px solid #e9ecef;">
+    <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 1rem;">
+      <h2 class="section-title text-center" style="color: #002b5b; font-size: 2rem; margin-bottom: 0.5rem; text-align: center;" data-translate="contact_title">Contact & Campaign Headquarters</h2>
+      <p class="section-subtitle text-center" style="color: #6c757d; margin-bottom: 2.5rem; text-align: center;" data-translate="contact_sub">Get in touch with the mobilization team or visit our central office.</p>
 
-<!-- Campaign Downloads & Branding Kit Section -->
-<section class="section campaign-media-section" style="background: #f8f9fa; padding: 3.5rem 0; border-top: 2px solid #e9ecef;">
-  <div class="container text-center">
-    
-    <span class="badge" style="background: #0056b3; color: #ffffff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; display: inline-block; margin-bottom: 0.8rem;">
-      <i class="fa-solid fa-download"></i> Official Campaign Media Kit
-    </span>
-
-    <h2 style="color: #002b5b; font-size: 2rem; margin-bottom: 0.5rem; font-weight: 800;">
-      Download Official Campaign Materials
-    </h2>
-    <p style="max-width: 700px; margin: 0 auto 2.5rem auto; font-size: 1rem; color: #495057;">
-      Empower your local ward and community. Download high-resolution campaign posters, social media banners, and print-ready branding files directly to your gallery or device.
-    </p>
-
-    <!-- Media Grid -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;">
-      
-      <!-- Material 1: Official Campaign Poster/Flyer -->
-      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div style="font-size: 2.8rem; color: #002b5b; margin-bottom: 1rem;">
-            <i class="fa-solid fa-file-image"></i>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        
+        <div style="background: #f8f9fa; padding: 1.8rem; border-radius: 10px; border-left: 4px solid #198754; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <i class="fa-solid fa-phone" style="font-size: 1.5rem; color: #198754; margin-right: 0.8rem;"></i>
+            <h3 style="margin: 0; color: #002b5b; font-size: 1.2rem;" data-translate="contact_card1_title">Campaign Phone</h3>
           </div>
-          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">2027 General Campaign Flyer</h3>
-          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">High-resolution poster for social media sharing and local community distribution across Rivers East LGAs.</p>
+          <p style="margin: 0 0 0.5rem 0; color: #495057; font-size: 1rem;"><strong data-translate="contact_inquiries">Inquiries:</strong> +234 800 000 0000</p>
+          <p style="margin: 0; color: #495057; font-size: 1rem;"><strong>WhatsApp:</strong> +234 800 000 0000</p>
         </div>
-        <a href="assets/downloads/senator-onyesoh-official-flyer.png" download="Senator_Onyesoh_2027_Flyer.png" style="background: #0056b3; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
-          <i class="fa-solid fa-download"></i> Save to Gallery (PNG)
-        </a>
-      </div>
 
-      <!-- Material 2: Billboard & Digital Banner -->
-      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div style="font-size: 2.8rem; color: #28a745; margin-bottom: 1rem;">
-            <i class="fa-solid fa-scroll"></i>
+        <div style="background: #f8f9fa; padding: 1.8rem; border-radius: 10px; border-left: 4px solid #002b5b; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <i class="fa-solid fa-location-dot" style="font-size: 1.5rem; color: #002b5b; margin-right: 0.8rem;"></i>
+            <h3 style="margin: 0; color: #002b5b; font-size: 1.2rem;" data-translate="contact_card2_title">Campaign Office</h3>
           </div>
-          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">Street Banner & Flex Mockup</h3>
-          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">Large-format banner design (HQ Print PDF & JPEG) ready for local printing presses in Port Harcourt.</p>
+          <p style="margin: 0; color: #495057; font-size: 1rem; line-height: 1.5;" data-translate="contact_card2_desc">
+            Rivers East Senatorial District Campaign Secretariat,<br />
+            Aba Road, Port Harcourt, Rivers State, Nigeria.
+          </p>
         </div>
-        <a href="assets/downloads/rivers-east-campaign-banner.pdf" download="Rivers_East_Banner_Print.pdf" style="background: #28a745; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
-          <i class="fa-solid fa-download"></i> Save Banner (PDF/HD)
-        </a>
-      </div>
 
-      <!-- Material 3: Campaign Polo Shirt Print Template -->
-      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div style="font-size: 2.8rem; color: #dc3545; margin-bottom: 1rem;">
-            <i class="fa-solid fa-shirt"></i>
+        <div style="background: #f8f9fa; padding: 1.8rem; border-radius: 10px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <i class="fa-solid fa-clock" style="font-size: 1.5rem; color: #d39e00; margin-right: 0.8rem;"></i>
+            <h3 style="margin: 0; color: #002b5b; font-size: 1.2rem;" data-translate="contact_card3_title">Office Hours</h3>
           </div>
-          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">Campaign Polo Shirt Mockup</h3>
-          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">Front & back vectorized chest branding vector file for custom polo shirt screen printing.</p>
+          <p style="margin: 0 0 0.5rem 0; color: #495057; font-size: 1rem;"><strong data-translate="contact_mf">Monday – Friday:</strong> 8:00 AM – 5:00 PM</p>
+          <p style="margin: 0; color: #495057; font-size: 1rem;"><strong data-translate="contact_sat">Saturday:</strong> 9:00 AM – 2:00 PM</p>
         </div>
-        <a href="assets/downloads/polo-shirt-branding-template.png" download="Onyesoh_PoloShirt_Design.png" style="background: #dc3545; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
-          <i class="fa-solid fa-download"></i> Save Polo Template
-        </a>
+
       </div>
-
-       
-      <!-- Material 4: Branded Cap & Sticker Art -->
-      <div style="background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div style="font-size: 2.8rem; color: #ffc107; margin-bottom: 1rem;">
-            <i class="fa-solid fa-hat-cowboy-side"></i>
-          </div>
-          <h3 style="font-size: 1.15rem; color: #002b5b; margin-bottom: 0.5rem; font-weight: 700;">Cap & Sticker Branding Pack</h3>
-          <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 1.2rem;">Circular sticker badges, car bumpers stickers, and cap embroidery templates bundled together.</p>
-        </div>
-        <a href="src/Screenshot 2026-10-13 154653.png" download="Cap_and_Stickers_Branding_Pack.zip" style="background: #b8860b; color: #ffffff; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block;">
-          <i class="fa-solid fa-download"></i> Save Zip Pack
-        </a>
-      </div>
-
-      
-
-  </div>
-</section>
-
-<!-- Contact & Campaign Office Section -->
-<section id="contact" class="section" style="padding: 3.5rem 0; background-color: #ffffff; border-top: 1px solid #e9ecef;">
-  <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 1rem;">
-    <h2 class="section-title text-center" style="color: #002b5b; font-size: 2rem; margin-bottom: 0.5rem; text-align: center;">Contact & Campaign Headquarters</h2>
-    <p class="section-subtitle text-center" style="color: #6c757d; margin-bottom: 2.5rem; text-align: center;">Get in touch with the mobilization team or visit our central office.</p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-      
-      <!-- Phone & WhatsApp Card -->
-      <div style="background: #f8f9fa; padding: 1.8rem; border-radius: 10px; border-left: 4px solid #198754; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-          <i class="fa-solid fa-phone" style="font-size: 1.5rem; color: #198754; margin-right: 0.8rem;"></i>
-          <h3 style="margin: 0; color: #002b5b; font-size: 1.2rem;">Campaign Phone</h3>
-        </div>
-        <p style="margin: 0 0 0.5rem 0; color: #495057; font-size: 1rem;"><strong>Inquiries:</strong> +234 800 000 0000</p>
-        <p style="margin: 0; color: #495057; font-size: 1rem;"><strong>WhatsApp:</strong> +234 800 000 0000</p>
-      </div>
-
-      <!-- Campaign Office Address Card -->
-      <div style="background: #f8f9fa; padding: 1.8rem; border-radius: 10px; border-left: 4px solid #002b5b; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-          <i class="fa-solid fa-location-dot" style="font-size: 1.5rem; color: #002b5b; margin-right: 0.8rem;"></i>
-          <h3 style="margin: 0; color: #002b5b; font-size: 1.2rem;">Campaign Office</h3>
-        </div>
-        <p style="margin: 0; color: #495057; font-size: 1rem; line-height: 1.5;">
-          Rivers East Senatorial District Campaign Secretariat,<br />
-          Aba Road, Port Harcourt, Rivers State, Nigeria.
-        </p>
-      </div>
-
-      <!-- Operating Hours Card -->
-      <div style="background: #f8f9fa; padding: 1.8rem; border-radius: 10px; border-left: 4px solid #ffc107; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-          <i class="fa-solid fa-clock" style="font-size: 1.5rem; color: #d39e00; margin-right: 0.8rem;"></i>
-          <h3 style="margin: 0; color: #002b5b; font-size: 1.2rem;">Office Hours</h3>
-        </div>
-        <p style="margin: 0 0 0.5rem 0; color: #495057; font-size: 1rem;"><strong>Monday – Friday:</strong> 8:00 AM – 5:00 PM</p>
-        <p style="margin: 0; color: #495057; font-size: 1rem;"><strong>Saturday:</strong> 9:00 AM – 2:00 PM</p>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="container footer-content">
-    <p>&copy; 2027 Senator Allwell Heacho Onyesoh Campaign Committee | Rivers East Senatorial District.</p>
-    <p>For national voter registration details and election schedules, visit the <a href="https://inecnigeria.org/" target="_blank" rel="noopener">INEC Nigeria Official Portal</a>.</p>
-  </div>
-</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p data-translate="footer_copy">&copy; 2027 Senator Allwell Heacho Onyesoh Campaign Committee | Rivers East Senatorial District.</p>
+    </div>
+  </footer>
 
-<!-- Helper Scripts -->
-<script src="style.js"></script>
-<script>
-  function copyAccountNumber() {
-    const accNum = document.getElementById("accountNum").innerText;
-    navigator.clipboard.writeText(accNum);
-    alert("Campaign Account Number copied: " + accNum);
-  }
-</script>
+  <script src="style.js"></script>
 </body>
 </html>

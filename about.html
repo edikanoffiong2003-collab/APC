@@ -3,10 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Senator Allwell Onyesoh | Biography & Career</title>
+  <title data-translate="about_page_title">About Senator Allwell Onyesoh | Biography & Career</title>
   <link rel="stylesheet" href="styles.css" />
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* RIVERS EAST LANGUAGE SELECTOR DROPDOWN STYLING */
+    .lang-dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-left: 10px;
+      vertical-align: middle;
+      z-index: 1000;
+    }
+    .lang-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+    .lang-dropdown-btn:hover {
+      background-color: #e2e8f0;
+    }
+    .lang-dropdown-btn i.fa-globe {
+      color: #28a745;
+    }
+    .lang-dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 38px;
+      background-color: #ffffff;
+      min-width: 240px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 8px 0;
+      z-index: 1001;
+    }
+    .lang-dropdown-menu.show {
+      display: block;
+    }
+    .lang-dropdown-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      color: #1e293b;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .lang-dropdown-menu a:hover {
+      background-color: #f8fafc;
+      color: #28a745;
+    }
+    .lang-dropdown-menu .badge {
+      font-size: 10px;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .dropdown-divider {
+      height: 1px;
+      background-color: #e2e8f0;
+      margin: 6px 0;
+    }
+    .dropdown-header {
+      padding: 4px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
 
@@ -15,15 +98,41 @@
     <div class="nav-container">
       <div class="logo">
         <a href="index.html" style="text-decoration: none; color: inherit;">
-          <span class="apc-green">APC</span> 2027 <span class="tag">RIVERS EAST</span>
+          <span class="apc-green">APC</span> 2027 <span class="tag" data-translate="nav_tag">RIVERS EAST</span>
         </a>
       </div>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About Senator Allwell.</a></li>
-        <li><a href="campaign-landing.html#campaign pillars">Campaign Pillars</a></li>
-        <li><a href="index.html#deliverables">Future Vision</a></li>
-        <li><a href="register.html" class="btn-primary">Join Movement</a></li>
+        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+        <li><a href="about.html" class="active" data-translate="nav_about">About Senator Allwell.</a></li>
+        <li><a href="campaign-landing.html#campaign pillars" data-translate="nav_pillars">Campaign Pillars</a></li>
+        <li><a href="index.html#deliverables" data-translate="nav_vision">Future Vision</a></li>
+        <li><a href="register.html" class="btn-primary" data-translate="nav_join">Join Movement</a></li>
+
+        <!-- RIVERS EAST LANGUAGE SELECTOR -->
+        <li>
+          <div class="lang-dropdown-wrapper">
+            <button class="lang-dropdown-btn" onclick="toggleLangMenu()" type="button">
+              <i class="fa-solid fa-globe"></i>
+              <span id="current-lang-text">EN</span>
+              <i class="fa-solid fa-chevron-down" style="font-size: 11px;"></i>
+            </button>
+
+            <div class="lang-dropdown-menu" id="langMenu">
+              <a href="javascript:void(0)" onclick="switchLanguage('en', 'English')">English <span class="badge">EN</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('pcm', 'Nigerian Pidgin')">Nigerian Pidgin <span class="badge">PCM</span></a>
+              
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-header" data-translate="dropdown_header">Rivers East Local Languages</div>
+              
+              <a href="javascript:void(0)" onclick="switchLanguage('okrika', 'Okrika (Kirike)')">Okrika (Kirike) <span class="badge">OKR</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('kalabari', 'Kalabari')">Kalabari Language <span class="badge">KAL</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('obolo', 'Andoni (Obolo)')">Andoni (Obolo) <span class="badge">OBL</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('ibani', 'Ibani / Bonny')">Ibani / Bonny <span class="badge">IBA</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('nkoroo', 'Nkoroo')">Nkoroo Language <span class="badge">NKO</span></a>
+              <a href="javascript:void(0)" onclick="switchLanguage('ogoni', 'Ogoni (Khana/Eleme)')">Ogoni (Khana, Gokana, Eleme) <span class="badge">OGO</span></a>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   </nav>
@@ -31,8 +140,12 @@
   <!-- Page Header -->
   <header class="section bg-light" style="padding: 40px 0; border-bottom: 1px solid #e2e8f0;">
     <div class="container text-center">
-      <h1 class="section-title">Biography of Senator (Chief) Allwell Heacho Onyesoh <br> DSSRS, JP, FIBAKM.  </h1>
-      <p class="section-subtitle">Distinguished Academic, Public Servant, and Senator Representing Rivers East Senatorial District</p>
+      <h1 class="section-title" data-translate="about_main_title">
+        Biography of Senator (Chief) Allwell Heacho Onyesoh <br> DSSRS, JP, FIBAKM.
+      </h1>
+      <p class="section-subtitle" data-translate="about_main_subtitle">
+        Distinguished Academic, Public Servant, and Senator Representing Rivers East Senatorial District
+      </p>
     </div>
   </header>
 
@@ -47,48 +160,63 @@
           
           <!-- Early Life & Education -->
           <div style="margin-bottom: 35px;">
-            <h2 style="color: var(--apc-blue); margin-bottom: 12px;"><i class="fa-solid fa-graduation-cap"></i> Early Life & Academic Background</h2>
-            <p>The journey of Senator (Chief) Allwell Henacho Onyesoh is defined by resilience, brilliant intellect, and a relentless commitment to service. Facing adversity early in life, he lost his beloved father just as he was preparing to write his First School Leaving Certificate examination. Despite this hardship, his natural brilliance and determination stood out.
-
-His exceptional performance in the Common Entrance Examination earned him a scholarship from a generous Etche philanthropist. Young Allwell proved worthy of the investment, achieving stellar results that secured him further academic scholarships throughout secondary school. He concluded his secondary education in 1978 at Baptist High School, Port Harcourt (Old Township), graduating in flying colors with a Grade One in the West African School Certificate Examination (WASC).
-
-Driven by a passion for knowledge and communication, he proceeded to the University of Jos, earning a Bachelor’s Degree in Communication Arts in 1982. Continually expanding his horizons, his academic pursuit later took him to the University of Buckingham, United Kingdom, where he pursued a Bachelor’s Degree in Law (LL.B).
-
-Beginning his career as a dedicated lecturer and administrator, Senator Onyesoh’s early academic excellence and deep grassroots roots laid the foundation for a distinguished political journey that would go on to reshape the legislative landscape of Rivers East Senatorial District.</p>
+            <h2 style="color: var(--apc-blue); margin-bottom: 12px;" data-translate="about_sec1_heading">
+              <i class="fa-solid fa-graduation-cap"></i> Early Life & Academic Background
+            </h2>
+            <p data-translate="about_sec1_body">
+              The journey of Senator (Chief) Allwell Henacho Onyesoh is defined by resilience, brilliant intellect, and a relentless commitment to service. Facing adversity early in life, he lost his beloved father just as he was preparing to write his First School Leaving Certificate examination. Despite this hardship, his natural brilliance and determination stood out.<br><br>
+              His exceptional performance in the Common Entrance Examination earned him a scholarship from a generous Etche philanthropist. Young Allwell proved worthy of the investment, achieving stellar results that secured him further academic scholarships throughout secondary school. He concluded his secondary education in 1978 at Baptist High School, Port Harcourt (Old Township), graduating in flying colors with a Grade One in the West African School Certificate Examination (WASC).<br><br>
+              Driven by a passion for knowledge and communication, he proceeded to the University of Jos, earning a Bachelor’s Degree in Communication Arts in 1982. Continually expanding his horizons, his academic pursuit later took him to the University of Buckingham, United Kingdom, where he pursued a Bachelor’s Degree in Law (LL.B).<br><br>
+              Beginning his career as a dedicated lecturer and administrator, Senator Onyesoh’s early academic excellence and deep grassroots roots laid the foundation for a distinguished political journey that would go on to reshape the legislative landscape of Rivers East Senatorial District.
+            </p>
           </div>
 
           <!-- Public Service & Ministerial Roles -->
-<div style="margin-bottom: 35px;">
-  <h2 style="color: var(--apc-blue); margin-bottom: 12px;"><i class="fa-solid fa-landmark"></i> Track Record in Executive Service</h2>
-  <p style="margin-bottom: 10px;">Prior to entering the National Assembly, Senator (Chief) Allwell Onyesoh held key executive positions in Rivers State, leaving a legacy of transformative governance across multiple sectors:</p>
-  <ul style="padding-left: 20px; line-height: 1.8; color: var(--gray);">
-    <li>
-      <strong>Commissioner for Education (1999–2003):</strong> Laid the foundation for the Rivers State Free Education Programme and introduced the free school bus service. He initiated the Hipact Agreement with British Universities, quadrupled student bursaries from N2,500 to N10,000, completed and opened the Rivers State Library at D/Line, and built the Modern Library and Convocation Arena at the State College of Education (now IAUED). Additionally, he established the Port Harcourt JAMB Office (2001) and NECO Regional Headquarters (2000).
-    </li>
-    <li>
-      <strong>Commissioner for Sports (2003–2006):</strong> Elevating state athletics to national and continental prominence, he installed synthetic pitches at the Sharks FC pitch and Elekahia Stadium. Under his leadership, Dolphins FC won the 2004 Premier League and FA Challenge Cup double, secured a Silver Medal at the 2005 CAF Confederation Cup, and captured the 2006 Challenge Cup. He also served as Chairman of the Nigeria Swimming Federation (2005).
-    </li>
-    <li>
-      <strong>Executive Chairman, Rivers State Senior Secondary Schools Board (2011–2015):</strong> Spearheaded structural administrative reforms, eliminated ghost workers from the payroll system, and secured approval for the employment of 13,151 graduate teachers into public schools. He also oversaw the legal amendment (Law No. 5 of 2012) extending the board's tenure from 3 to 4 years and integrated modern ICT training across the board.
-    </li>
-  </ul>
-</div>
+          <div style="margin-bottom: 35px;">
+            <h2 style="color: var(--apc-blue); margin-bottom: 12px;" data-translate="about_sec2_heading">
+              <i class="fa-solid fa-landmark"></i> Track Record in Executive Service
+            </h2>
+            <p style="margin-bottom: 10px;" data-translate="about_sec2_sub">
+              Prior to entering the National Assembly, Senator (Chief) Allwell Onyesoh held key executive positions in Rivers State, leaving a legacy of transformative governance across multiple sectors:
+            </p>
+            <ul style="padding-left: 20px; line-height: 1.8; color: var(--gray);">
+              <li data-translate="about_sec2_item1">
+                <strong>Commissioner for Education (1999–2003):</strong> Laid the foundation for the Rivers State Free Education Programme and introduced the free school bus service. He initiated the Hipact Agreement with British Universities, quadrupled student bursaries from N2,500 to N10,000, completed and opened the Rivers State Library at D/Line, and built the Modern Library and Convocation Arena at the State College of Education (now IAUED). Additionally, he established the Port Harcourt JAMB Office (2001) and NECO Regional Headquarters (2000).
+              </li>
+              <li data-translate="about_sec2_item2">
+                <strong>Commissioner for Sports (2003–2006):</strong> Elevating state athletics to national and continental prominence, he installed synthetic pitches at the Sharks FC pitch and Elekahia Stadium. Under his leadership, Dolphins FC won the 2004 Premier League and FA Challenge Cup double, secured a Silver Medal at the 2005 CAF Confederation Cup, and captured the 2006 Challenge Cup. He also served as Chairman of the Nigeria Swimming Federation (2005).
+              </li>
+              <li data-translate="about_sec2_item3">
+                <strong>Executive Chairman, Rivers State Senior Secondary Schools Board (2011–2015):</strong> Spearheaded structural administrative reforms, eliminated ghost workers from the payroll system, and secured approval for the employment of 13,151 graduate teachers into public schools. He also oversaw the legal amendment (Law No. 5 of 2012) extending the board's tenure from 3 to 4 years and integrated modern ICT training across the board.
+              </li>
+            </ul>
+          </div>
 
-<!-- Senate Career & Legislative Roles -->
-<div style="margin-bottom: 35px;">
-  <h2 style="color: var(--apc-blue); margin-bottom: 12px;"><i class="fa-solid fa-building-columns"></i> 10th National Assembly Service</h2>
-  <p>Elected to represent the people of Rivers East Senatorial District in the 10th Senate, Senator Onyesoh serves as a distinguished legislative leader and the <strong>Chairman of the Senate Committee on Works</strong>, having previously served as Deputy Chairman of the Senate Committee on Petroleum Resources (Upstream). In this high-profile role, he leads federal infrastructure oversight, monitoring national road construction and maintenance, ensuring the proper implementation of budgetary allocations across relevant MDAs, and driving legislative reforms to upgrade Nigeria's critical infrastructure while continuing his dedicated service to the 8 Local Government Areas of Rivers East.</p>
-</div>
+          <!-- Senate Career & Legislative Roles -->
+          <div style="margin-bottom: 35px;">
+            <h2 style="color: var(--apc-blue); margin-bottom: 12px;" data-translate="about_sec3_heading">
+              <i class="fa-solid fa-building-columns"></i> 10th National Assembly Service
+            </h2>
+            <p data-translate="about_sec3_body">
+              Elected to represent the people of Rivers East Senatorial District in the 10th Senate, Senator Onyesoh serves as a distinguished legislative leader and the <strong>Chairman of the Senate Committee on Works</strong>, having previously served as Deputy Chairman of the Senate Committee on Petroleum Resources (Upstream). In this high-profile role, he leads federal infrastructure oversight, monitoring national road construction and maintenance, ensuring the proper implementation of budgetary allocations across relevant MDAs, and driving legislative reforms to upgrade Nigeria's critical infrastructure while continuing his dedicated service to the 8 Local Government Areas of Rivers East.
+            </p>
+          </div>
 
-<!-- Political Journey & Alliances -->
-<div style="margin-bottom: 35px;">
-  <h2 style="color: var(--apc-blue); margin-bottom: 12px;"><i class="fa-solid fa-handshake-simple"></i> Political Evolution & Roots</h2>
-  <p style="margin-bottom: 12px;">Affectionately known as the <em>"Political Octopus"</em> for his grassroot connections and strategic foresight, Senator Onyesoh’s political journey spans over three decades:</p>
-  <p>Entering public service in his 20s, he was elected Chairman of Old Etche Local Government Area (comprising present-day Etche and Omuma) under the NRC in the early 1990s. In 1998, he became a core founding member of the influential "Restoration Team" that shaped modern Rivers State governance. Having served as a two-term commissioner and key political leader, his political philosophy remains centered on grassroots mobilization, youth development, and aligning Rivers East representation to secure tangible infrastructure and economic development for his people.</p>
-</div>
+          <!-- Political Journey & Alliances -->
+          <div style="margin-bottom: 35px;">
+            <h2 style="color: var(--apc-blue); margin-bottom: 12px;" data-translate="about_sec4_heading">
+              <i class="fa-solid fa-handshake-simple"></i> Political Evolution & Roots
+            </h2>
+            <p style="margin-bottom: 12px;" data-translate="about_sec4_sub">
+              Affectionately known as the <em>"Political Octopus"</em> for his grassroot connections and strategic foresight, Senator Onyesoh’s political journey spans over three decades:
+            </p>
+            <p data-translate="about_sec4_body">
+              Entering public service in his 20s, he was elected Chairman of Old Etche Local Government Area (comprising present-day Etche and Omuma) under the NRC in the early 1990s. In 1998, he became a core founding member of the influential "Restoration Team" that shaped modern Rivers State governance. Having served as a two-term commissioner and key political leader, his political philosophy remains centered on grassroots mobilization, youth development, and aligning Rivers East representation to secure tangible infrastructure and economic development for his people.
+            </p>
+          </div>
         </div>
 
-        <!-- Right Column: Blended Side Picture Slideshow -->
+        <!-- Right Column: Side Picture Slideshow -->
         <div class="about-image-col">
           <div class="about-slider">
             <img src="src/images (17).jpeg" onerror="this.onerror=null; this.src='src/images (17).jpeg';" alt="Senator Onyesoh 2" />
@@ -100,12 +228,14 @@ Beginning his career as a dedicated lecturer and administrator, Senator Onyesoh�
 
       </div>
 
-      <!-- Return Button -->
-      <div style="text-align: center; margin-top: 50px;">
-        <a href="index.html" class="btn-primary"><i class="fa-solid fa-arrow-left"></i> Return to Main Campaign Page</a>
-      </div>
-      <div style="text-align: center; margin-top: 50px;">
-        <a href="campaign-landing.html" class="btn-primary"><i class="fa-solid fa-arrow-right"></i> Return to  Campaign </Portal></a>
+      <!-- Return Buttons -->
+      <div style="text-align: center; margin-top: 50px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <a href="index.html" class="btn-primary" data-translate="btn_return_home">
+          <i class="fa-solid fa-arrow-left"></i> Return to Main Campaign Page
+        </a>
+        <a href="campaign-landing.html" class="btn-primary" data-translate="btn_return_portal">
+          <i class="fa-solid fa-arrow-right"></i> Return to Campaign Portal
+        </a>
       </div>
 
     </div>
@@ -114,10 +244,35 @@ Beginning his career as a dedicated lecturer and administrator, Senator Onyesoh�
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-content">
-      <p>&copy; 2027 Senator Allwell Heacho Onyesoh Campaign Committee | Rivers East Senatorial District.</p>
-      <p>For national voter registration details and election schedules, visit the <a href="https://inecnigeria.org/" target="_blank" rel="noopener">INEC Nigeria Official Portal</a>.</p>
+      <p data-translate="footer_copy">&copy; 2027 Senator Allwell Heacho Onyesoh Campaign Committee | Rivers East Senatorial District.</p>
+      <p data-translate="footer_inec">For national voter registration details and election schedules, visit the <a href="https://inecnigeria.org/" target="_blank" rel="noopener">INEC Nigeria Official Portal</a>.</p>
     </div>
   </footer>
 
+  <!-- Google Translate Hidden Container & Initialization Scripts -->
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Load Individual Translation Dictionaries -->
+  <script src="translations-en.js"></script>
+  <script src="translations-pcm.js"></script>
+  <script src="translations-okrika.js"></script>
+  <script src="translations-kalabari.js"></script>
+  <script src="translations-obolo.js"></script>
+  <script src="translations-ibani.js"></script>
+  <script src="translations-nkoroo.js"></script>
+  <script src="translations-ogoni.js"></script>
+
+  <!-- Core Translation Engine -->
+  <script src="style.js"></script>
 </body>
 </html>
