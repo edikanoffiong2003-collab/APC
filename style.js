@@ -446,7 +446,9 @@ const googleLangMap = {
   obolo: 'ig',
   ibani: 'ij',
   nkoroo: 'ij',
-  ogoni: 'ig'
+  ogoni: 'ig',
+  etche: 'ig',
+  ikwerre: 'ig',
 };
 
 // ==========================================================================
