@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="agent_page_title">Polling Unit Agent Registration - Senator Allwell Onyesoh</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; margin: 0; padding: 0; }
+    .form-card { max-width: 750px; margin: 40px auto; background: #ffffff; padding: 35px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); }
+    .form-card h2 { color: #0f172a; margin-bottom: 8px; border-bottom: 2px solid #28a745; padding-bottom: 10px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 700; margin-bottom: 6px; color: #334155; }
+    .form-group input, .form-group select { width: 100%; padding: 11px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 15px; box-sizing: border-box; }
+    .btn-agent { width: 100%; padding: 14px; background: #28a745; color: white; font-weight: bold; font-size: 16px; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s ease; }
+    .btn-agent:hover { background: #218838; }
+  </style>
+</head>
+<body>
+
+  <div class="form-card">
+    <h2 data-translate="agent_heading"><i class="fa-solid fa-user-shield" style="color: #28a745;"></i> Polling Unit Agent & Volunteer Sign-Up</h2>
+    <p style="margin-bottom: 20px; color: #64748b; font-size: 14px;" data-translate="agent_sub">Help protect votes and monitor collation across the 8 LGAs of Rivers East Senatorial District.</p>
+
+    <form id="agentForm" onsubmit="handleAgentRegistration(event)">
+      <div class="form-group">
+        <label data-translate="label_fullname">Full Name (as on PVC):</label>
+        <input type="text" id="agentName" placeholder="e.g. Tamuno Blessing" required>
+      </div>
+
+      <div class="form-group">
+        <label data-translate="label_phone">Phone Number / WhatsApp:</label>
+        <input type="tel" id="agentPhone" placeholder="08012345678" required>
+      </div>
+
+      <div class="form-group">
+        <label data-translate="label_lga">Local Government Area (LGA):</label>
+        <select id="agentLga" required>
+          <option value="">Select LGA</option>
+          <option value="Etche">Etche</option>
+          <option value="Omuma">Omuma</option>
+          <option value="Obio-Akpor">Obio-Akpor</option>
+          <option value="Port Harcourt">Port Harcourt City</option>
+          <option value="Ikwerre">Ikwerre</option>
+          <option value="Emohua">Emohua</option>
+          <option value="Okrika">Okrika</option>
+          <option value="Ogu-Bolo">Ogu-Bolo</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label data-translate="label_ward">Ward Name / Number:</label>
+        <input type="text" id="agentWard" placeholder="e.g. Ward 4, Okehi" required>
+      </div>
+
+      <div class="form-group">
+        <label data-translate="label_pu_number">Polling Unit Name or Code (if known):</label>
+        <input type="text" id="agentPu" placeholder="e.g. PU 008, Community Primary School">
+      </div>
+
+      <div class="form-group">
+        <label data-translate="label_pvc_status">Do you have a valid PVC for this Polling Unit?</label>
+        <select id="agentPvcStatus" required>
+          <option value="Yes">Yes - Valid PVC Ready</option>
+          <option value="Transferring">Currently Transferring Location</option>
+          <option value="No">No - Need Voter Registration Assistance</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-agent" data-translate="btn_agent_submit">Register as Polling Agent</button>
+    </form>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'apc_rivers_east_user';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Pre-fill form details if user registered via auth.html
+      const storedUser = localStorage.getItem(STORAGE_KEY);
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        if (user.name) document.getElementById('agentName').value = user.name;
+        if (user.phone) document.getElementById('agentPhone').value = user.phone;
+        if (user.lga) document.getElementById('agentLga').value = user.lga;
+        if (user.ward) document.getElementById('agentWard').value = user.ward;
+      }
+    });
+
+    function handleAgentRegistration(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('agentName').value;
+      const phone = document.getElementById('agentPhone').value;
+      const lga = document.getElementById('agentLga').value;
+      const ward = document.getElementById('agentWard').value;
+      const pu = document.getElementById('agentPu').value;
+      const pvcStatus = document.getElementById('agentPvcStatus').value;
+
+      // Retrieve existing account or generate new profile
+      let existingUser = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+      existingUser.name = name || existingUser.name;
+      existingUser.phone = phone || existingUser.phone;
+      existingUser.lga = lga || existingUser.lga;
+      existingUser.ward = ward || existingUser.ward;
+      existingUser.puCode = pu;
+      existingUser.pvcStatus = pvcStatus;
+      existingUser.isAgent = true;
+      existingUser.tier = 'Verified PU Agent';
+      if (!existingUser.campaignId) {
+        existingUser.campaignId = 'APC-2027-' + Math.floor(1000 + Math.random() * 9000);
+      }
+
+      // Save updated profile state
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(existingUser));
+
+      alert('Polling Unit Agent application complete! Redirecting to your Grassroots Mobilization Hub...');
+
+      // Redirect to mobilize.html
+      window.location.href = 'mobilize.html';
+    }
+  </script>
+
+  <script src="translations-en.js"></script>
+  <script src="style.js"></script>
+</body>
+</html>

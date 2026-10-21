@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APC 2027 - Supporter Authentication & Hero Suite</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --apc-green: #28a745;
+      --apc-green-dark: #218838;
+      --apc-navy: #0f172a;
+      --apc-navy-light: #1e293b;
+      --apc-red: #dc2626;
+      --apc-gold: #f59e0b;
+      --slate-gray: #64748b;
+      --bg-light: #f8fafc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #1e2440; color: #1e293b; min-height: 100vh; padding-top: 75px; }
+
+    /* --- TOP NAVBAR --- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 75px;
+      background: #ffffff;
+      border-bottom: 3px solid var(--apc-green);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .brand-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--apc-navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-logo span.highlight { color: var(--apc-green); }
+
+    .nav-auth-container { display: flex; align-items: center; gap: 15px; }
+
+    .btn-login {
+      background: var(--apc-navy);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-login:hover { background: var(--apc-green); }
+
+    /* Profile Badge Button */
+    .user-profile-badge {
+      display: none;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s ease;
+    }
+    .user-profile-badge:hover { background: #e2e8f0; }
+
+    .avatar-circle {
+      width: 36px;
+      height: 36px;
+      background: var(--apc-green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .user-info-text { text-align: left; }
+    .user-info-name { font-size: 13px; font-weight: 700; color: var(--apc-navy); }
+    .user-info-tier { font-size: 11px; color: var(--apc-green); font-weight: 800; text-transform: uppercase; }
+
+    /* --- HERO LANDING SECTION (2-COLUMN LAYOUT) --- */
+    .hero-container {
+      background: linear-gradient(180deg, #1e2440 0%, #111528 100%);
+      color: white;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 5% 20px;
+      position: relative;
+    }
+
+    .hero-content-layout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      width: 100%;
+      max-width: 1100px;
+      margin-bottom: 20px;
+    }
+
+    /* LEFT SIDE: VIDEO GUIDE */
+    .hero-video-section {
+      flex: 1;
+      max-width: 480px;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .hero-video-title {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .video-container {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000000;
+      position: relative;
+      z-index: 5;
+    }
+
+    .mobilization-guide-video {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      display: block;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    /* RIGHT SIDE: TEXT & ACTIONS */
+    .hero-text-section {
+      flex: 1;
+      text-align: left;
+    }
+
+    .hero-title { font-size: 52px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; line-height: 1.1; }
+    .hero-subtitle { font-size: 24px; font-weight: 500; color: #cbd5e1; margin-bottom: 30px; }
+
+    .hero-actions { display: flex; gap: 15px; z-index: 2; }
+
+    .btn-hero-signup {
+      background: #ffffff;
+      color: #0f172a;
+      padding: 12px 36px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn-hero-signup:hover { transform: translateY(-2px); background: #f8fafc; }
+
+    .btn-hero-login {
+      background: var(--apc-red);
+      color: #ffffff;
+      padding: 12px 36px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .btn-hero-login:hover { transform: translateY(-2px); background: #b91c1c; }
+
+    .hero-candidate-image-wrapper { max-width: 350px; width: 100%; margin-top: 10px; display: flex; justify-content: center; }
+    .hero-candidate-img { width: 100%; max-height: 240px; object-fit: contain; filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5)); }
+
+    .hero-footer-terms { margin-top: auto; padding-top: 20px; font-size: 12px; color: #94a3b8; text-align: center; }
+    .hero-footer-terms a { color: #ffffff; text-decoration: underline; }
+
+    /* RESPONSIVE LAYOUT FOR MOBILE */
+    @media (max-width: 850px) {
+      .hero-content-layout {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 25px;
+      }
+      .hero-text-section { text-align: center; }
+      .hero-video-title { text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hero-title { font-size: 38px; }
+      .hero-subtitle { font-size: 20px; }
+    }
+
+    /* --- MODAL OVERLAY --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+    .modal-overlay.active { display: flex; }
+
+    /* MODAL CARD WITH BACKGROUND WATERMARK SLIDESHOW */
+    .modal-card {
+      width: 92%;
+      max-width: 480px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+      position: relative;
+      animation: modalSlide 0.3s ease-out forwards;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #ffffff;
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #ffffff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close-btn:hover { background: rgba(0,0,0,0.9); }
+
+    /* WATERMARK BACKGROUND SLIDESHOW LAYER */
+    .modal-watermark-slideshow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .watermark-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .watermark-slide.active { opacity: 0.35; }
+
+    .watermark-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content-wrapper {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.15);
+      min-height: 100%;
+    }
+
+    /* Modal Form Tabs */
+    .auth-tabs {
+      display: flex;
+      background: rgba(241, 245, 249, 0.95);
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      background: transparent;
+      font-weight: 700;
+      color: var(--slate-gray);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .tab-btn.active {
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--apc-green);
+      border-bottom: 3px solid var(--apc-green);
+    }
+
+    .auth-body { padding: 20px 25px 25px; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 11px; font-weight: 800; color: var(--apc-navy); margin-bottom: 5px; text-transform: uppercase; }
+    .form-control {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+      color: var(--apc-navy);
+    }
+    .form-control:focus { border-color: var(--apc-green); box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2); }
+
+    .btn-submit-auth {
+      width: 100%;
+      padding: 13px;
+      background: var(--apc-green);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+    }
+    .btn-submit-auth:hover { background: var(--apc-green-dark); }
+
+    /* --- PROFILE MODAL DRAWER --- */
+    .profile-card-header {
+      background: linear-gradient(135deg, var(--apc-navy) 0%, var(--apc-navy-light) 100%);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+    }
+
+    .profile-avatar-large {
+      width: 70px;
+      height: 70px;
+      background: var(--apc-green);
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .badge-tier {
+      display: inline-block;
+      background: var(--apc-gold);
+      color: #000;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .profile-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 20px 25px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-box .val { font-size: 20px; font-weight: 800; color: var(--apc-navy); }
+    .stat-box .lbl { font-size: 11px; color: var(--slate-gray); font-weight: 600; }
+
+    .profile-details-list { padding: 20px 25px; }
+    .detail-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 8px; }
+    .detail-item .lbl { color: var(--slate-gray); font-weight: 600; }
+    .detail-item .val { color: var(--apc-navy); font-weight: 700; }
+
+    .btn-logout {
+      width: calc(100% - 50px);
+      margin: 0 25px 25px;
+      padding: 10px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-logout:hover { background: #dc2626; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVIGATION HEADER -->
+  <nav class="navbar">
+    <a href="#" class="brand-logo">
+      <i class="fa-solid fa-flag" style="color: var(--apc-green);"></i>
+      <span>APC <span class="highlight">2027</span> RIVERS EAST</span>
+    </a>
+
+    <div class="nav-auth-container">
+      <button class="btn-login" id="loginTriggerBtn" onclick="openAuthModal('signin')">
+        <i class="fa-solid fa-right-to-bracket"></i> Login / Register
+      </button>
+
+      <div class="user-profile-badge" id="userProfileBadge" onclick="openProfileModal()">
+        <div class="avatar-circle" id="navAvatarInitials">AU</div>
+        <div class="user-info-text">
+          <div class="user-info-name" id="navUserName">Active User</div>
+          <div class="user-info-tier" id="navUserTier">Bronze Mobilizer</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO LANDING SECTION -->
+  <section class="hero-container">
+    <div class="hero-content-layout">
+      
+      <!-- LEFT SIDE: VIDEO GUIDE (MUTED AUTOPLAY TO COMPLY WITH BROWSER RESTRICTIONS) -->
+      <div class="hero-video-section">
+        <h3 class="hero-video-title"><i class="fa-solid fa-circle-play" style="color: var(--apc-green);"></i> Watch How Mobilization Works</h3>
+        <div class="video-container">
+          <video controls autoplay muted playsinline loop poster="src/sen.png" class="mobilization-guide-video" id="guideVideo">
+            <source src="src/Create a 30-second vertical (916) or widescreen animated tut.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE: HEADINGS & ACTION BUTTONS -->
+      <div class="hero-text-section">
+        <h1 class="hero-title">Mobilise voters</h1>
+        <h2 class="hero-subtitle">Protect your polling unit</h2>
+
+        <div class="hero-actions">
+          <button class="btn-hero-signup" onclick="openAuthModal('signup')">Sign Up</button>
+          <button class="btn-hero-login" onclick="openAuthModal('signin')">Log In</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero-candidate-image-wrapper">
+      <img src="src/sen.png" alt="Senator Allwell Onyesoh" class="hero-candidate-img" onerror="this.onerror=null; this.src='images (21).jpeg';">
+    </div>
+
+    <div class="hero-footer-terms">
+      By continuing you agree to our <a href="privacy.html" target="_blank">Privacy Policy</a> & <a href="terms.html" target="_blank">Terms</a>
+    </div>
+  </section>
+
+  <!-- AUTHENTICATION MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+
+      <!-- WATERMARK BACKGROUND SLIDESHOW LAYER -->
+      <div class="modal-watermark-slideshow">
+        <div class="watermark-slide active">
+          <img src="src/images (19).jpeg" alt="Watermark Slide 1" onerror="this.onerror=null; this.src='src/sen.png';">
+        </div>
+        <div class="watermark-slide">
+          <img src="src/images (20).jpeg" alt="Watermark Slide 2" onerror="this.onerror=null; this.src='src/sen.png';">
+        </div>
+        <div class="watermark-slide">
+          <img src="src/IMG-20261013-WA0026.jpg" alt="Watermark Slide 3" onerror="this.onerror=null; this.src='src/sen.png';">
+        </div>
+      </div>
+
+      <!-- FORM CONTENT WRAPPER ON TOP OF WATERMARK -->
+      <div class="modal-content-wrapper">
+        <!-- AUTH TABS -->
+        <div class="auth-tabs">
+          <button class="tab-btn active" id="tabSignUpBtn" onclick="switchAuthTab('signup')">Sign Up (New Member)</button>
+          <button class="tab-btn" id="tabSignInBtn" onclick="switchAuthTab('signin')">Sign In</button>
+        </div>
+
+        <div class="auth-body">
+          <!-- SIGN UP FORM -->
+          <form id="signUpForm" onsubmit="handleSignUp(event)">
+            <div class="form-group">
+              <label>FULL NAME (AS ON PVC):</label>
+              <input type="text" id="regName" class="form-control" placeholder="e.g. Chief Okey Amadi" required>
+            </div>
+            <div class="form-group">
+              <label>PHONE / WHATSAPP NUMBER:</label>
+              <input type="tel" id="regPhone" class="form-control" placeholder="08012345678" required>
+            </div>
+            <div class="form-group">
+              <label>RIVERS EAST LGA:</label>
+              <select id="regLga" class="form-control" required>
+                <option value="">Select LGA</option>
+                <option value="Etche">Etche</option>
+                <option value="Omuma">Omuma</option>
+                <option value="Obio-Akpor">Obio-Akpor</option>
+                <option value="Port Harcourt">Port Harcourt City</option>
+                <option value="Ikwerre">Ikwerre</option>
+                <option value="Emohua">Emohua</option>
+                <option value="Okrika">Okrika</option>
+                <option value="Ogu-Bolo">Ogu-Bolo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>WARD NAME / NUMBER:</label>
+              <input type="text" id="regWard" class="form-control" placeholder="e.g. Ward 4, Okehi" required>
+            </div>
+            <button type="submit" class="btn-submit-auth">Create Mobilizer Account</button>
+          </form>
+
+          <!-- SIGN IN FORM -->
+          <form id="signInForm" onsubmit="handleSignIn(event)" style="display: none;">
+            <div class="form-group">
+              <label>REGISTERED PHONE NUMBER:</label>
+              <input type="tel" id="loginPhone" class="form-control" placeholder="08012345678" required>
+            </div>
+            <p style="font-size: 12px; color: var(--slate-gray); margin-bottom: 15px;">Enter your phone number to sign into your mobilization badge profile.</p>
+            <button type="submit" class="btn-submit-auth">Sign In to Dashboard</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPPORTER PROFILE DRAWER MODAL -->
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeProfileModal()"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="profile-card-header">
+        <div class="profile-avatar-large" id="profAvatarInitials">AU</div>
+        <h3 id="profFullName">Active Supporter</h3>
+        <span class="badge-tier" id="profBadgeTier">Bronze Mobilizer</span>
+      </div>
+
+      <div class="profile-stats-grid">
+        <div class="stat-box">
+          <div class="val" id="profPledgedCount">20</div>
+          <div class="lbl">Pledged Voters</div>
+        </div>
+        <div class="stat-box">
+          <div class="val" id="profAgentStatus">Verified</div>
+          <div class="lbl">PU Agent Rank</div>
+        </div>
+      </div>
+
+      <div class="profile-details-list">
+        <div class="detail-item">
+          <span class="lbl">Phone / WhatsApp:</span>
+          <span class="val" id="profPhone">08000000000</span>
+        </div>
+        <div class="detail-item">
+          <span class="lbl">LGA:</span>
+          <span class="val" id="profLga">Etche</span>
+        </div>
+        <div class="detail-item">
+          <span class="lbl">Ward:</span>
+          <span class="val" id="profWard">Ward 1</span>
+        </div>
+        <div class="detail-item">
+          <span class="lbl">Campaign ID:</span>
+          <span class="val" id="profCampaignId">APC-2027-8891</span>
+        </div>
+      </div>
+
+      <button class="btn-logout" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLERS -->
+  <script>
+    const STORAGE_KEY = 'apc_rivers_east_user';
+    let slideIndex = 0;
+    let slideInterval;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthState();
+      startSlideshow();
+      setupVideoInteractivity();
+    });
+
+    function setupVideoInteractivity() {
+      const video = document.getElementById('guideVideo');
+      if (video) {
+        video.addEventListener('click', () => {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      }
+    }
+
+    // Watermark Slideshow Logic
+    function showSlides() {
+      const slides = document.querySelectorAll('.watermark-slide');
+      if (slides.length === 0) return;
+
+      slides.forEach(s => s.classList.remove('active'));
+
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+
+      slides[slideIndex - 1].classList.add('active');
+    }
+
+    function startSlideshow() {
+      slideInterval = setInterval(showSlides, 4000);
+    }
+
+    // Auth & Profile State Check
+    function checkAuthState() {
+      const storedUser = localStorage.getItem(STORAGE_KEY);
+      const loginBtn = document.getElementById('loginTriggerBtn');
+      const profileBadge = document.getElementById('userProfileBadge');
+
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (profileBadge) profileBadge.style.display = 'flex';
+
+        const initials = user.name ? user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'AU';
+
+        if (document.getElementById('navAvatarInitials')) document.getElementById('navAvatarInitials').innerText = initials;
+        if (document.getElementById('navUserName')) document.getElementById('navUserName').innerText = user.name || 'Mobilizer';
+        if (document.getElementById('navUserTier')) document.getElementById('navUserTier').innerText = user.tier || 'Bronze Mobilizer';
+
+        if (document.getElementById('profAvatarInitials')) document.getElementById('profAvatarInitials').innerText = initials;
+        if (document.getElementById('profFullName')) document.getElementById('profFullName').innerText = user.name || 'Mobilizer';
+        if (document.getElementById('profBadgeTier')) document.getElementById('profBadgeTier').innerText = user.tier || 'Bronze Mobilizer';
+        if (document.getElementById('profPledgedCount')) document.getElementById('profPledgedCount').innerText = user.pledgedVoters || 20;
+        if (document.getElementById('profAgentStatus')) document.getElementById('profAgentStatus').innerText = user.isAgent ? 'Approved Agent' : 'Standard Member';
+        if (document.getElementById('profPhone')) document.getElementById('profPhone').innerText = user.phone || 'N/A';
+        if (document.getElementById('profLga')) document.getElementById('profLga').innerText = user.lga || 'Rivers East';
+        if (document.getElementById('profWard')) document.getElementById('profWard').innerText = user.ward || 'N/A';
+        if (document.getElementById('profCampaignId')) document.getElementById('profCampaignId').innerText = user.campaignId || 'APC-2027-' + Math.floor(1000 + Math.random() * 9000);
+      } else {
+        if (loginBtn) loginBtn.style.display = 'flex';
+        if (profileBadge) profileBadge.style.display = 'none';
+      }
+    }
+
+    function openAuthModal(tab = 'signup') {
+      switchAuthTab(tab);
+      document.getElementById('authModal').classList.add('active');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.remove('active');
+    }
+
+    function openProfileModal() {
+      document.getElementById('profileModal').classList.add('active');
+    }
+
+    function closeProfileModal() {
+      document.getElementById('profileModal').classList.remove('active');
+    }
+
+    function switchAuthTab(tab) {
+      const signUpForm = document.getElementById('signUpForm');
+      const signInForm = document.getElementById('signInForm');
+      const tabSignUpBtn = document.getElementById('tabSignUpBtn');
+      const tabSignInBtn = document.getElementById('tabSignInBtn');
+
+      if (tab === 'signup') {
+        if (signUpForm) signUpForm.style.display = 'block';
+        if (signInForm) signInForm.style.display = 'none';
+        if (tabSignUpBtn) tabSignUpBtn.classList.add('active');
+        if (tabSignInBtn) tabSignInBtn.classList.remove('active');
+      } else {
+        if (signUpForm) signUpForm.style.display = 'none';
+        if (signInForm) signInForm.style.display = 'block';
+        if (tabSignInBtn) tabSignInBtn.classList.add('active');
+        if (tabSignUpBtn) tabSignUpBtn.classList.remove('active');
+      }
+    }
+
+    // STEP 1: SIGN UP -> Saves user & redirects to volunteer-agent.html
+    function handleSignUp(e) {
+      e.preventDefault();
+      const userObject = {
+        name: document.getElementById('regName').value,
+        phone: document.getElementById('regPhone').value.trim(),
+        lga: document.getElementById('regLga').value,
+        ward: document.getElementById('regWard').value,
+        tier: 'Bronze Mobilizer',
+        pledgedVoters: 20,
+        isAgent: false,
+        campaignId: 'APC-2027-' + Math.floor(1000 + Math.random() * 9000)
+      };
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(userObject));
+      closeAuthModal();
+      alert(`Welcome ${userObject.name}! Proceeding to Polling Unit Agent Registration...`);
+      
+      // Redirect to volunteer-agent.html
+      window.location.href = 'volunteer-agent.html';
+    }
+
+    // STEP 2: SIGN IN -> Strictly validates registered phone number
+    function handleSignIn(e) {
+      e.preventDefault();
+      const phoneInput = document.getElementById('loginPhone').value.trim();
+      const storedUser = localStorage.getItem(STORAGE_KEY);
+
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+        const cleanInput = phoneInput.replace(/[^0-9]/g, '');
+        const cleanStored = user.phone ? user.phone.replace(/[^0-9]/g, '') : '';
+
+        if (cleanStored && cleanInput === cleanStored) {
+          alert(`Welcome back, ${user.name}! Redirecting to your Mobilization Hub...`);
+          window.location.href = 'mobilize.html';
+          return;
+        }
+      }
+
+      // THROW ERROR IF PHONE NUMBER IS NOT REGISTERED
+      alert('Error: Phone number is not registered! Please Sign Up first to create an account.');
+      switchAuthTab('signup');
+    }
+
+    function handleLogout() {
+      localStorage.removeItem(STORAGE_KEY);
+      closeProfileModal();
+      checkAuthState();
+      alert('Logged out successfully.');
+    }
+  </script>
+</body>
+</html>
