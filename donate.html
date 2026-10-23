@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate & Support - Senator Allwell Onyesoh APC 2027</title>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* TOP NAVIGATION BAR */
+    .navbar {
+      background-color: #1e7e34;
+      color: white;
+      padding: 15px 30px;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 15px;
+    }
+
+    .donation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* DONATION CARD STYLES */
+    .donation-card {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border-top: 5px solid #1e7e34;
+    }
+
+    .preset-btn {
+      padding: 10px;
+      border: 1px solid #1e7e34;
+      background: #fff;
+      color: #1e7e34;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .preset-btn:hover {
+      background: #1e7e34;
+      color: white;
+    }
+
+    /* OCTOPUS CAMPAIGN BANNER WITH WATERMARK */
+    .octopus-banner-wrapper {
+      background: #ffffff;
+      padding: 40px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .octopus-banner-wrapper::before {
+      content: "";
+      background-image: url('src/allwell-watermark.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: right center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      opacity: 0.15;
+      mix-blend-mode: multiply;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .octopus-content-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .octopus-title {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      line-height: 1;
+    }
+
+    .octopus-logo-inline {
+      width: clamp(55px, 8vw, 85px);
+      height: clamp(55px, 8vw, 85px);
+      object-fit: contain;
+      vertical-align: middle;
+      margin: 0 -2px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .octopus-subtitle {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #666;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #1e7e34;
+      color: white;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .footer-brand img {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .footer-links h4, .footer-accounts h4 {
+      margin-bottom: 15px;
+      font-size: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 5px;
+    }
+
+    .footer-links ul, .footer-accounts ul {
+      list-style: none;
+    }
+
+    .footer-links li, .footer-accounts li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links a, .footer-accounts a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .donation-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="src/APCLOGO.png" alt="APC Logo">
+        <span style="font-weight: bold; font-size: 18px;">APC 2027</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="campaign-landing.html">Home</a></li>
+        <li><a href="about.html">About Senator Allwell</a></li>
+        <li><a href="Achive.html">Achievements</a></li>
+
+        <li><a href="news-media.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="donate.html" style="font-weight: bold; text-decoration: underline;">Donate</a></li>
+        <li><a href="auth-system.html">Accounts</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN SECTION -->
+  <div class="main-container">
+    <h1 class="page-title">Support the Movement</h1>
+
+    <div class="donation-grid">
+      <!-- Left: Secure Payment Form -->
+      <div class="donation-card">
+        <div style="margin-bottom: 20px;">
+          <span style="background: #e8f5e9; color: #1e7e34; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 12px; text-transform: uppercase;">Grassroots Campaign Fund</span>
+          <h2 style="font-size: 22px; color: #1e293b; margin-top: 8px;">Direct Campaign Contribution</h2>
+          <p style="color: #64748b; font-size: 14px; margin-top: 4px;">Fund grassroots mobilization, printing of campaign materials, and agent support across Rivers East.</p>
+        </div>
+
+        <form id="donationForm" onsubmit="handleSecureDonation(event)">
+          <!-- Donor Full Name -->
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 14px; font-weight: bold; color: #334155; margin-bottom: 5px;">Full Name</label>
+            <input type="text" id="donorName" placeholder="Enter full name (or Anonymous)" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;">
+          </div>
+
+          <!-- Phone Number -->
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 14px; font-weight: bold; color: #334155; margin-bottom: 5px;">Phone / WhatsApp Number</label>
+            <input type="tel" id="donorPhone" placeholder="080XXXXXXXX" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;">
+          </div>
+
+          <!-- Quick Select Preset Amounts -->
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; font-size: 14px; font-weight: bold; color: #334155; margin-bottom: 8px;">Select Amount (₦)</label>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+              <button type="button" class="preset-btn" onclick="setPresetAmount(2000)">₦10,000</button>
+              <button type="button" class="preset-btn" onclick="setPresetAmount(5000)">₦20,000</button>
+              <button type="button" class="preset-btn" onclick="setPresetAmount(10000)">₦150,000</button>
+              <button type="button" class="preset-btn" onclick="setPresetAmount(50000)">₦200,000</button>
+            </div>
+          </div>
+
+          <!-- Custom Amount Input -->
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; font-size: 14px; font-weight: bold; color: #334155; margin-bottom: 5px;">Or Enter Custom Amount (₦)</label>
+            <input type="number" id="donationAmount" min="500" placeholder="e.g. 25000" required style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none;">
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" style="width: 100%; background: #1e7e34; color: white; padding: 14px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background 0.2s;">
+            <i class="fa-solid fa-lock"></i> Proceed to Secure Payment
+          </button>
+        </form>
+
+        <!-- Security Disclaimer -->
+        <div style="margin-top: 15px; text-align: center; font-size: 12px; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <i class="fa-solid fa-shield-halved" style="color: #28a745;"></i> 256-Bit Encrypted Checkout. Account details remain strictly private.
+        </div>
+      </div>
+
+      <!-- Right: OCTOPUS Campaign Banner -->
+      <div class="octopus-banner-wrapper">
+        <div class="octopus-content-inner">
+          <div class="octopus-title">
+            <img src="src/APCLOGO.png" alt="APC Logo" class="octopus-logo-inline">
+            <span>C</span><span>T</span>
+            <img src="src/Senatelogo.png" alt="Senate Seal" class="octopus-logo-inline">
+            <span>P</span><span>U</span><span>S</span>
+          </div>
+          <p class="octopus-subtitle">Rivers East Grassroots Mobilization Movement <br> 2027 </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="src/APCLOGO.png" alt="APC Logo">
+        <img src="src/Senatelogo.png" alt="Senate Seal Logo">
+        <p style="font-size: 13px; line-height: 1.4;">Official Campaign Website for Senator Allwell Onyesoh Rivers East 2027.</p>
+      </div>
+      <div class="footer-links">
+        <h4>QUICK LINKS</h4>
+        <ul>
+          <li><a href="news-media.html">News</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        
+        </ul>
+      </div>
+      <div class="footer-accounts">
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Paystack Inline JS -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    function setPresetAmount(amount) {
+      document.getElementById('donationAmount').value = amount;
+    }
+
+    function handleSecureDonation(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('donorName').value;
+      const phone = document.getElementById('donorPhone').value;
+      const amount = document.getElementById('donationAmount').value;
+
+      if (!amount || amount < 100) {
+        alert('Please enter a valid donation amount.');
+        return;
+      }
+
+      // Initialize Paystack Secure Gateway Popup
+      let handler = PaystackPop.setup({
+        key: 'pk_live_XXXXXXXXXXXXXXXXXXXXXXXX', // Replace with your live Paystack Public Key when ready
+        email: 'donate@voteallwell2027.ng',
+        amount: amount * 100, // Amount converted to Kobo
+        currency: "NGN",
+        ref: 'ALLWELL-DONATION-' + Math.floor((Math.random() * 1000000000) + 1),
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "Donor Name",
+              variable_name: "donor_name",
+              value: name
+            },
+            {
+              display_name: "Donor Phone",
+              variable_name: "donor_phone",
+              value: phone
+            }
+          ]
+        },
+        callback: function(response) {
+          alert(`Thank you ${name}! Your campaign contribution was successful. Payment Ref: ${response.reference}`);
+          document.getElementById('donationForm').reset();
+        },
+        onClose: function() {
+          alert('Donation window closed. Thank you for supporting Senator Allwell Onyesoh.');
+        }
+      });
+
+      handler.openIframe();
+    }
+  </script>
+
+  <script src="translations.js"></script>
+  <script src="style.js"></script>
+</body>
+</html>

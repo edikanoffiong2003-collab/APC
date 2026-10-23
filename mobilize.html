@@ -9,11 +9,215 @@
   <style>
     :root {
       --apc-green: #28a745;
+      --apc-green-dark: #218838;
       --apc-navy: #0f172a;
       --gray-light: #f8fafc;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #1e293b; min-height: 100vh; }
+    
+    /* NAVBAR BASE & ALIGNMENT FIX */
+    .navbar {
+      background-color: #ffffff;
+      border-bottom: 3px solid var(--apc-green);
+      padding: 12px 5%;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .nav-links {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      list-style: none !important;
+      gap: 16px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .nav-links li {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--apc-navy);
+      font-weight: 700;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links li a:hover {
+      color: var(--apc-green);
+    }
+
+    /* ACCOUNTS DROPDOWN STYLING */
+    .nav-dropdown {
+      position: relative !important;
+      display: inline-block !important;
+    }
+
+    .dropdown-toggle {
+      background-color: var(--apc-green);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+    }
+
+    .dropdown-toggle:hover {
+      background-color: var(--apc-green-dark);
+    }
+
+    .dropdown-menu-nav {
+      display: none !important;
+      position: absolute !important;
+      top: 100% !important;
+      right: 0 !important;
+      margin-top: 8px !important;
+      background-color: #ffffff !important;
+      min-width: 210px !important;
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15) !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 10px !important;
+      padding: 8px 0 !important;
+      z-index: 1001 !important;
+    }
+
+    .dropdown-menu-nav a {
+      display: block !important;
+      padding: 10px 16px !important;
+      color: var(--apc-navy) !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      text-align: left !important;
+      border-bottom: 1px solid #f1f5f9;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .dropdown-menu-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu-nav a:hover {
+      background-color: #f8fafc !important;
+      color: var(--apc-green) !important;
+    }
+
+    /* RIVERS EAST LANGUAGE SELECTOR DROPDOWN STYLING */
+    .lang-dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-left: 5px;
+      vertical-align: middle;
+      z-index: 1000;
+    }
+
+    .lang-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+    }
+
+    .lang-dropdown-btn:hover {
+      background-color: #e2e8f0;
+    }
+
+    .lang-dropdown-btn i.fa-globe {
+      color: var(--apc-green);
+    }
+
+    .lang-dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 38px;
+      background-color: #ffffff;
+      min-width: 240px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      padding: 8px 0;
+      z-index: 1001;
+    }
+
+    .lang-dropdown-menu.show {
+      display: block !important;
+    }
+
+    .lang-dropdown-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      color: #1e293b;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .lang-dropdown-menu a:hover {
+      background-color: #f8fafc;
+      color: var(--apc-green);
+    }
+
+    .lang-dropdown-menu .badge {
+      font-size: 10px;
+      background: #e2e8f0;
+      color: #475569;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background-color: #e2e8f0;
+      margin: 6px 0;
+    }
+
+    .dropdown-header {
+      padding: 4px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+
+    .dropdown-menu-nav.show {
+      display: block !important;
+    }
+
+    /* MAIN CONTAINER */
     .main-container { width: 100%; max-width: 1300px; margin: 0 auto; background: #ffffff; padding: 40px; }
     .hero-banner { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 40px 20px; text-align: center; border-radius: 12px; margin-bottom: 30px; border-bottom: 4px solid var(--apc-green); }
     .hero-banner h1 { font-size: 28px; color: #38bdf8; margin-bottom: 10px; }
@@ -27,7 +231,7 @@
     .btn-submit:hover { background: #218838; }
     .calc-result { background: #0f172a; color: #38bdf8; padding: 12px; border-radius: 6px; text-align: center; font-weight: 800; margin-top: 10px; }
 
-    /* --- AGENT ROSTER DASHBOARD STYLES --- */
+    /* AGENT ROSTER DASHBOARD STYLES */
     .voter-dashboard-container {
       margin-top: 35px;
       background: #ffffff;
@@ -183,18 +387,62 @@
     <div class="nav-container">
       <div class="logo">
         <a href="index.html" style="text-decoration: none; color: inherit;">
-          <span class="apc-green">APC</span> 2027 <span class="tag" data-translate="nav_tag">RIVERS EAST</span>
+          <span class="apc-green">APC</span> 2027 <span class="tag" data-translate="nav_tag"><br>RIVERS EAST CONSTITUENCY</span>
         </a>
       </div>
       <ul class="nav-links">
-        <li><a href="index.html" data-translate="nav_home">Home</a></li>
+        <li><a href="campaign-landing.html" data-translate="nav_home">Home</a></li>
         <li><a href="about.html" data-translate="nav_about">About Senator Allwell</a></li>
         <li><a href="Achive.html" data-translate="nav_achievements">Explore Achievements</a></li>
-        <li><a href="register.html" class="btn-primary" data-translate="nav_join">Join Movement</a></li>
+        <li><a href="news-media.html" data-translate="nav_news">News & Media</a></li>
+
+        <!-- ACCOUNTS DROPDOWN -->
+      <li class="nav-dropdown">
+        <button class="dropdown-toggle" onclick="toggleNavDropdown(event)" type="button">
+          <span data-translate="nav_accounts">Accounts</span> <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+        </button>
+        <div class="dropdown-menu-nav" id="accountsDropdown">
+          <a href="mobilization.html" data-translate="nav_auth">Ward Leader Portal</a>
+        <a href="auth-system.html" data-translate="nav_mobilize">Grassroots Mobilization</a>
+          <div class="dropdown-divider"></div>
+          <a href="https://votesenatorallwell.com.ng" target="_blank" data-translate="nav_join">Join Movement</a>
+        </div>
+      </li>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   </nav>
 
+  <!-- JAVASCRIPT FOR DROPDOWNS -->
+  <script>
+    function toggleNavDropdown(event) {
+      event.stopPropagation();
+      var dropdown = document.getElementById("accountsDropdown");
+      var langMenu = document.getElementById("langMenu");
+      if (langMenu) langMenu.classList.remove("show");
+      dropdown.classList.toggle("show");
+    }
+
+    function toggleLangMenu() {
+      event.stopPropagation();
+      var langMenu = document.getElementById("langMenu");
+      var accountsDropdown = document.getElementById("accountsDropdown");
+      if (accountsDropdown) accountsDropdown.classList.remove("show");
+      langMenu.classList.toggle("show");
+    }
+
+    window.addEventListener('click', function() {
+      var dropdown = document.getElementById("accountsDropdown");
+      var langMenu = document.getElementById("langMenu");
+      if (dropdown) dropdown.classList.remove('show');
+      if (langMenu) langMenu.classList.remove('show');
+    });
+  </script>
+
+</body>
+</html>
   <div class="main-container">
     <div class="hero-banner">
       <div class="badge-target" data-translate="mob_target_badge"><i class="fa-solid fa-bullseye"></i> Goal: 1 Supporter = 20 Registered Voters</div>
@@ -248,169 +496,250 @@
       </div>
     </div>
 
-    <!-- AGENT VOTER ROSTER DASHBOARD CONTAINER -->
-    <div class="voter-dashboard-container">
-      <div class="dashboard-header">
-        <div>
-          <h3 class="dashboard-title">My Registered 20-Voter Roster</h3>
-          <p class="dashboard-subtitle">Manage, track, and contact supporters pledged under your Campaign ID.</p>
-        </div>
-        <div class="target-badge">
-          Target: <span id="voterCountNum">0</span> / 20 Logged
-        </div>
-      </div>
+    <!-- WHATSAPP SHARE & RECRUITMENT LINK GENERATOR -->
+<div class="mobilization-card" style="background: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+  <h3 style="margin-top: 0; color: #1e293b;">Mobilize Supporters via WhatsApp</h3>
+  <p style="color: #64748b; font-size: 14px;">Share your personalized campaign link across your WhatsApp groups and social media. Anyone who clicks your link and registers will automatically be added to your live 20-voter target roster below!</p>
+  
+  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+    <button onclick="shareCampaignLink()" class="btn-whatsapp" style="background: #25D366; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+      <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Share Link on WhatsApp
+    </button>
+    <button onclick="copyCampaignLink()" style="background: #0f172a; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+      <i class="fa-solid fa-copy"></i> Copy Referral Link
+    </button>
+  </div>
+</div>
 
-      <div class="progress-bar-track">
-        <div id="voterProgressBar" class="progress-bar-fill"></div>
-      </div>
-
-      <div class="table-responsive">
-        <table class="voters-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Supporter Name</th>
-              <th>Phone / WhatsApp</th>
-              <th>LGA</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody id="voterTableBody">
-            <!-- Dynamic voter entries will populate here -->
-          </tbody>
-        </table>
-      </div>
-
-      <div id="emptyRosterMsg" class="empty-roster-msg">
-        <i class="fa-solid fa-users-slash empty-icon"></i>
-        <p>No voters pledged yet. Use the form above to log your first supporter for Senator Allwell Onyesoh!</p>
-      </div>
+<!-- AGENT VOTER ROSTER DASHBOARD CONTAINER -->
+<div class="voter-dashboard-container">
+  <div class="dashboard-header">
+    <div>
+      <h3 class="dashboard-title">My Registered 20-Voter Roster</h3>
+      <p class="dashboard-subtitle">Manage, track, and contact supporters pledged under your Campaign ID.</p>
+    </div>
+    <div class="target-badge">
+      Target: <span id="voterCountNum">0</span> / 20 Logged
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC CONTROLLER -->
-  <script>
-    const VOTER_DB_KEY = 'apc_pledged_voters_list';
+  <div class="progress-bar-track">
+    <div id="voterProgressBar" class="progress-bar-fill"></div>
+  </div>
 
-    document.addEventListener('DOMContentLoaded', () => {
-      loadVoterDashboard();
+  <div class="table-responsive">
+    <table class="voters-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Supporter Name</th>
+          <th>Phone / WhatsApp</th>
+          <th>LGA</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="voterTableBody">
+        <!-- Dynamic voter entries will populate here -->
+      </tbody>
+    </table>
+  </div>
+
+  <div id="emptyRosterMsg" class="empty-roster-msg">
+    <i class="fa-solid fa-users-slash empty-icon"></i>
+    <p>No voters pledged yet. Use the form above or share your WhatsApp link to log your first supporter for Senator Allwell Onyesoh!</p>
+  </div>
+</div>
+
+<!-- JAVASCRIPT LOGIC CONTROLLER -->
+<script>
+  const VOTER_DB_KEY = 'apc_pledged_voters_list';
+
+  // Retrieve or Generate Unique Campaign Agent ID
+  function getAgentId() {
+    let agentId = localStorage.getItem('campaign_agent_id');
+    if (!agentId) {
+      agentId = 'ALLWELL-' + Math.floor(100000 + Math.random() * 900000);
+      localStorage.setItem('campaign_agent_id', agentId);
+    }
+    return agentId;
+  }
+
+  // Generate Personalized WhatsApp Recruitment Link
+  function getReferralUrl() {
+    const agentId = getAgentId();
+    const baseUrl = window.location.origin + window.location.pathname;
+    return `${baseUrl}?ref=${agentId}`;
+  }
+
+  // Share Link directly on WhatsApp
+  function shareCampaignLink() {
+    const url = getReferralUrl();
+    const message = encodeURIComponent(
+      `Join me in supporting Senator Allwell Onyesoh (APC 2027) for Rivers East Senatorial District! Click here to pledge your vote and join our movement: ${url}`
+    );
+    window.open(`https://wa.me/?text=${message}`, '_blank');
+  }
+
+  // Copy Referral Link to Clipboard
+  function copyCampaignLink() {
+    const url = getReferralUrl();
+    navigator.clipboard.writeText(url).then(() => {
+      alert('Referral link copied to clipboard!\n\n' + url);
+    }).catch(() => {
+      prompt('Copy your referral link:', url);
     });
+  }
 
-    // Handle Form Submission for "Submit 20-Voter Pledge"
-    function handlePledgeSubmit(event) {
-      event.preventDefault();
+  // Capture incoming recruits from WhatsApp referral link
+  function checkReferral() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref');
+    
+    if (ref) {
+      // Prompt referred user to quickly log their pledge
+      const supporterName = prompt("Welcome! You were invited to join Senator Allwell Onyesoh's campaign roster. Please enter your Full Name:");
+      if (supporterName) {
+        const supporterPhone = prompt("Enter your WhatsApp/Phone Number:");
+        const supporterLga = prompt("Enter your LGA (e.g. Obio/Akpor, Ikwerre, Etche, Okrika):") || "Rivers East";
 
-      const nameInput = document.getElementById('supporterName');
-      const phoneInput = document.getElementById('supporterPhone');
-      const lgaSelect = document.getElementById('supporterLga');
+        if (supporterName && supporterPhone) {
+          const newVoter = {
+            id: Date.now(),
+            name: supporterName,
+            phone: supporterPhone,
+            lga: supporterLga,
+            dateLogged: new Date().toLocaleDateString()
+          };
 
-      if (!nameInput.value || !phoneInput.value || !lgaSelect.value) {
-        alert('Please fill in all voter details.');
-        return;
+          let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+          voterList.push(newVoter);
+          localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+          
+          alert(`Thank you ${supporterName}! You have been added to the campaign roster.`);
+          // Clean URL parameter
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
       }
+    }
+  }
 
-      const newVoter = {
-        id: Date.now(),
-        name: nameInput.value,
-        phone: phoneInput.value,
-        lga: lgaSelect.value,
-        dateLogged: new Date().toLocaleDateString()
-      };
+  document.addEventListener('DOMContentLoaded', () => {
+    getAgentId();
+    checkReferral();
+    loadVoterDashboard();
+  });
 
-      // Save to LocalStorage
+  // Handle Form Submission for "Submit 20-Voter Pledge"
+  function handlePledgeSubmit(event) {
+    event.preventDefault();
+
+    const nameInput = document.getElementById('supporterName');
+    const phoneInput = document.getElementById('supporterPhone');
+    const lgaSelect = document.getElementById('supporterLga');
+
+    if (!nameInput.value || !phoneInput.value || !lgaSelect.value) {
+      alert('Please fill in all voter details.');
+      return;
+    }
+
+    const newVoter = {
+      id: Date.now(),
+      name: nameInput.value,
+      phone: phoneInput.value,
+      lga: lgaSelect.value,
+      dateLogged: new Date().toLocaleDateString()
+    };
+
+    // Save to LocalStorage
+    let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+    voterList.push(newVoter);
+    localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+
+    // Clear Form Inputs
+    nameInput.value = '';
+    phoneInput.value = '';
+    lgaSelect.value = '';
+
+    // Refresh Dashboard UI
+    loadVoterDashboard();
+    alert(`Success! ${newVoter.name} has been logged under your campaign profile.`);
+  }
+
+  // Load & Render Dashboard Table & Progress Bar
+  function loadVoterDashboard() {
+    const voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+    const tableBody = document.getElementById('voterTableBody');
+    const emptyMsg = document.getElementById('emptyRosterMsg');
+    const countNum = document.getElementById('voterCountNum');
+    const progressBar = document.getElementById('voterProgressBar');
+
+    // Update Counter & Progress Meter
+    const totalCount = voterList.length;
+    if (countNum) countNum.innerText = totalCount;
+
+    if (progressBar) {
+      const progressPercent = Math.min((totalCount / 20) * 100, 100);
+      progressBar.style.width = progressPercent + '%';
+    }
+
+    if (totalCount === 0) {
+      if (tableBody) tableBody.innerHTML = '';
+      if (emptyMsg) emptyMsg.style.display = 'block';
+      return;
+    }
+
+    if (emptyMsg) emptyMsg.style.display = 'none';
+    if (!tableBody) return;
+
+    tableBody.innerHTML = '';
+
+    // Populate Table Rows
+    voterList.forEach((voter, index) => {
+      const row = document.createElement('tr');
+
+      const waMsg = encodeURIComponent(`Hello ${voter.name}, thank you for standing with Senator Allwell Onyesoh for Rivers East 2027! Ensure your PVC is ready for Election Day.`);
+      const waUrl = `https://wa.me/${voter.phone.replace(/[^0-9]/g, '')}?text=${waMsg}`;
+
+      row.innerHTML = `
+        <td class="cell-index">${index + 1}</td>
+        <td class="cell-name">${voter.name}</td>
+        <td class="cell-phone">${voter.phone}</td>
+        <td class="cell-lga">${voter.lga}</td>
+        <td><span class="badge-pvc">PVC Logged</span></td>
+        <td>
+          <a href="${waUrl}" target="_blank" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+          <button onclick="deleteVoter(${voter.id})" class="btn-delete" title="Remove voter">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  // Delete Voter Function
+  function deleteVoter(id) {
+    if (confirm('Are you sure you want to remove this voter from your roster?')) {
       let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
-      voterList.push(newVoter);
+      voterList = voterList.filter(v => v.id !== id);
       localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
-
-      // Clear Form Inputs
-      nameInput.value = '';
-      phoneInput.value = '';
-      lgaSelect.value = '';
-
-      // Refresh Dashboard UI
       loadVoterDashboard();
-      alert(`Success! ${newVoter.name} has been logged under your campaign profile.`);
     }
+  }
 
-    // Load & Render Dashboard Table & Progress Bar
-    function loadVoterDashboard() {
-      const voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
-      const tableBody = document.getElementById('voterTableBody');
-      const emptyMsg = document.getElementById('emptyRosterMsg');
-      const countNum = document.getElementById('voterCountNum');
-      const progressBar = document.getElementById('voterProgressBar');
+  // Calculator Logic
+  function calculateImpact() {
+    const views = parseInt(document.getElementById('statusViews').value) || 0;
+    const followers = parseInt(document.getElementById('socialFollowers').value) || 0;
+    const totalEstimated = Math.round((views * 0.15) + (followers * 0.05));
+    document.getElementById('impactResult').innerText = `Estimated Impact: ~${totalEstimated} Real Voters`;
+  }
+</script>
 
-      // Update Counter & Progress Meter
-      const totalCount = voterList.length;
-      if (countNum) countNum.innerText = totalCount;
-
-      if (progressBar) {
-        const progressPercent = Math.min((totalCount / 20) * 100, 100);
-        progressBar.style.width = progressPercent + '%';
-      }
-
-      if (totalCount === 0) {
-        if (tableBody) tableBody.innerHTML = '';
-        if (emptyMsg) emptyMsg.style.display = 'block';
-        return;
-      }
-
-      if (emptyMsg) emptyMsg.style.display = 'none';
-      if (!tableBody) return;
-
-      tableBody.innerHTML = '';
-
-      // Populate Table Rows
-      voterList.forEach((voter, index) => {
-        const row = document.createElement('tr');
-
-        const waMsg = encodeURIComponent(`Hello ${voter.name}, thank you for standing with Senator Allwell Onyesoh for Rivers East 2027! Ensure your PVC is ready for Election Day.`);
-        const waUrl = `https://wa.me/${voter.phone.replace(/[^0-9]/g, '')}?text=${waMsg}`;
-
-        row.innerHTML = `
-          <td class="cell-index">${index + 1}</td>
-          <td class="cell-name">${voter.name}</td>
-          <td class="cell-phone">${voter.phone}</td>
-          <td class="cell-lga">${voter.lga}</td>
-          <td><span class="badge-pvc">PVC Logged</span></td>
-          <td>
-            <a href="${waUrl}" target="_blank" class="btn-whatsapp">
-              <i class="fa-brands fa-whatsapp"></i> WhatsApp
-            </a>
-            <button onclick="deleteVoter(${voter.id})" class="btn-delete" title="Remove voter">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
-
-    // Delete Voter Function
-    function deleteVoter(id) {
-      if (confirm('Are you sure you want to remove this voter from your roster?')) {
-        let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
-        voterList = voterList.filter(v => v.id !== id);
-        localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
-        loadVoterDashboard();
-      }
-    }
-
-    // Calculator Logic
-    function calculateImpact() {
-      const views = parseInt(document.getElementById('statusViews').value) || 0;
-      const followers = parseInt(document.getElementById('socialFollowers').value) || 0;
-      const totalEstimated = Math.round((views * 0.15) + (followers * 0.05));
-      document.getElementById('impactResult').innerText = `Estimated Impact: ~${totalEstimated} Real Voters`;
-    }
-  </script>
-
-  <!-- Google Translate Hidden Container & Scripts -->
-  <div id="google_translate_element" style="display:none;"></div>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  <script src="translations-en.js"></script>
-  <script src="translations-pcm.js"></script>
-  <script src="style.js"></script>
-</body>
-</html>
+<!-- Google Translate Hidden Container & Scripts -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="translations.js"></script>

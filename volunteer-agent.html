@@ -72,18 +72,26 @@
     </form>
   </div>
 
-  <script>
+ <script>
     const STORAGE_KEY = 'apc_rivers_east_user';
+    const VOTER_DB_KEY = 'apc_pledged_voters_list';
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Pre-fill form details if user registered via auth.html
+      // 1. Pre-fill form details if user registered via auth system
       const storedUser = localStorage.getItem(STORAGE_KEY);
       if (storedUser) {
         const user = JSON.parse(storedUser);
-        if (user.name) document.getElementById('agentName').value = user.name;
-        if (user.phone) document.getElementById('agentPhone').value = user.phone;
-        if (user.lga) document.getElementById('agentLga').value = user.lga;
-        if (user.ward) document.getElementById('agentWard').value = user.ward;
+        if (user.name && document.getElementById('agentName')) document.getElementById('agentName').value = user.name;
+        if (user.phone && document.getElementById('agentPhone')) document.getElementById('agentPhone').value = user.phone;
+        if (user.lga && document.getElementById('agentLga')) document.getElementById('agentLga').value = user.lga;
+        if (user.ward && document.getElementById('agentWard')) document.getElementById('agentWard').value = user.ward;
+      }
+
+      // 2. Check if user arrived via a shared WhatsApp referral link (?ref=...)
+      const urlParams = new URLSearchParams(window.location.search);
+      const refAgent = urlParams.get('ref');
+      if (refAgent) {
+        sessionStorage.setItem('referred_by_agent', refAgent);
       }
     });
 
@@ -94,8 +102,8 @@
       const phone = document.getElementById('agentPhone').value;
       const lga = document.getElementById('agentLga').value;
       const ward = document.getElementById('agentWard').value;
-      const pu = document.getElementById('agentPu').value;
-      const pvcStatus = document.getElementById('agentPvcStatus').value;
+      const pu = document.getElementById('agentPu') ? document.getElementById('agentPu').value : '';
+      const pvcStatus = document.getElementById('agentPvcStatus') ? document.getElementById('agentPvcStatus').value : 'Verified';
 
       // Retrieve existing account or generate new profile
       let existingUser = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -108,12 +116,40 @@
       existingUser.pvcStatus = pvcStatus;
       existingUser.isAgent = true;
       existingUser.tier = 'Verified PU Agent';
+      
       if (!existingUser.campaignId) {
         existingUser.campaignId = 'APC-2027-' + Math.floor(1000 + Math.random() * 9000);
       }
 
       // Save updated profile state
       localStorage.setItem(STORAGE_KEY, JSON.stringify(existingUser));
+
+      // 3. Handle referral signups if user registered via an agent's WhatsApp link
+      const refAgent = sessionStorage.getItem('referred_by_agent');
+      if (refAgent) {
+        const newVoter = {
+          id: Date.now(),
+          name: name,
+          phone: phone,
+          lga: lga,
+          dateLogged: new Date().toLocaleDateString()
+        };
+
+        // Save to agent-specific recruit tracking & global roster to update live targets
+        const agentRecruitsKey = 'recruits_' + refAgent;
+        let agentRecruits = JSON.parse(localStorage.getItem(agentRecruitsKey)) || [];
+        agentRecruits.push(newVoter);
+        localStorage.setItem(agentRecruitsKey, JSON.stringify(agentRecruits));
+
+        let globalVoters = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+        globalVoters.push(newVoter);
+        localStorage.setItem(VOTER_DB_KEY, JSON.stringify(globalVoters));
+
+        sessionStorage.removeItem('referred_by_agent');
+        alert(`Registration successful! You have been successfully added to Senator Allwell Onyesoh's campaign roster.`);
+        window.location.href = 'index.html';
+        return;
+      }
 
       alert('Polling Unit Agent application complete! Redirecting to your Grassroots Mobilization Hub...');
 
@@ -122,7 +158,10 @@
     }
   </script>
 
-  <script src="translations-en.js"></script>
+  <!-- Google Translate Hidden Container & Scripts -->
+  <div id="google_translate_element" style="display:none;"></div>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="translations.js"></script>
   <script src="style.js"></script>
 </body>
 </html>

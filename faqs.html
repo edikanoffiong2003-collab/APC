@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs - Senator Allwell Onyesoh APC 2027 Campaign</title>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* TOP NAVIGATION BAR */
+    .navbar {
+      background-color: #1e7e34;
+      color: white;
+      padding: 15px 30px;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 15px;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ACCORDION STYLES */
+    .faq-accordion {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 10px;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 15px 10px;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e293b;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover {
+      color: #1e7e34;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #64748b;
+      padding: 0 10px;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 400px; /* Generous height to fit full answers */
+      padding: 10px 10px 20px 10px;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+      color: #1e7e34;
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+      font-size: 14px;
+    }
+
+    /* OCTOPUS CAMPAIGN BANNER */
+    .octopus-banner-wrapper {
+      background: #ffffff;
+      padding: 40px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 350px;
+    }
+
+    /* OCTOPUS Campaign Banner Section with Left Watermark */
+    .octopus-banner-wrapper {
+      background: #ffffff;
+      padding: 40px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 350px;
+      position: relative;
+      overflow: hidden; /* Clips image within padding boundaries */
+    }
+
+    /* Candidate Background Watermark - Shifted to Right & White Background Blended Out */
+    .octopus-banner-wrapper::before {
+      content: "";
+      background-image: url('src/images__19_-removebg-preview.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: right center;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      opacity: 0.15;
+      mix-blend-mode: multiply; /* Automatically blends out white background */
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .octopus-title {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      line-height: 1;
+    }
+
+    .octopus-logo-inline {
+      width: clamp(55px, 8vw, 85px);
+      height: clamp(55px, 8vw, 85px);
+      object-fit: contain;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .octopus-subtitle {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #666;
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #1e7e34;
+      color: white;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .footer-brand img {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .footer-links h4, .footer-accounts h4 {
+      margin-bottom: 15px;
+      font-size: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 5px;
+    }
+
+    .footer-links ul, .footer-accounts ul {
+      list-style: none;
+    }
+
+    .footer-links li, .footer-accounts li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links a, .footer-accounts a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .chat-support-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #dc3545;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+    }
+
+    @media (max-width: 768px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="src/APCLOGO.png" alt="APC Logo">
+        <span style="font-weight: bold; font-size: 18px;">APC 2027</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="campaign-landing.html">Home</a></li>
+        <li><a href="about.html">Candidates</a></li>
+       
+        <li><a href="press-social-hub.html">News</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MAIN SECTION -->
+  <div class="main-container">
+    <h1 class="page-title">Frequently Asked Questions</h1>
+
+    <div class="faq-grid">
+      <!-- Left: Interactive Accordion FAQs -->
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How do I join the 20-Voter Roster campaign?
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            You can sign up as a Polling Unit Agent or Grassroots Supporter on the Mobilization Hub page. Once logged in, you receive a custom WhatsApp link to recruit and log 20 voters under your campaign ID.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Which LGAs are covered under Rivers East?
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            The campaign covers all 8 LGAs in Rivers East Senatorial District, including Obio/Akpor, Port Harcourt City, Ikwerre, Etche, Omuma, Okrika, and Ogu/Bolo.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How does the WhatsApp share link work?
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            When you click "Share Link on WhatsApp" from your dashboard, a unique referral URL is generated. Anyone who clicks your link and pledges support automatically adds +1 to your live 20-voter roster target.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is my personal information secure?
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            Yes, all campaign supporter details are securely stored locally on your device and encrypted within our official campaign records.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: OCTOPUS Campaign Banner -->
+      <div class="octopus-banner-wrapper">
+        <div class="octopus-title">
+          <img src="src/APCLOGO.png" alt="APC Logo" class="octopus-logo-inline">
+          <span>C</span><span>T</span>
+          <img src="src/Senatelogo.png" alt="Senate Seal" class="octopus-logo-inline">
+          <span>P</span><span>U</span><span>S</span>
+        </div>
+        <p class="octopus-subtitle">Rivers East Grassroots Mobilization Movement</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="src/APCLOGO.png" alt="APC Logo">
+        <img src="src/Senatelogo.png" alt="APC Logo">
+        <p style="font-size: 13px; line-height: 1.4;">Official Campaign Website for Senator Allwell Onyesoh Rivers East 2027.</p>
+      </div>
+      <div class="footer-links">
+        <h4>QUICK LINKS</h4>
+        <ul>
+          <li><a href="news-media.html">News</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat with Support -->
+  <a href="javascript:void(0)" onclick="alert('Live Support Agent initiated.')" class="chat-support-btn">
+    <i class="fa-solid fa-comment-dots"></i> Chat with Support
+  </a>
+
+  <!-- ACCORDION SCRIPT -->
+  <script>
+    function toggleFaq(button) {
+      const currentItem = button.parentElement;
+      const allItems = document.querySelectorAll('.faq-item');
+
+      allItems.forEach(item => {
+        if (item !== currentItem) {
+          item.classList.remove('active');
+        }
+      });
+
+      currentItem.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
