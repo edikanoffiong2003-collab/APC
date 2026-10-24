@@ -36,22 +36,24 @@
 
       <div class="form-group">
         <label data-translate="label_lga">Local Government Area (LGA):</label>
-        <select id="agentLga" required>
+        <select id="agentLga" onchange="updateWards()" required>
           <option value="">Select LGA</option>
-          <option value="Etche">Etche</option>
-          <option value="Omuma">Omuma</option>
-          <option value="Obio-Akpor">Obio-Akpor</option>
-          <option value="Port Harcourt">Port Harcourt City</option>
-          <option value="Ikwerre">Ikwerre</option>
-          <option value="Emohua">Emohua</option>
-          <option value="Okrika">Okrika</option>
-          <option value="Ogu-Bolo">Ogu-Bolo</option>
+          <option value="etche">Etche</option>
+          <option value="omuma">Omuma</option>
+          <option value="obioakpor">Obio/Akpor</option>
+          <option value="portharcourt">Port Harcourt City</option>
+          <option value="ikwerre">Ikwerre</option>
+          <option value="emohua">Emohua</option>
+          <option value="okrika">Okrika</option>
+          <option value="ogubolo">Ogu/Bolo</option>
         </select>
       </div>
 
       <div class="form-group">
         <label data-translate="label_ward">Ward Name / Number:</label>
-        <input type="text" id="agentWard" placeholder="e.g. Ward 4, Okehi" required>
+        <select id="agentWard" required disabled>
+          <option value="">-- Choose LGA First --</option>
+        </select>
       </div>
 
       <div class="form-group">
@@ -76,6 +78,71 @@
     const STORAGE_KEY = 'apc_rivers_east_user';
     const VOTER_DB_KEY = 'apc_pledged_voters_list';
 
+    // Database of LGAs and their respective Wards (Rivers East 8 LGAs)
+    const wardDatabase = {
+      emohua: [
+        "Ward 1 - Emohua", "Ward 2 - Ogbakiri", "Ward 3 - Rumuekpe", "Ward 4 - Ibaa",
+        "Ward 5 - Obelle", "Ward 6 - Isimbiri", "Ward 7 - Elibrada", "Ward 8 - Ndele",
+        "Ward 9 - Mgbuitanwo", "Ward 10 - Odegu", "Ward 11", "Ward 12", "Ward 13", "Ward 14"
+      ],
+      etche: [
+        "Ward 1 - Ulakwo/Umuselem", "Ward 2 - Chokocho", "Ward 3 - Mba", "Ward 4 - Akwu/Obite",
+        "Ward 5 - Afara", "Ward 6 - Egwi", "Ward 7 - Obrikom", "Ward 8 - Okehi",
+        "Ward 9 - Igbo", "Ward 10 - Mba Ikwerre", "Ward 11", "Ward 12", "Ward 13", 
+        "Ward 14", "Ward 15", "Ward 16", "Ward 17", "Ward 18", "Ward 19"
+      ],
+      ikwerre: [
+        "Ward 1 - Isiokpo", "Ward 2 - Aluu", "Ward 3 - Omagwa", "Ward 4 - Elele",
+        "Ward 5 - Ibaa", "Ward 6 - Apani", "Ward 7 - Omudioga", "Ward 8 - Ubima",
+        "Ward 9 - Ozuaha", "Ward 10 - Rumuji", "Ward 11", "Ward 12", "Ward 13"
+      ],
+      obioakpor: [
+        "Ward 1 - Rumueme", "Ward 2 - Rumuomasi", "Ward 3 - Rumuokworo", "Ward 4 - Rumuodumaya",
+        "Ward 5 - Rumuigbo", "Ward 6 - Rumuepirikom", "Ward 7 - Aluu/Rumuosi", "Ward 8 - Rumuokwurusi",
+        "Ward 9 - Eliowhani", "Ward 10 - Eneka", "Ward 11 - Rumuodomaya", "Ward 12", 
+        "Ward 13", "Ward 14", "Ward 15", "Ward 16", "Ward 17"
+      ],
+      ogubolo: [
+        "Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", 
+        "Ward 7", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12"
+      ],
+      okrika: [
+        "Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", 
+        "Ward 7", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12"
+      ],
+      omuma: [
+        "Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", 
+        "Ward 6", "Ward 7", "Ward 8", "Ward 9", "Ward 10"
+      ],
+      portharcourt: [
+        "Ward 1 - Township", "Ward 2 - Township", "Ward 3 - Township", "Ward 4 - Diobu",
+        "Ward 5 - Diobu", "Ward 6 - Diobu", "Ward 7 - Abonnema Wharf", "Ward 8 - Amadi Ama",
+        "Ward 9 - Trans Amadi", "Ward 10 - Rumueme", "Ward 11", "Ward 12", "Ward 13",
+        "Ward 14", "Ward 15", "Ward 16", "Ward 17", "Ward 18", "Ward 19", "Ward 20"
+      ]
+    };
+
+    function updateWards() {
+      const lgaSelect = document.getElementById('agentLga');
+      const wardSelect = document.getElementById('agentWard');
+      if (!lgaSelect || !wardSelect) return;
+
+      const selectedLga = lgaSelect.value;
+      wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
+
+      if (selectedLga && wardDatabase[selectedLga]) {
+        wardDatabase[selectedLga].forEach(ward => {
+          const option = document.createElement("option");
+          option.value = ward;
+          option.textContent = ward;
+          wardSelect.appendChild(option);
+        });
+        wardSelect.disabled = false;
+      } else {
+        wardSelect.disabled = true;
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Pre-fill form details if user registered via auth system
       const storedUser = localStorage.getItem(STORAGE_KEY);
@@ -83,8 +150,16 @@
         const user = JSON.parse(storedUser);
         if (user.name && document.getElementById('agentName')) document.getElementById('agentName').value = user.name;
         if (user.phone && document.getElementById('agentPhone')) document.getElementById('agentPhone').value = user.phone;
-        if (user.lga && document.getElementById('agentLga')) document.getElementById('agentLga').value = user.lga;
-        if (user.ward && document.getElementById('agentWard')) document.getElementById('agentWard').value = user.ward;
+        
+        if (user.lga && document.getElementById('agentLga')) {
+          const lgaSelect = document.getElementById('agentLga');
+          lgaSelect.value = user.lga;
+          updateWards(); // Populate wards based on stored LGA
+          
+          if (user.ward && document.getElementById('agentWard')) {
+            document.getElementById('agentWard').value = user.ward;
+          }
+        }
       }
 
       // 2. Check if user arrived via a shared WhatsApp referral link (?ref=...)

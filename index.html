@@ -1,414 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strategic Alliances & Leadership | Senator Allwell Onyesoh</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senator Allwell Onyesoh — Campaign Intro</title>
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Load Google's 3D Model Viewer Library -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #121212;
+      background-color: #0b131e;
       color: #ffffff;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* Navigation Bar */
-    .navbar {
-      background: rgba(18, 18, 18, 0.95);
-      border-bottom: 1px solid #2a2a2a;
-      padding: 0.8rem 4%;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-    .logo { font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; white-space: nowrap; }
-    .apc-green { color: #10b981; }
-    .tag { color: #38bdf8; font-size: 0.8rem; margin-left: 4px; }
-    .nav-links { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
-    .nav-links a { color: #e2e8f0; text-decoration: none; font-weight: 600; font-size: 0.88rem; transition: color 0.2s ease; white-space: nowrap; }
-    .nav-links a:hover { color: #38bdf8; }
-
-    /* Slideshow Container */
-    .slideshow-container {
-      position: relative;
-      min-height: calc(100vh - 70px);
-      width: 100%;
-      background: #121212;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
 
-    /* Individual Slide */
-    .slide {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 0 0 5%;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
-      z-index: 1;
+    /* 3D Canvas Container */
+    model-viewer {
+      width: 100vw;
+      height: 60vh;
+      outline: none;
     }
 
-    .slide.active {
-      opacity: 1;
-      visibility: visible;
-      z-index: 2;
-    }
-
-    /* Left Text Content Box */
-    .hero-left-content {
-      flex: 1;
-      max-width: 620px;
-      padding-right: 2rem;
-      z-index: 3;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(56, 189, 248, 0.12);
-      color: #38bdf8;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 1rem;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-    }
-
-    .gold-tag {
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-      border-color: rgba(245, 158, 11, 0.3);
-    }
-
-    .hero-main-title {
-      font-size: 2.8rem;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: 0.5rem;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-
-    .hero-role-title {
-      font-size: 1.1rem;
-      color: #38bdf8;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-    }
-
-    /* Typewriter Box Container */
-    .typewriter-container {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid #334155;
-      padding: 1rem 1.2rem;
-      border-radius: 8px;
-      margin-bottom: 1.8rem;
-      min-height: 85px;
-      display: flex;
-      align-items: center;
-    }
-
-    .typewriter-text {
-      font-size: 0.98rem;
-      color: #e2e8f0;
-      line-height: 1.5;
-      font-family: monospace;
-    }
-
-    .hero-cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 30px;
-      border: 2px solid #ffffff;
-      border-radius: 50px;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.88rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-      background: transparent;
-    }
-
-    .hero-cta-btn:hover {
-      background: #ffffff;
-      color: #121212;
-      transform: translateY(-2px);
-    }
-
-    /* Right Side Portrait Wrapper */
-    .hero-right-image {
-      flex: 1.1;
-      height: calc(100vh - 70px);
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      position: relative;
-    }
-
-    .hero-right-image img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      object-position: top center;
-      mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 22%);
-      -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 22%);
-    }
-
-    /* Carousel Indicator Dots */
-    .slideshow-dots {
-      position: absolute;
-      bottom: 25px;
-      left: 5%;
-      display: flex;
-      gap: 8px;
-      z-index: 10;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .dot.active {
-      background: #38bdf8;
-      width: 28px;
-      border-radius: 12px;
-    }
-
-    .bottom-nav {
+    /* Progress & Loader UI Container */
+    .loader-container {
+      width: 90%;
+      max-width: 380px;
       text-align: center;
-      padding: 25px 0;
-      background: #0a0a0a;
-      border-top: 1px solid #1e1e1e;
+      margin-top: 10px;
     }
 
-    /* Responsive Mobile View - Natural Aspect Ratio & Uncompressed Images */
-    @media (max-width: 992px) {
-      .navbar { padding: 0.8rem 4%; }
-      .nav-container { flex-direction: row; justify-content: space-between; }
-      .nav-links { gap: 0.8rem; }
-      .nav-links a { font-size: 0.78rem; }
-      .logo { font-size: 0.95rem; }
+    /* Outer Loading Bar */
+    .loader-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
 
-      .slideshow-container { min-height: auto; height: auto; }
+    /* Inner Animated Progress Fill (APC Colors Gradient) */
+    #loader-progress {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #00a8ff, #28a745, #dc3545);
+      border-radius: 12px;
+      transition: width 0.1s linear;
+    }
 
-      .slide {
-        position: relative;
-        flex-direction: column;
-        padding: 1.8rem 1.2rem 0 1.2rem;
-        display: none;
-        opacity: 1;
-        visibility: visible;
-      }
+    /* Info Label Row (Percent & Timer) */
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
 
-      .slide.active { display: flex; }
+    #progress-percent {
+      color: #00a8ff; /* APC Sky Blue */
+    }
 
-      .hero-left-content {
-        max-width: 100%;
-        width: 100%;
-        padding-right: 0;
-        text-align: left;
-      }
+    #progress-timer {
+      color: #28a745; /* APC Green Accent */
+      font-weight: 500;
+    }
 
-      .hero-badge {
-        font-size: 0.72rem;
-        padding: 4px 12px;
-        margin-bottom: 0.6rem;
-      }
-
-      .hero-main-title {
-        font-size: 1.6rem;
-        line-height: 1.15;
-        letter-spacing: -0.5px;
-        margin-bottom: 0.4rem;
-      }
-
-      .hero-role-title {
-        font-size: 0.88rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .typewriter-container {
-        padding: 0.8rem 1rem;
-        min-height: 65px;
-        margin-bottom: 1rem;
-      }
-
-      .typewriter-text {
-        font-size: 0.82rem;
-        line-height: 1.4;
-      }
-
-      .hero-cta-btn {
-        padding: 12px 22px;
-        font-size: 0.78rem;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .hero-right-image {
-        width: 100%;
-        max-width: 100%;
-        height: 380px;
-        margin-top: 1.5rem;
-      }
-
-      .hero-right-image img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        object-position: top center;
-        mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%);
-        -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%);
-      }
-
-      .slideshow-dots {
-        position: relative;
-        bottom: 0;
-        left: 0;
-        justify-content: center;
-        padding: 15px 0 20px 0;
-      }
-
-      .dot { width: 8px; height: 8px; }
-      .dot.active { width: 22px; }
+    /* Loading Subtext */
+    .loader-status {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
   </style>
 </head>
-<body class="leadership-page">
+<body>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <a href="index.html" style="text-decoration: none; color: inherit;">
-          <span class="apc-green">APC</span> 2027 <span class="tag">RIVERS EAST</span>
-        </a>
-      </div>
-      <ul class="nav-links">
-        <li><a href="about.html">About Senator Onyesoh</a></li>
-        <li><a href="campaign-landing.html" class="btn-primary">Home</a></li>
-      </ul>
-    </div>
-  </nav>
+  <!-- 3D Interactive Model Container -->
+  <model-viewer 
+    src="src/octopus @sentorallwellonyesoh by vextrude.glb" 
+    auto-rotate 
+    rotation-per-second="45deg" 
+    disable-zoom 
+    camera-controls 
+    shadow-intensity="1">
+  </model-viewer>
 
-  <!-- Main Slideshow Section -->
-  <section class="slideshow-container">
-    
-    <!-- SLIDE 0: President Tinubu -->
-    <div class="slide active" data-slide="0">
-      <div class="hero-left-content">
-        <span class="hero-badge">Federal Executive Alignment</span>
-        <h1 class="hero-main-title">His Excellency, Bola Ahmed Tinubu (GCFR)</h1>
-        <div class="hero-role-title">President, Federal Republic of Nigeria</div>
-        <div class="typewriter-container">
-          <p class="typewriter-text" id="text-slide-0"></p>
-        </div>
-        <a href="campaign-landing.html" class="hero-cta-btn">
-          ENTER HOME PAGE <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-      <div class="hero-right-image">
-        <img src="c959b20afb59da87d8478d2647a3f7a8.jpg" alt="President Bola Ahmed Tinubu">
-      </div>
+  <!-- 25-Second Visual Progress Overlay -->
+  <div class="loader-container">
+    <div class="loader-bar-bg">
+      <div id="loader-progress"></div>
     </div>
 
-    <!-- SLIDE 1: Senate President Akpabio -->
-    <div class="slide" data-slide="1">
-      <div class="hero-left-content">
-        <span class="hero-badge">Legislative Leadership</span>
-        <h1 class="hero-main-title">His Excellency, Senator Godswill Akpabio (GCON)</h1>
-        <div class="hero-role-title">President of the Senate</div>
-        <div class="typewriter-container">
-          <p class="typewriter-text" id="text-slide-1"></p>
-        </div>
-        <a href="campaign-landing.html" class="hero-cta-btn">
-          ENTER HOME PAGE <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-      <div class="hero-right-image">
-        <img src="images (21).jpeg" alt="Senate President Godswill Akpabio">
-      </div>
+    <div class="progress-info">
+      <span id="progress-percent">0%</span>
+      <span id="progress-timer">25s remaining</span>
     </div>
 
-    <!-- SLIDE 2: Minister Wike -->
-    <div class="slide" data-slide="2">
-      <div class="hero-left-content">
-        <span class="hero-badge">Regional Strategic Leader</span>
-        <h1 class="hero-main-title"> His Execellency, Chief Barr. Nyesom Ezenwo Wike, CON, GSSRS,<br> Life Bencher.
-           </h1>
-        <div class="hero-role-title">Minister of the Federal Capital Territory</div>
-        <div class="typewriter-container">
-          <p class="typewriter-text" id="text-slide-2"></p>
-        </div>
-        <a href="campaign-landing.html" class="hero-cta-btn">
-          ENTER HOME PAGE <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-      <div class="hero-right-image">
-        <img src="images (22).jpeg" alt="Chief Nyesom Wike">
-      </div>
-    </div>
+    <p class="loader-status">Loading Campaign Hub...</p>
+  </div>
 
-    <!-- SLIDE 3: APC Governorship Candidate -->
-    <div class="slide" data-slide="3">
-      <div class="hero-left-content">
-        <span class="hero-badge">State Executive Vision</span>
-        <h1 class="hero-main-title">Rt. Hon. (Barr) Kingsley Ogundu Chinda, DSSRS.</h1>
-        <div class="hero-role-title">Rivers State Consolidation</div>
-        <div class="typewriter-container">
-          <p class="typewriter-text" id="text-slide-3"></p>
-        </div>
-        <a href="campaign-landing.html" class="hero-cta-btn">
-          ENTER HOME PAGE <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-      <div class="hero-right-image">
-        <img src="img-20260914-wa0006-qzhla.jpg" alt="APC Governorship Candidate">
-      </div>
-    </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const progressBar = document.getElementById("loader-progress");
+      const percentText = document.getElementById("progress-percent");
+      const timerText = document.getElementById("progress-timer");
 
-    <!-- SLIDE 4: Senator Allwell Onyesoh -->
-    <div class="slide" data-slide="4">
-      <div class="hero-left-content">
-        <span class="hero-badge gold-tag">The Visionary Champion</span>
-        <h1 class="hero-main-title">Senator (Chief) Allwell Heacho Onyesoh, DSSRS, JP, FIBAKM.</h1>
-        <div class="hero-role-title">Senator Representing Rivers East Senatorial District</div>
-        <div class="typewriter-container">
-          <p class="typewriter-text" id="text-slide-4"></p>
-        </div>
-        <a href="campaign-landing.html" class="hero-cta-btn">
-          ENTER HOME PAGE <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-      <div class="hero-right-image">
-        <img src="src/images (17).jpeg" alt="Senator Allwell Onyesoh">
-      </div>
-    </div>
+      const totalDuration = 25000; // 25 seconds in milliseconds
+      const intervalTime = 100;    // Updates UI every 100 milliseconds
+      let elapsedTime = 0;
 
-    <!-- Slide Navigation Indicators -->
-    <div class="slideshow-dots" id="dotsContainer"></div>
+      const progressInterval = setInterval(() => {
+        elapsedTime += intervalTime;
 
-  </section>
+        // Calculate progress percentage (0% to 100%)
+        const percentage = Math.min(Math.floor((elapsedTime / totalDuration) * 100), 100);
+        
+        // Calculate countdown seconds (25s down to 0s)
+        const secondsRemaining = Math.max(Math.ceil((totalDuration - elapsedTime) / 1000), 0);
 
-<script src="slideshow.js"></script>
+        // Update HTML displays
+        progressBar.style.width = percentage + "%";
+        percentText.innerText = percentage + "%";
+        timerText.innerText = secondsRemaining + "s remaining";
+
+        // After 25 seconds, redirect to main campaign hub page
+        if (elapsedTime >= totalDuration) {
+          clearInterval(progressInterval);
+          window.location.href = "main.html";
+        }
+      }, intervalTime);
+    });
+  </script>
+
 </body>
 </html>
