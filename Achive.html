@@ -464,34 +464,48 @@
 </head>
 <body>
 
-  <!-- Navigation Bar with Integrated Language Selector & Accounts Dropdown -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <a href="index.html" style="text-decoration: none; color: inherit;">
-          <span class="apc-green">APC</span> 2027 
-          <span class="tag" data-translate="nav_tag"><br>RIVERS EAST  SENATORIAL DISTRICT</span>
-        </a>
-      </div>
-      <ul class="nav-links">
-        <li><a href="campaign-landing.html" data-translate="nav_home">Home</a></li>
-        <li><a href="about.html" data-translate="nav_about">About Senator Allwell</a></li>
-        
-        <li><a href="news-media.html" data-translate="nav_news">News & Media</a></li>
+   <!-- NAVIGATION BAR -->
+<nav class="navbar" style="background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0.5rem 1.5rem; position: sticky; top: 0; z-index: 1000;">
+  <div class="nav-container" style="max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+    
+    <!-- BRAND / LOGO SECTION -->
+    <div class="logo" style="display: flex; align-items: center;">
+      <a href="index.html" class="brand-link" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+        <img src="src/APCLOGO.png" alt="APC Logo" class="apc-logo-img" style="height: 38px; width: auto; object-fit: contain;">
+        <div class="brand-text" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1.1;">
+          <span class="brand-title" style="font-size: 1.15rem; font-weight: 800; color: #1e293b; letter-spacing: -0.3px;">
+            <span class="apc-green" style="color: #2e7d32;">APC</span> 2027
+          </span>
+          <span class="tag" data-translate="nav_tag" style="background-color: #1d4ed8; color: #ffffff; font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; margin-top: 2px; white-space: nowrap;">
+            RIVERS EAST SENATORIAL DISTRICT
+          </span>
+        </div>
+      </a>
+    </div>
 
-       <!-- ACCOUNTS DROPDOWN -->
-      <li class="nav-dropdown">
-        <button class="dropdown-toggle" onclick="toggleNavDropdown(event)" type="button">
-          <span data-translate="nav_accounts">Accounts</span> <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+    <!-- MAIN NAVIGATION LINKS -->
+    <ul class="nav-links" style="display: flex; align-items: center; gap: 1.2rem; list-style: none; margin: 0; padding: 0;">
+      <li><a href="main.html" data-translate="nav_home">Home</a></li>
+      <li><a href="about.html" data-translate="nav_about">About Senator Allwell</a></li>
+      <li><a href="livesteam.html" data-translate="nav_live">Live</a></li>
+      <li><a href="Achive.html" data-translate="nav_achievements">Explore Achievements</a></li>
+      <li><a href="news-media.html" data-translate="nav_news">News & Media</a></li>
+      <li><a href="donate.html" data-translate="nav_faqs">Donate</a></li>
+      <li><a href="contact.html" data-translate="nav_contact">Contact</a></li>
+      
+      <!-- ACCOUNTS DROPDOWN -->
+      <li class="nav-dropdown" style="position: relative;">
+        <button class="dropdown-toggle" onclick="toggleNavDropdown(event)" type="button" style="background-color: #2e7d32; color: #ffffff; border: none; padding: 6px 14px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+          <span data-translate="nav_accounts">Accounts</span> 
+          <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
         </button>
         <div class="dropdown-menu-nav" id="accountsDropdown">
           <a href="mobilization.html" data-translate="nav_auth">Ward Leader Portal</a>
-        <a href="auth-system.html" data-translate="nav_mobilize">Grassroots Mobilization</a>
+          <a href="auth-system.html" data-translate="nav_mobilize">Grassroots Mobilization</a>
           <div class="dropdown-divider"></div>
           <a href="https://votesenatorallwell.com.ng" target="_blank" data-translate="nav_join">Join Movement</a>
         </div>
       </li>
-        
 
         <!-- RIVERS EAST LANGUAGE SELECTOR -->
         <li>

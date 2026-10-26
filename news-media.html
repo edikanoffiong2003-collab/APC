@@ -342,36 +342,47 @@
 <body>
 
   <!-- NAVIGATION -->
-  <nav class="navbar">
-    <a href="campaign-landing.html" class="brand-logo">
-      <i class="fa-solid fa-flag" style="color: var(--apc-green);"></i>
-      <span>APC <span class="highlight">2027</span> RIVERS EAST  SENATORIAL DISTRICT</span>
+<nav class="navbar" style="background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0.5rem 1.5rem; position: sticky; top: 0; z-index: 1000;">
+  <div class="nav-container" style="max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+    
+    <!-- BRAND / LOGO SECTION -->
+    <a href="campaign-landing.html" class="brand-logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+      <!-- APC LOGO IMAGE PLACEHOLDER -->
+      <img src="src/APCLOGO.png" alt="APC Logo" class="apc-logo-img" style="height: 38px; width: auto; object-fit: contain;">
+      
+      <div class="brand-text" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1.1;">
+        <span class="brand-title" style="font-size: 1.15rem; font-weight: 800; color: #1e293b; letter-spacing: -0.3px;">
+          <span class="apc-green" style="color: #2e7d32;">APC</span> <span class="highlight">2027</span>
+        </span>
+        <span class="tag" data-translate="nav_tag" style="background-color: #1d4ed8; color: #ffffff; font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; margin-top: 2px; white-space: nowrap;">
+          RIVERS EAST SENATORIAL DISTRICT
+        </span>
+      </div>
     </a>
-    <ul class="nav-links">
+
+    <!-- NAVIGATION LINKS -->
+    <ul class="nav-links" style="display: flex; align-items: center; gap: 1.2rem; list-style: none; margin: 0; padding: 0;">
       <li><a href="campaign-landing.html" data-translate="nav_home">Home</a></li>
       <li><a href="about.html" data-translate="nav_about">About Senator Allwell</a></li>
-      
       <li><a href="Achive.html" data-translate="nav_achievements">Explore Achievements</a></li>
       
-      
       <!-- ACCOUNTS DROPDOWN -->
-      <li class="nav-dropdown">
-        <button class="dropdown-toggle" onclick="toggleNavDropdown(event)" type="button">
-          <span data-translate="nav_accounts">Accounts</span> <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+      <li class="nav-dropdown" style="position: relative;">
+        <button class="dropdown-toggle" onclick="toggleNavDropdown(event)" type="button" style="background-color: #2e7d32; color: #ffffff; border: none; padding: 6px 14px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+          <span data-translate="nav_accounts">Accounts</span> 
+          <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
         </button>
         <div class="dropdown-menu-nav" id="accountsDropdown">
           <a href="mobilization.html" data-translate="nav_auth">Ward Leader Portal</a>
-        <a href="auth-system.html" data-translate="nav_mobilize">Mobilization Hub</a>
+          <a href="auth-system.html" data-translate="nav_mobilize">Mobilization Hub</a>
           <div class="dropdown-divider"></div>
           <a href="https://votesenatorallwell.com.ng" target="_blank" data-translate="nav_join">Join Movement</a>
         </div>
       </li>
-          </div>
-        </div>
-      </li>
     </ul>
-  </nav>
 
+  </div>
+</nav>
   <!-- HEADER -->
   <header class="page-header">
     <h1>Live News & Social Media Hub</h1>
