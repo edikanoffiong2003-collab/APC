@@ -530,7 +530,7 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+ <!-- JAVASCRIPT LOGIC -->
   <script>
     // 1. Slideshow Carousel
     const slides = document.querySelectorAll('.slide');
@@ -550,16 +550,50 @@
       document.getElementById('registerForm').classList.toggle('active', tab === 'register');
     }
 
-    // 3. Dynamic LGA to Ward Mapping Script
+    // 3. Complete Dynamic LGA to Ward Mapping Script
     const wardOptions = {
-      "Port Harcourt": ["Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12", "Ward 13", "Ward 14", "Ward 15", "Ward 16", "Ward 17", "Ward 18", "Ward 19", "Ward 20"],
-      "Obio-Akpor": ["Ward 1 (Rumueme)", "Ward 2 (Rumuomasi)", "Ward 3 (Rumodumaya)", "Ward 4 (Rumuigbo)", "Ward 5 (Rumuokwurusi)", "Ward 6 (Eneka)", "Ward 7 (Iriebe)", "Ward 8 (Rumuokoro)", "Ward 9 (Rumuepirikom)", "Ward 10 (Aluu/Rumuolumeni)", "Ward 11", "Ward 12", "Ward 13", "Ward 14", "Ward 15", "Ward 16", "Ward 17"],
-      "Ikwerre": ["Ward 1 (Isiokpo)", "Ward 2 (Aluu)", "Ward 3 (Omagwa)", "Ward 4 (Ipo)", "Ward 5 (Elele)", "Ward 6 (Apani)", "Ward 7 (Omudioga)", "Ward 8 (Ubima)", "Ward 9 (Ozuaha)", "Ward 10", "Ward 11", "Ward 12", "Ward 13"],
-      "Emohua": ["Ward 1 (Emohua)", "Ward 2 (Ogbakiri)", "Ward 3 (Rumuche)", "Ward 4 (Rumuji)", "Ward 5 (Ndele)", "Ward 6 (Egbbede)", "Ward 7 (Mgbuitanwo)", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12", "Ward 13", "Ward 14"],
-      "Okrika": ["Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12"],
-      "Ogu-Bolo": ["Ward 1 (Ogu I)", "Ward 2 (Ogu II)", "Ward 3 (Ogu III)", "Ward 4 (Bolo I)", "Ward 5 (Bolo II)", "Ward 6"],
-      "Etche": ["Ward 1 (Chokocho)", "Ward 2 (Umuoche)", "Ward 3 (Mba)", "Ward 4 (Okehi)", "Ward 5 (Egwi)", "Ward 6 (Umuakuru)", "Ward 7 (Obite)", "Ward 8 (Nkpogu/Igwuruta)", "Ward 9", "Ward 10", "Ward 11", "Ward 12", "Ward 13", "Ward 14", "Ward 15", "Ward 16", "Ward 17", "Ward 18", "Ward 19"],
-      "Oyigbo": ["Ward 1 (Obete)", "Ward 2 (Afara)", "Ward 3 (Komkom)", "Ward 4 (Mgbuesilaru)", "Ward 5 (Umuagbai)", "Ward 6 (Obeama)", "Ward 7", "Ward 8", "Ward 9", "Ward 10"]
+      "Port Harcourt": [
+        "Oromineke/Ezimgbu (Ward 01)", "Orogbum (Ward 02)", "Oroabali (Ward 03)", "Ogbunabali (Ward 04)", 
+        "Port Harcourt Township (Ward 05)", "Port Harcourt Township VI (Ward 06)", "Port Harcourt VII (Ward 07)", 
+        "Ochiri/Rumukalagbor (Ward 08)", "Oroworukwo (Ward 09)", "Nkpolu Oroworukwo (Ward 10)", 
+        "Rumuwoji (One) (Ward 11)", "Rumuwoji (Two) (Ward 12)", "Rumuwoji (Three) (Ward 13)", 
+        "Mgbundukwu (One) (Ward 14)", "Mgbundukwu (Two) (Ward 15)", "Rumuobiekwe Ward (Ward 16)", 
+        "Diobu (Ward 17)", "Nkpolu Oroworukwo Two (Ward 18)", "Elekahia (Ward 19)", "Abuloma/Amadi-Ama (Ward 20)"
+      ],
+      "Obio-Akpor": [
+        "Oro-Igwe", "Rumuodara", "Rumuokwu (2B)", "Rumuodomaya (3A)", "Elelenwo (3B)", "Woji", 
+        "Rumuokoro", "Rumuomasi", "Rumueme (7A)", "Rumueme (7B)", "Rumueme (7C)", "Rumuigbo (8A)", 
+        "Rumukwuta (8B)", "Rukpokwu", "Choba", "Ozuoba/Ogbogoro", "Rumuolumeni"
+      ],
+      "Ikwerre": [
+        "Isiokpo I", "Isiokpo II", "Elele I", "Elele II", "Omerelu", "Apani", "Umuanwa", 
+        "Ubima", "Omagwa", "Omademe/Ipo", "Ozuaha", "Igwuruta", "Aluu"
+      ],
+      "Emohua": [
+        "Ogbakiri I", "Ogbakiri II", "Emohua I", "Emohua II", "Obelle", "Ibaa", "Rundele", 
+        "Rumuekpe", "Elele-Alimini", "Omudioga / Akpadu (Akpabu)", "Egbeda", "Ubimini", "Odegu I", "Odegu II"
+      ],
+      "Okrika": [
+        "Okrika I", "Okrika II", "Okrika III", "Okrika IV", "Okrika V", "Okrika VI", "Okrika VII", 
+        "Ogan", "Kalio", "Ogoloma I", "Ogoloma II", "Ogoloma III"
+      ],
+      "Ogu-Bolo": [
+        "Ogu I", "Ogu II", "Ogu III", "Ogu IV", "Ogu V", "Ogu VI", 
+        "Bolo I", "Bolo II", "Bolo III", "Bolo IV", "Ele"
+      ],
+      "Etche": [
+        "Afara", "Egbu", "Igbo I", "Igbo II", "Igbo III", "Egwi/Opiro", "Nihi", "Odufor", 
+        "Obibi/Akwukabi", "Obite", "Okehi", "Ozuzu", "Ulakwo", "Igbodo", "Akwa/Odogwa", 
+        "Akpoku/Umuoye", "Ndashi", "Mba", "Owu"
+      ],
+      "Omuma": [
+        "Eberi-Dikeomuuo Community", "Ariraniiri/Owu-Ahia Community", "Obiohia Community", "Ohimogho Community", 
+        "Oyoro", "Ofeh Community", "Umuogba I Community", "Umuogba II Community", "Obibi/Ajuloke Community", "Umuajuloke Community"
+      ],
+      "Oyigbo": [
+        "Ward 1 (Obete)", "Ward 2 (Afara)", "Ward 3 (Komkom)", "Ward 4 (Mgbuesilaru)", "Ward 5 (Umuagbai)", 
+        "Ward 6 (Obeama)", "Ward 7", "Ward 8", "Ward 9", "Ward 10"
+      ]
     };
 
     function updateWards() {
@@ -620,7 +654,8 @@
         window.location.href = "mobilization.html";
       }
     }
-  </script>
+  
+  
   </script>
 
 </body>
