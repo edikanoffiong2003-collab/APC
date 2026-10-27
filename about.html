@@ -223,6 +223,25 @@
     .dropdown-menu-nav.show {
       display: block !important;
     }
+
+    .navbar {
+  background-color: #ffffff;
+  border-bottom: 3px solid #28a745;
+  padding: 12px 5%;
+  
+  /* Enforce persistent fixed header while scrolling */
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 10000 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Add top offset to body so page content isn't covered by the fixed header */
+body {
+  padding-top: 70px;
+}
   </style>
 </head>
 <body>
@@ -251,7 +270,7 @@
       <li><a href="main.html" data-translate="nav_home">Home</a></li>
       <li><a href="about.html" data-translate="nav_about">About Senator Allwell</a></li>
       <li><a href="livesteam.html" data-translate="nav_live">Live</a></li>
-      <li><a href="Achive.html" data-translate="nav_achievements">Explore Achievements</a></li>
+      <li><a href="Achive.html" data-translate="nav_achievements"> Achievements</a></li>
       <li><a href="news-media.html" data-translate="nav_news">News & Media</a></li>
       <li><a href="donate.html" data-translate="nav_faqs">Donate</a></li>
       <li><a href="contact.html" data-translate="nav_contact">Contact</a></li>
@@ -263,7 +282,7 @@
           <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
         </button>
         <div class="dropdown-menu-nav" id="accountsDropdown">
-          <a href="mobilization.html" data-translate="nav_auth">Ward Leader Portal</a>
+          <a href="mobilizer-login.html" data-translate="nav_auth">Ward Leader Portal</a>
           <a href="auth-system.html" data-translate="nav_mobilize">Grassroots Mobilization</a>
           <div class="dropdown-divider"></div>
           <a href="https://votesenatorallwell.com.ng" target="_blank" data-translate="nav_join">Join Movement</a>

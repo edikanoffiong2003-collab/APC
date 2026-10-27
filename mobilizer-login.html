@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ward Leader Portal | Senator Allwell Onyesoh</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background-color: #0f172a;
+    }
+
+    .portal-wrapper {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
+
+    /* LEFT SIDE: SLIDESHOW HERO */
+    .hero-slideshow-container {
+      flex: 1;
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out, transform 6s ease;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 43, 91, 0.8) 0%, rgba(15, 23, 42, 0.65) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem;
+      color: #ffffff;
+      z-index: 2;
+    }
+
+    .hero-overlay h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .hero-overlay p {
+      font-size: 1rem;
+      color: #e2e8f0;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .campaign-badge {
+      display: inline-block;
+      background: #28a745;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      margin-bottom: 12px;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* RIGHT SIDE: GLASSMORPHISM CARD */
+    .login-panel {
+      width: 460px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.25);
+      z-index: 10;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .brand-header i {
+      font-size: 2.2rem;
+      color: #002b5b;
+      margin-bottom: 6px;
+    }
+
+    .brand-header h3 {
+      color: #002b5b;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .brand-header p {
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-top: 4px;
+    }
+
+    /* TOGGLE TAB SWITCHER */
+    .tab-switch {
+      display: flex;
+      background: #e2e8f0;
+      border-radius: 8px;
+      padding: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #64748b;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #002b5b;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* FORM STYLING */
+    .auth-form {
+      display: none;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper i {
+      position: absolute;
+      left: 14px;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .input-wrapper input, .input-wrapper select {
+      width: 100%;
+      padding: 11px 14px 11px 40px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: #0f172a;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-wrapper input:focus, .input-wrapper select:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+      background: #ffffff;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background: #002b5b;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 43, 91, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background: #28a745;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 1.25rem;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .back-home:hover {
+      color: #002b5b;
+    }
+
+    /* SUCCESS MODAL POPUP */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.8);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .modal-card i {
+      font-size: 3rem;
+      color: #28a745;
+      margin-bottom: 12px;
+    }
+
+    .passcode-box {
+      background: #f1f5f9;
+      border: 2px dashed #002b5b;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #002b5b;
+      margin: 15px 0;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 900px) {
+      .portal-wrapper { flex-direction: column; }
+      .hero-slideshow-container { position: absolute; width: 100%; height: 100%; }
+      .login-panel { width: 90%; max-width: 420px; margin: auto; border-radius: 16px; padding: 1.8rem; }
+      .hero-overlay { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-wrapper">
+    
+    <!-- LEFT SIDE: SLIDESHOW -->
+    <div class="hero-slideshow-container">
+      <div class="slide active" style="background-image: url('images (21).jpeg');"></div>
+      <div class="slide" style="background-image: url('images (22).jpeg');"></div>
+      <div class="slide" style="background-image: url('images (29).jpeg');"></div>
+
+      <div class="hero-overlay">
+        <span class="campaign-badge"><i class="fa-solid fa-users"></i> Rivers East Mobilization</span>
+        <h2>Ward Leaders & Community Portal</h2>
+        <p>Register as an official Ward Leader to receive your passkey and access grassroots tools, community reporting, and campaign updates.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE: AUTHENTICATION PANEL -->
+    <div class="login-panel">
+      
+      <div class="brand-header">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Ward Leader Portal</h3>
+        <p>Senator Allwell Onyesoh Campaign</p>
+      </div>
+
+      <!-- TAB SWITCHER -->
+      <div class="tab-switch">
+        <button type="button" class="tab-btn active" id="tabLoginBtn" onclick="switchTab('login')">Log In</button>
+        <button type="button" class="tab-btn" id="tabRegisterBtn" onclick="switchTab('register')">Register Leader</button>
+      </div>
+
+      <!-- 1. LOGIN FORM -->
+      <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="loginId">Phone Number or Ward ID</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-id-card"></i>
+            <input type="text" id="loginId" placeholder="e.g., 08012345678" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPasscode">Ward Passcode</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPasscode" placeholder="Enter 6-digit passcode" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span>Enter Campaign Hub</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <!-- 2. REGISTER FORM -->
+      <form id="registerForm" class="auth-form" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="regFullName">Full Name</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="regFullName" placeholder="e.g., Honorable John Doe" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regPhone">Phone Number</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" id="regPhone" placeholder="080XXXXXXXX" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regLga">LGA in Rivers East</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-location-dot"></i>
+            <select id="regLga" required>
+              <option value="">Select LGA...</option>
+              <option value="Port Harcourt">Port Harcourt City</option>
+              <option value="Obio-Akpor">Obio-Akpor</option>
+              <option value="Ikwerre">Ikwerre</option>
+              <option value="Emohua">Emohua</option>
+              <option value="Okrika">Okrika</option>
+              <option value="Ogu-Bolo">Ogu-Bolo</option>
+              <option value="Tai">Tai</option>
+              <option value="Oyigbo">Oyigbo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regWard">Ward Number / Name</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-map-pin"></i>
+            <input type="text" id="regWard" placeholder="e.g., Ward 4" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span>Submit & Generate Passcode</span>
+          <i class="fa-solid fa-key"></i>
+        </button>
+      </form>
+
+      <a href="campaign-landing.html" class="back-home">
+        <i class="fa-solid fa-house"></i> Return to Main Website
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- PASSCODE DISPLAY MODAL -->
+  <div class="modal-overlay" id="passcodeModal">
+    <div class="modal-card">
+      <i class="fa-solid fa-circle-check"></i>
+      <h3>Registration Complete!</h3>
+      <p style="font-size: 0.88rem; color: #64748b; margin-top: 6px;">Your official Ward Leader passcode has been generated. Please copy or memorize it to log in.</p>
+      
+      <div class="passcode-box" id="generatedPasscode">RE-2026-0000</div>
+      
+      <button type="button" class="btn-submit" onclick="closeModalAndLogin()" style="margin-top: 0;">
+        <span>Proceed to Login</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. Slideshow Carousel
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    setInterval(nextSlide, 5000);
+
+    // 2. Tab Switcher (Login vs Register)
+    function switchTab(tab) {
+      document.getElementById('tabLoginBtn').classList.toggle('active', tab === 'login');
+      document.getElementById('tabRegisterBtn').classList.toggle('active', tab === 'register');
+      document.getElementById('loginForm').classList.toggle('active', tab === 'login');
+      document.getElementById('registerForm').classList.toggle('active', tab === 'register');
+    }
+
+    // 3. Handle Registration & Passcode Generation
+    let newlyGeneratedPasscode = "";
+    let registeredPhone = "";
+
+    function handleRegister(e) {
+      e.preventDefault();
+      registeredPhone = document.getElementById('regPhone').value.trim();
+      
+      // Generate unique 6-character passcode
+      const randomCode = Math.floor(1000 + Math.random() * 9000);
+      newlyGeneratedPasscode = "RE-" + randomCode;
+
+      // Display Modal with Passcode
+      document.getElementById('generatedPasscode').innerText = newlyGeneratedPasscode;
+      document.getElementById('passcodeModal').style.display = 'flex';
+    }
+
+    function closeModalAndLogin() {
+      document.getElementById('passcodeModal').style.display = 'none';
+      
+      // Pre-fill login inputs
+      document.getElementById('loginId').value = registeredPhone;
+      document.getElementById('loginPasscode').value = newlyGeneratedPasscode;
+      
+      // Switch back to Login tab
+      switchTab('login');
+    }
+
+    // 4. Handle Login & Redirection to Campaign Portal
+    function handleLogin(e) {
+      e.preventDefault();
+      const loginId = document.getElementById('loginId').value.trim();
+      const passcode = document.getElementById('loginPasscode').value.trim();
+
+      if (loginId !== "" && passcode !== "") {
+        // Redirect straight to mobilization page
+        window.location.href = "mobilization.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
