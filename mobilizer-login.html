@@ -477,7 +477,7 @@
           <label for="regLga">LGA in Rivers East</label>
           <div class="input-wrapper">
             <i class="fa-solid fa-location-dot"></i>
-            <select id="regLga" required>
+            <select id="regLga" onchange="updateWards()" required>
               <option value="">Select LGA...</option>
               <option value="Port Harcourt">Port Harcourt City</option>
               <option value="Obio-Akpor">Obio-Akpor</option>
@@ -485,17 +485,19 @@
               <option value="Emohua">Emohua</option>
               <option value="Okrika">Okrika</option>
               <option value="Ogu-Bolo">Ogu-Bolo</option>
-              <option value="Tai">Tai</option>
+              <option value="Etche">Etche</option>
               <option value="Oyigbo">Oyigbo</option>
             </select>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="regWard">Ward Number / Name</label>
+          <label for="regWard">Ward Name / Number</label>
           <div class="input-wrapper">
             <i class="fa-solid fa-map-pin"></i>
-            <input type="text" id="regWard" placeholder="e.g., Ward 4" required />
+            <select id="regWard" required>
+              <option value="">Select LGA first...</option>
+            </select>
           </div>
         </div>
 
@@ -548,7 +550,38 @@
       document.getElementById('registerForm').classList.toggle('active', tab === 'register');
     }
 
-    // 3. Handle Registration & Passcode Generation
+    // 3. Dynamic LGA to Ward Mapping Script
+    const wardOptions = {
+      "Port Harcourt": ["Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12", "Ward 13", "Ward 14", "Ward 15", "Ward 16", "Ward 17", "Ward 18", "Ward 19", "Ward 20"],
+      "Obio-Akpor": ["Ward 1 (Rumueme)", "Ward 2 (Rumuomasi)", "Ward 3 (Rumodumaya)", "Ward 4 (Rumuigbo)", "Ward 5 (Rumuokwurusi)", "Ward 6 (Eneka)", "Ward 7 (Iriebe)", "Ward 8 (Rumuokoro)", "Ward 9 (Rumuepirikom)", "Ward 10 (Aluu/Rumuolumeni)", "Ward 11", "Ward 12", "Ward 13", "Ward 14", "Ward 15", "Ward 16", "Ward 17"],
+      "Ikwerre": ["Ward 1 (Isiokpo)", "Ward 2 (Aluu)", "Ward 3 (Omagwa)", "Ward 4 (Ipo)", "Ward 5 (Elele)", "Ward 6 (Apani)", "Ward 7 (Omudioga)", "Ward 8 (Ubima)", "Ward 9 (Ozuaha)", "Ward 10", "Ward 11", "Ward 12", "Ward 13"],
+      "Emohua": ["Ward 1 (Emohua)", "Ward 2 (Ogbakiri)", "Ward 3 (Rumuche)", "Ward 4 (Rumuji)", "Ward 5 (Ndele)", "Ward 6 (Egbbede)", "Ward 7 (Mgbuitanwo)", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12", "Ward 13", "Ward 14"],
+      "Okrika": ["Ward 1", "Ward 2", "Ward 3", "Ward 4", "Ward 5", "Ward 6", "Ward 7", "Ward 8", "Ward 9", "Ward 10", "Ward 11", "Ward 12"],
+      "Ogu-Bolo": ["Ward 1 (Ogu I)", "Ward 2 (Ogu II)", "Ward 3 (Ogu III)", "Ward 4 (Bolo I)", "Ward 5 (Bolo II)", "Ward 6"],
+      "Etche": ["Ward 1 (Chokocho)", "Ward 2 (Umuoche)", "Ward 3 (Mba)", "Ward 4 (Okehi)", "Ward 5 (Egwi)", "Ward 6 (Umuakuru)", "Ward 7 (Obite)", "Ward 8 (Nkpogu/Igwuruta)", "Ward 9", "Ward 10", "Ward 11", "Ward 12", "Ward 13", "Ward 14", "Ward 15", "Ward 16", "Ward 17", "Ward 18", "Ward 19"],
+      "Oyigbo": ["Ward 1 (Obete)", "Ward 2 (Afara)", "Ward 3 (Komkom)", "Ward 4 (Mgbuesilaru)", "Ward 5 (Umuagbai)", "Ward 6 (Obeama)", "Ward 7", "Ward 8", "Ward 9", "Ward 10"]
+    };
+
+    function updateWards() {
+      const selectedLga = document.getElementById('regLga').value;
+      const wardSelect = document.getElementById('regWard');
+      
+      // Clear existing ward options
+      wardSelect.innerHTML = '<option value="">Select Ward...</option>';
+      
+      if (selectedLga && wardOptions[selectedLga]) {
+        wardOptions[selectedLga].forEach(function(ward) {
+          const opt = document.createElement('option');
+          opt.value = ward;
+          opt.textContent = ward;
+          wardSelect.appendChild(opt);
+        });
+      } else {
+        wardSelect.innerHTML = '<option value="">Select LGA first...</option>';
+      }
+    }
+
+    // 4. Handle Registration & Passcode Generation
     let newlyGeneratedPasscode = "";
     let registeredPhone = "";
 
@@ -576,7 +609,7 @@
       switchTab('login');
     }
 
-    // 4. Handle Login & Redirection to Campaign Portal
+    // 5. Handle Login & Redirection to Campaign Portal
     function handleLogin(e) {
       e.preventDefault();
       const loginId = document.getElementById('loginId').value.trim();
@@ -587,6 +620,7 @@
         window.location.href = "mobilization.html";
       }
     }
+  </script>
   </script>
 
 </body>
