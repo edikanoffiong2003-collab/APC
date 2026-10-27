@@ -333,36 +333,66 @@
     }
   }
 
-  /* FORCE LAPTOP-STYLE SIDE-BY-SIDE SPLIT-SCREEN ON MOBILE */
+  /* MOBILE VIEW: STACKED LAYOUT WITH TRANSPARENT GLASS LOGIN CARD */
   @media (max-width: 900px) {
-    body, html {
-      overflow-x: auto !important;
-      width: max-content !important;
-      min-width: 100vw !important;
+    .portal-wrapper {
+      flex-direction: column !important;
+      height: 100vh !important;
+      position: relative;
+      overflow-y: auto;
     }
 
-    .portal-wrapper {
-      display: flex !important;
-      flex-direction: row !important;
+    /* Slideshow covers the full background */
+    .hero-slideshow-container {
+      position: fixed !important;
+      top: 0;
+      left: 0;
       width: 100vw !important;
       height: 100vh !important;
-      min-width: 900px !important; /* Forces phone browsers to render full desktop width */
-    }
-
-    .hero-slideshow-container {
-      flex: 1 !important;
-      height: 100% !important;
-      display: block !important;
+      z-index: 1;
     }
 
     .hero-overlay {
-      display: flex !important;
+      display: none !important; /* Keep background images fully visible */
     }
 
+    /* Transparent Login Panel for Mobile */
     .login-panel {
-      width: 460px !important;
-      height: 100% !important;
-      flex-shrink: 0 !important;
+      position: relative !important;
+      z-index: 10;
+      width: 90% !important;
+      max-width: 400px !important;
+      margin: 8vh auto !important;
+      height: auto !important;
+      
+      /* Transparent Frosted Glass Effect (Reduced opacity to clearly see background picture) */
+      background: rgba(15, 23, 42, 0.22) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      border-radius: 16px !important;
+      padding: 2rem 1.5rem !important;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* Adjust text and label colors for readability over transparency */
+    .login-panel .brand-header h3,
+    .login-panel .form-group label {
+      color: #ffffff !important;
+    }
+
+    .login-panel .brand-header p {
+      color: #cbd5e1 !important;
+    }
+
+    .login-panel .input-wrapper input, 
+    .login-panel .input-wrapper select {
+      background: rgba(255, 255, 255, 0.9) !important;
+      color: #0f172a !important;
+    }
+
+    .login-panel .back-home {
+      color: #e2e8f0 !important;
     }
   }
   
