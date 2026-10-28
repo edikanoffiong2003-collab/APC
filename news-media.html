@@ -337,6 +337,26 @@
       font-size: 0.85rem;
       border-top: 3px solid var(--apc-green);
     }
+
+    /* FORCE NEWSPAPER COLUMNS INTO HORIZONTAL LANDSCAPE VIEW */
+  .lead-editorial-section article > div[style*="grid"] {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Forces 3 distinct landscape columns side-by-side */
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  /* Prevent text shrinking & clipping on mobile screens */
+  @media (max-width: 900px) {
+    .lead-editorial-section article {
+      overflow-x: auto; /* Allows smooth horizontal swiping if needed */
+    }
+    
+    .lead-editorial-section article > div[style*="grid"] {
+      grid-template-columns: repeat(3, 320px) !important; /* Keeps columns wide and horizontal, enabling side scrolling */
+      width: 1000px !important; /* Forces true landscape spread */
+    }
+  }
   </style>
 </head>
 <body>
