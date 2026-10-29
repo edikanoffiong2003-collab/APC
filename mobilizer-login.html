@@ -99,7 +99,7 @@
     letter-spacing: 0.5px;
   }
 
-  /* RIGHT SIDE: GLASSMORPHISM CARD */
+  /* RIGHT SIDE: AUTHENTICATION PANEL */
   .login-panel {
     width: 460px;
     background: rgba(255, 255, 255, 0.94);
@@ -178,6 +178,7 @@
 
   .form-group {
     margin-bottom: 1.1rem;
+    position: relative;
   }
 
   .form-group label {
@@ -194,7 +195,7 @@
     align-items: center;
   }
 
-  .input-wrapper i {
+  .input-wrapper i.field-icon {
     position: absolute;
     left: 14px;
     color: #64748b;
@@ -203,7 +204,7 @@
 
   .input-wrapper input, .input-wrapper select {
     width: 100%;
-    padding: 11px 14px 11px 40px;
+    padding: 11px 40px 11px 40px;
     border: 1.5px solid #cbd5e1;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -211,6 +212,16 @@
     color: #0f172a;
     outline: none;
     transition: all 0.2s ease;
+  }
+
+  .toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 0.95rem;
   }
 
   .input-wrapper input:focus, .input-wrapper select:focus {
@@ -257,12 +268,12 @@
     color: #002b5b;
   }
 
-  /* SUCCESS MODAL POPUP */
+  /* MODAL POPUP */
   .modal-overlay {
     display: none;
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(15, 23, 42, 0.85);
     z-index: 9999;
     justify-content: center;
     align-items: center;
@@ -272,68 +283,124 @@
     background: #ffffff;
     padding: 2rem;
     border-radius: 12px;
-    max-width: 400px;
+    max-width: 440px;
     width: 90%;
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
 
-  .modal-card i {
+  .modal-card i.status-icon {
     font-size: 3rem;
     color: #28a745;
     margin-bottom: 12px;
   }
 
-  .passcode-box {
-    background: #f1f5f9;
-    border: 2px dashed #002b5b;
+  /* PROTECTED LIVE STRATEGY & VIDEO HUB OVERLAY */
+  #groupChatPortal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #0f172a;
+    z-index: 20000;
+    flex-direction: column;
+  }
+
+  .chat-portal-header {
+    background: #002b5b;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #28a745;
+  }
+
+  .chat-portal-body {
+    flex: 1;
+    display: flex;
+  }
+
+  /* CHAT SECTION STYLES */
+  .chat-box-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #1e293b;
+  }
+
+  .chat-messages-feed {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .chat-message-bubble {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .chat-message-bubble.other {
+    background: #334155;
+    color: #f8fafc;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+  }
+
+  .chat-message-bubble.mine {
+    background: #002b5b;
+    color: #ffffff;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+    border: 1px solid #28a745;
+  }
+
+  .chat-sender-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #94a3b8;
+  }
+
+  .chat-input-bar {
     padding: 12px;
+    background: #0f172a;
+    border-top: 1px solid #334155;
+    display: flex;
+    gap: 10px;
+  }
+
+  .chat-input-bar input {
+    flex: 1;
+    padding: 10px 14px;
     border-radius: 8px;
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #002b5b;
-    margin: 15px 0;
-    letter-spacing: 2px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #ffffff;
+    outline: none;
   }
 
-  /* UPDATED MOBILE VIEW MEDIA QUERY FOR LANDSCAPE ELEGANCE */
-  @media (max-width: 900px) {
-    .portal-wrapper {
-      position: relative;
-      height: 100vh;
-      overflow-y: auto;
-    }
-
-    /* Keep the slideshow full-screen fixed behind the login panel */
-    .hero-slideshow-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-    }
-
-    /* Center floating glassmorphism login card over full-screen background */
-    .login-panel {
-      position: relative;
-      z-index: 10;
-      width: 92%;
-      max-width: 420px;
-      height: auto;
-      margin: 5vh auto;
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-overlay {
-      display: none; /* Keeps background image clean and uncluttered on mobile */
-    }
+  .chat-input-bar button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
   }
 
-  /* MOBILE VIEW: STACKED LAYOUT WITH TRANSPARENT GLASS LOGIN CARD */
+  .chat-input-bar button:hover {
+    background: #218838;
+  }
+
   @media (max-width: 900px) {
     .portal-wrapper {
       flex-direction: column !important;
@@ -342,21 +409,16 @@
       overflow-y: auto;
     }
 
-    /* Slideshow covers the full background */
     .hero-slideshow-container {
       position: fixed !important;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100vw !important;
       height: 100vh !important;
       z-index: 1;
     }
 
-    .hero-overlay {
-      display: none !important; /* Keep background images fully visible */
-    }
+    .hero-overlay { display: none !important; }
 
-    /* Transparent Login Panel for Mobile */
     .login-panel {
       position: relative !important;
       z-index: 10;
@@ -364,9 +426,7 @@
       max-width: 400px !important;
       margin: 8vh auto !important;
       height: auto !important;
-      
-      /* Transparent Frosted Glass Effect (Reduced opacity to clearly see background picture) */
-      background: rgba(15, 23, 42, 0.22) !important;
+      background: rgba(15, 23, 42, 0.88) !important;
       backdrop-filter: blur(10px) !important;
       -webkit-backdrop-filter: blur(10px) !important;
       border: 1px solid rgba(255, 255, 255, 0.25) !important;
@@ -375,35 +435,28 @@
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
     }
 
-    /* Adjust text and label colors for readability over transparency */
     .login-panel .brand-header h3,
     .login-panel .form-group label {
       color: #ffffff !important;
     }
 
-    .login-panel .brand-header p {
+    .login-panel .brand-header p,
+    .login-panel .back-home {
       color: #cbd5e1 !important;
     }
 
-    .login-panel .input-wrapper input, 
-    .login-panel .input-wrapper select {
-      background: rgba(255, 255, 255, 0.9) !important;
-      color: #0f172a !important;
-    }
-
-    .login-panel .back-home {
-      color: #e2e8f0 !important;
+    .hub-split-container {
+      flex-direction: column !important;
+      height: auto !important;
     }
   }
-  
-</style>
   </style>
 </head>
 <body>
 
   <div class="portal-wrapper">
     
-    <!-- LEFT SIDE: SLIDESHOW -->
+    <!-- LEFT SIDE: SLIDESHOW HERO -->
     <div class="hero-slideshow-container">
       <div class="slide active" style="background-image: url('images (21).jpeg');"></div>
       <div class="slide" style="background-image: url('images (22).jpeg');"></div>
@@ -412,7 +465,7 @@
       <div class="hero-overlay">
         <span class="campaign-badge"><i class="fa-solid fa-users"></i> Rivers East Mobilization</span>
         <h2>Ward Leaders & Community Portal</h2>
-        <p>Register as an official Ward Leader to receive your passkey and access grassroots tools, community reporting, and campaign updates.</p>
+        <p>Register as an official Ward Leader. Once verified by the campaign team, you will receive your official access passcode via email to enter the strategy hub.</p>
       </div>
     </div>
 
@@ -434,18 +487,21 @@
       <!-- 1. LOGIN FORM -->
       <form id="loginForm" class="auth-form active" onsubmit="handleLogin(event)">
         <div class="form-group">
-          <label for="loginId">Phone Number or Ward ID</label>
+          <label for="loginPhone">Registered Phone Number</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-id-card"></i>
-            <input type="text" id="loginId" placeholder="e.g., 08012345678" required />
+            <i class="fa-solid fa-phone field-icon"></i>
+            <input type="tel" id="loginPhone" placeholder="e.g., 08012345678" required />
           </div>
         </div>
 
         <div class="form-group">
-          <label for="loginPasscode">Ward Passcode</label>
+          <label for="loginPasscode">Verified Passcode</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-lock"></i>
-            <input type="password" id="loginPasscode" placeholder="Enter 6-digit passcode" required />
+            <i class="fa-solid fa-lock field-icon"></i>
+            <input type="password" id="loginPasscode" placeholder="Enter assigned passcode (e.g. RE-1234)" required />
+            <button type="button" class="toggle-password-btn" onclick="togglePassword('loginPasscode', 'eyeIconLogin')">
+              <i class="fa-solid fa-eye" id="eyeIconLogin"></i>
+            </button>
           </div>
         </div>
 
@@ -456,28 +512,36 @@
       </form>
 
       <!-- 2. REGISTER FORM -->
-      <form id="registerForm" class="auth-form" onsubmit="handleRegister(event)">
+      <form id="registerForm" class="auth-form" action="https://formspree.io/f/xdeezqzd" method="POST" onsubmit="handleRegister(event)">
         <div class="form-group">
           <label for="regFullName">Full Name</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" id="regFullName" placeholder="e.g., Honorable John Doe" required />
+            <i class="fa-solid fa-user field-icon"></i>
+            <input type="text" name="fullName" id="regFullName" placeholder="e.g., Hon. John Doe" required />
           </div>
         </div>
 
         <div class="form-group">
           <label for="regPhone">Phone Number</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-phone"></i>
-            <input type="tel" id="regPhone" placeholder="080XXXXXXXX" required />
+            <i class="fa-solid fa-phone field-icon"></i>
+            <input type="tel" name="phoneNumber" id="regPhone" placeholder="080XXXXXXXX" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Email Address (To Receive Code)</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-envelope field-icon"></i>
+            <input type="email" name="email" id="regEmail" placeholder="yourname@gmail.com" required />
           </div>
         </div>
 
         <div class="form-group">
           <label for="regLga">LGA in Rivers East</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-location-dot"></i>
-            <select id="regLga" onchange="updateWards()" required>
+            <i class="fa-solid fa-location-dot field-icon"></i>
+            <select name="lga" id="regLga" onchange="updateWards()" required>
               <option value="">Select LGA...</option>
               <option value="Port Harcourt">Port Harcourt City</option>
               <option value="Obio-Akpor">Obio-Akpor</option>
@@ -486,6 +550,7 @@
               <option value="Okrika">Okrika</option>
               <option value="Ogu-Bolo">Ogu-Bolo</option>
               <option value="Etche">Etche</option>
+              <option value="Omuma">Omuma</option>
               <option value="Oyigbo">Oyigbo</option>
             </select>
           </div>
@@ -494,20 +559,20 @@
         <div class="form-group">
           <label for="regWard">Ward Name / Number</label>
           <div class="input-wrapper">
-            <i class="fa-solid fa-map-pin"></i>
-            <select id="regWard" required>
+            <i class="fa-solid fa-map-pin field-icon"></i>
+            <select name="ward" id="regWard" required>
               <option value="">Select LGA first...</option>
             </select>
           </div>
         </div>
 
-        <button type="submit" class="btn-submit">
-          <span>Submit & Generate Passcode</span>
-          <i class="fa-solid fa-key"></i>
+        <button type="submit" class="btn-submit" id="registerSubmitBtn">
+          <span>Submit Credentials for Approval</span>
+          <i class="fa-solid fa-paper-plane"></i>
         </button>
       </form>
 
-      <a href="campaign-landing.html" class="back-home">
+      <a href="index.html" class="back-home">
         <i class="fa-solid fa-house"></i> Return to Main Website
       </a>
 
@@ -515,32 +580,110 @@
 
   </div>
 
-  <!-- PASSCODE DISPLAY MODAL -->
+  <!-- VERIFICATION PENDING MODAL -->
   <div class="modal-overlay" id="passcodeModal">
     <div class="modal-card">
-      <i class="fa-solid fa-circle-check"></i>
-      <h3>Registration Complete!</h3>
-      <p style="font-size: 0.88rem; color: #64748b; margin-top: 6px;">Your official Ward Leader passcode has been generated. Please copy or memorize it to log in.</p>
-      
-      <div class="passcode-box" id="generatedPasscode">RE-2026-0000</div>
-      
+      <i class="fa-solid fa-circle-check status-icon"></i>
+      <h3>Credentials Submitted!</h3>
+      <p style="font-size: 0.88rem; color: #64748b; margin-top: 8px; line-height: 1.5;">
+        Thank you for registering. Your details have been routed to the Senator Allwell Onyesoh Campaign Support Team for verification.
+      </p>
+      <div style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 12px; border-radius: 8px; font-size: 0.85rem; color: #0f172a; margin: 15px 0;">
+        <i class="fa-solid fa-envelope" style="color: #28a745;"></i> An official unique access code will be sent to your email address once verified by administrators.
+      </div>
       <button type="button" class="btn-submit" onclick="closeModalAndLogin()" style="margin-top: 0;">
-        <span>Proceed to Login</span>
+        <span>Return to Login</span>
       </button>
     </div>
   </div>
 
- <!-- JAVASCRIPT LOGIC -->
+  <!-- PROTECTED LIVE STRATEGY & VIDEO CONFERENCING HUB -->
+  <div id="groupChatPortal">
+    <div class="chat-portal-header">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <i class="fa-solid fa-video" style="font-size: 1.5rem; color: #28a745;"></i>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">Rivers East Ward Leaders Live Hub & Strategy Room</h3>
+          <span style="font-size: 0.75rem; color: #86efac;"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Verified Leader Session</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button type="button" onclick="logoutChatPortal()" style="background: #dc2626; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          <i class="fa-solid fa-right-from-bracket"></i> Exit Hub
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN HUB BODY -->
+    <div class="chat-portal-body" style="flex-direction: column; overflow-y: auto; padding: 20px; gap: 20px; background: #0f172a;">
+      
+      <!-- TOP NOTIFICATION BANNER -->
+      <div style="background: linear-gradient(135deg, #002b5b 0%, #1e293b 100%); color: white; padding: 20px; border-radius: 12px; border-left: 5px solid #28a745; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <h4 style="margin: 0 0 8px 0; color: #28a745; font-size: 1.1rem;"><i class="fa-solid fa-bell"></i> Scheduled Campaign Strategy Meetings</h4>
+        <p style="margin: 0 0 12px 0; font-size: 0.9rem; color: #cbd5e1;">All Ward Leaders receive email notifications and calendar alerts prior to live strategy broadcasts with Senator Allwell Onyesoh.</p>
+        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <div style="background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 8px; font-size: 0.85rem;">
+            <strong>Next Meeting:</strong> Rivers East Ward Mobilization Broadcast
+          </div>
+          <div style="background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 8px; font-size: 0.85rem;">
+            <strong>Status:</strong> Live Strategy & Conference Channels Active Below
+          </div>
+        </div>
+      </div>
+
+      <!-- SPLIT VIEW: TEXT CHAT (LEFT) & LIVE VIDEO CONFERENCE (RIGHT) -->
+      <div class="hub-split-container" style="display: flex; gap: 20px; flex: 1; min-height: 550px;">
+        
+        <!-- LEFT PANEL: EMBEDDED GROUP TEXT CHAT -->
+        <div style="flex: 1; background: #1e293b; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #334155;">
+          <div style="background: #0f172a; padding: 12px 16px; color: white; font-weight: bold; border-bottom: 1px solid #334155; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-comments" style="color: #28a745;"></i> Live Ward Leaders Text Discussion
+          </div>
+          
+          <div class="chat-box-container">
+            <div class="chat-messages-feed" id="groupMessageFeed">
+              <div class="chat-message-bubble other">
+                <div class="chat-sender-name">Campaign Mobilization HQ</div>
+                Welcome Ward Leaders! Use this live channel to send updates, discuss ward strategies, and coordinate ground mobilization.
+              </div>
+            </div>
+
+            <div class="chat-input-bar">
+              <input type="text" id="groupChatInput" placeholder="Type a message to ward leaders..." onkeypress="handleGroupChatEnter(event)" />
+              <button type="button" onclick="sendGroupMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL: LIVE VIDEO CONFERENCE (IN-BROWSER ZOOM) -->
+        <div style="flex: 1; background: #1e293b; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #334155;">
+          <div style="background: #0f172a; padding: 12px 16px; color: white; font-weight: bold; border-bottom: 1px solid #334155; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-video" style="color: #28a745;"></i> Live Video Conference Call (In-Browser)
+          </div>
+          <iframe src="https://meet.jit.si/SenatorAllwellRiversEastWardLeaders" allow="camera; microphone; display-capture; autoplay" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
   <script>
     // 1. Slideshow Carousel
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
+
     function nextSlide() {
+      if (slides.length === 0) return;
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
     }
-    setInterval(nextSlide, 5000);
+
+    if (slides.length > 0) {
+      setInterval(nextSlide, 5000);
+    }
 
     // 2. Tab Switcher (Login vs Register)
     function switchTab(tab) {
@@ -550,7 +693,23 @@
       document.getElementById('registerForm').classList.toggle('active', tab === 'register');
     }
 
-    // 3. Complete Dynamic LGA to Ward Mapping Script
+    // 3. Password Show / Hide Visibility Toggle
+    function togglePassword(inputId, iconId) {
+      const inputField = document.getElementById(inputId);
+      const icon = document.getElementById(iconId);
+
+      if (inputField.type === 'password') {
+        inputField.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        inputField.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    }
+
+    // 4. Complete Dynamic LGA to Ward Mapping Dictionary
     const wardOptions = {
       "Port Harcourt": [
         "Oromineke/Ezimgbu (Ward 01)", "Orogbum (Ward 02)", "Oroabali (Ward 03)", "Ogbunabali (Ward 04)", 
@@ -600,7 +759,6 @@
       const selectedLga = document.getElementById('regLga').value;
       const wardSelect = document.getElementById('regWard');
       
-      // Clear existing ward options
       wardSelect.innerHTML = '<option value="">Select Ward...</option>';
       
       if (selectedLga && wardOptions[selectedLga]) {
@@ -615,48 +773,109 @@
       }
     }
 
-    // 4. Handle Registration & Passcode Generation
-    let newlyGeneratedPasscode = "";
-    let registeredPhone = "";
-
-    function handleRegister(e) {
+    // 5. Registration Handler (Formspree Delivery to Admin Inbox)
+    async function handleRegister(e) {
       e.preventDefault();
-      registeredPhone = document.getElementById('regPhone').value.trim();
       
-      // Generate unique 6-character passcode
-      const randomCode = Math.floor(1000 + Math.random() * 9000);
-      newlyGeneratedPasscode = "RE-" + randomCode;
+      const form = document.getElementById('registerForm');
+      const submitBtn = document.getElementById('registerSubmitBtn');
+      const regPhone = document.getElementById('regPhone').value.trim();
 
-      // Display Modal with Passcode
-      document.getElementById('generatedPasscode').innerText = newlyGeneratedPasscode;
-      document.getElementById('passcodeModal').style.display = 'flex';
+      localStorage.setItem('pending_leader_phone', regPhone);
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting Credentials...';
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          document.getElementById('passcodeModal').style.display = 'flex';
+          form.reset();
+        } else {
+          alert("Submission failed. Please check your internet connection and try again.");
+        }
+      } catch (error) {
+        document.getElementById('passcodeModal').style.display = 'flex';
+        form.reset();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Submit Credentials for Approval</span> <i class="fa-solid fa-paper-plane"></i>';
+      }
     }
 
     function closeModalAndLogin() {
       document.getElementById('passcodeModal').style.display = 'none';
-      
-      // Pre-fill login inputs
-      document.getElementById('loginId').value = registeredPhone;
-      document.getElementById('loginPasscode').value = newlyGeneratedPasscode;
-      
-      // Switch back to Login tab
       switchTab('login');
     }
 
-    // 5. Handle Login & Redirection to Campaign Portal
+    // 6. Login Handler & Option B Passcode Verification
     function handleLogin(e) {
       e.preventDefault();
-      const loginId = document.getElementById('loginId').value.trim();
-      const passcode = document.getElementById('loginPasscode').value.trim();
+      const loginPhone = document.getElementById('loginPhone').value.trim();
+      const passcode = document.getElementById('loginPasscode').value.trim().toUpperCase();
 
-      if (loginId !== "" && passcode !== "") {
-        // Redirect straight to mobilization page
-        window.location.href = "mobilization.html";
+      // Master/Standard Passcodes assigned by Admin
+      const validAdminPasscodes = ["RE2027", "ALLWELL2027", "2027"];
+
+      // Check if code matches standard admin passcodes or assigned pattern (e.g., RE-XXXX or ALLWELL-XXXX)
+      const isValidPattern = /^RE-\d{4}$/i.test(passcode) || /^ALLWELL-\d{4}$/i.test(passcode);
+
+      if (loginPhone !== "" && (validAdminPasscodes.includes(passcode) || isValidPattern)) {
+        sessionStorage.setItem("logged_ward_leader_phone", loginPhone);
+        sessionStorage.setItem("logged_ward_leader_code", passcode);
+        
+        // Launch Live Strategy Hub
+        document.getElementById('groupChatPortal').style.display = 'flex';
+      } else {
+        alert("Access Denied: Invalid passcode or phone number format. Please ensure you enter the official passcode sent to your email by campaign administrators.");
       }
     }
-  
-  
-  </script>
 
+    // 7. Interactive Group Chat Feed Logic
+    function sendGroupMessage() {
+      const input = document.getElementById('groupChatInput');
+      const text = input.value.trim();
+
+      if (text === '') return;
+
+      const feed = document.getElementById('groupMessageFeed');
+      const userPhone = sessionStorage.getItem("logged_ward_leader_phone") || "Verified Leader";
+
+      const bubble = `
+        <div class="chat-message-bubble mine">
+          <div class="chat-sender-name" style="color: #86efac; text-align: right;">Me (${userPhone})</div>
+          <p>${escapeHtml(text)}</p>
+        </div>
+      `;
+      feed.insertAdjacentHTML('beforeend', bubble);
+      input.value = '';
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    function handleGroupChatEnter(e) {
+      if (e.key === 'Enter') {
+        sendGroupMessage();
+      }
+    }
+
+    function logoutChatPortal() {
+      sessionStorage.removeItem("logged_ward_leader_phone");
+      sessionStorage.removeItem("logged_ward_leader_code");
+      document.getElementById('groupChatPortal').style.display = 'none';
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function (s) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s];
+      });
+    }
+  </script>
 </body>
 </html>

@@ -4,317 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us - Senator Allwell Onyesoh APC 2027 Campaign</title>
-  <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background-color: #f8f9fa;
-      color: #333;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    body { background-color: #f8f9fa; color: #333; padding-top: 75px; }
 
     /* TOP NAVIGATION BAR */
     .navbar {
-      background-color: #1e7e34;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; top: 0; left: 0; right: 0;
+      background-color: #1e7e34; color: white; padding: 15px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; }
+    .logo-container { display: flex; align-items: center; gap: 10px; }
+    .logo-container img { width: 40px; height: 40px; border-radius: 50%; background: white; object-fit: contain; }
+    .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
+    .nav-links a { color: white; text-decoration: none; font-size: 15px; font-weight: 500; }
 
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    /* MAIN SECTION */
+    .main-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .page-title { font-size: 36px; font-weight: bold; color: #222; margin-bottom: 30px; border-bottom: 2px solid #e0e0e0; padding-bottom: 15px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-container img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: white;
-      object-fit: contain;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* MAIN CONTACT SECTION */
-    .main-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .page-title {
-      font-size: 36px;
-      font-weight: bold;
-      color: #222;
-      margin-bottom: 30px;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 15px;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-
-    /* Form Styles */
-    .contact-form-wrapper {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #444;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 12px 15px;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      font-size: 15px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-control:focus {
-      border-color: #1e7e34;
-    }
-
-    textarea.form-control {
-      resize: vertical;
-      height: 120px;
-    }
-
+    /* FORM STYLES */
+    .contact-form-wrapper { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #444; }
+    .form-control { width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 4px; font-size: 15px; outline: none; }
+    .form-control:focus { border-color: #1e7e34; }
+    textarea.form-control { resize: vertical; height: 120px; }
+    
     .btn-submit {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s;
+      background-color: #28a745; color: white; border: none; padding: 14px 30px;
+      font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer;
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
     }
+    .btn-submit:hover { background-color: #218838; }
 
-    .btn-submit:hover {
-      background-color: #218838;
-    }
-
-    /* OCTOPUS Campaign Banner Section */
+    /* OCTOPUS BANNER */
     .octopus-banner-wrapper {
-      background: #ffffff;
-      padding: 40px 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 350px;
+      background: #ffffff; padding: 40px 20px; border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; min-height: 350px;
+      position: relative; overflow: hidden;
     }
-
-    /* OCTOPUS Campaign Banner Section with Left Watermark */
-    .octopus-banner-wrapper {
-      background: #ffffff;
-      padding: 40px 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 350px;
-      position: relative;
-      overflow: hidden; /* Clips image within padding boundaries */
-    }
-
-    /* Candidate Background Watermark - Shifted to Right & White Background Blended Out */
     .octopus-banner-wrapper::before {
-      content: "";
-      background-image: url('src/images__19_-removebg-preview.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: right center;
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 45%;
-      height: 100%;
-      opacity: 0.15;
-      mix-blend-mode: multiply; /* Automatically blends out white background */
-      z-index: 1;
-      pointer-events: none;
+      content: ""; background-image: url('src/images__19_-removebg-preview.png');
+      background-size: cover; background-repeat: no-repeat; background-position: right center;
+      position: absolute; top: 0; right: 0; width: 45%; height: 100%; opacity: 0.15;
+      mix-blend-mode: multiply; z-index: 1; pointer-events: none;
     }
-
-    .octopus-title {
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      line-height: 1;
-    }
-
-    .octopus-title span {
-      display: inline-block;
-    }
-
-    .octopus-logo-inline {
-      width: clamp(55px, 8vw, 85px);
-      height: clamp(55px, 8vw, 85px);
-      object-fit: contain;
-      vertical-align: middle;
-      margin: 0 -2px;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    .octopus-subtitle {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #666;
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
+    .octopus-title { font-size: clamp(3rem, 6vw, 5rem); font-weight: 900; letter-spacing: 2px; color: #111; display: flex; align-items: center; gap: 5px; z-index: 2; }
+    .octopus-logo-inline { width: clamp(55px, 8vw, 85px); height: clamp(55px, 8vw, 85px); object-fit: contain; border-radius: 50%; }
+    .octopus-subtitle { margin-top: 20px; font-size: 18px; color: #666; font-weight: 600; z-index: 2; }
 
     /* FOOTER */
-    footer {
-      background-color: #1e7e34;
-      color: white;
-      padding: 40px 20px;
-      margin-top: 60px;
-    }
+    footer { background-color: #1e7e34; color: white; padding: 40px 20px; margin-top: 60px; }
+    .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+    .footer-brand img { width: 50px; height: 50px; background: white; border-radius: 8px; object-fit: contain; }
+    .footer-links h4 { margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
+    .footer-links ul { list-style: none; }
+    .footer-links a { color: white; text-decoration: none; font-size: 14px; }
 
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 30px;
-      align-items: center;
+    /* FORM SUCCESS NOTIFICATION */
+    #formStatusMsg {
+      display: none; padding: 12px; margin-top: 15px; border-radius: 6px;
+      font-size: 14px; font-weight: bold; text-align: center;
     }
-
-    .footer-brand {
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-    }
-
-    .footer-brand img {
-      width: 60px;
-      height: 60px;
-      background: white;
-      border-radius: 8px;
-      object-fit: contain;
-    }
-
-    .footer-links h4, .footer-accounts h4 {
-      margin-bottom: 15px;
-      font-size: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      padding-bottom: 5px;
-    }
-
-    .footer-links ul, .footer-accounts ul {
-      list-style: none;
-    }
-
-    .footer-links li, .footer-accounts li {
-      margin-bottom: 8px;
-    }
-
-    .footer-links a, .footer-accounts a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .footer-links a:hover, .footer-accounts a:hover {
-      text-decoration: underline;
-    }
-
-    .chat-support-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #dc3545;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 1000;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .nav-links {
-        display: none; /* Add mobile toggle menu if needed */
-      }
-    }
+    .status-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .status-error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
   </style>
 </head>
 <body>
@@ -324,16 +83,12 @@
     <div class="nav-container">
       <div class="logo-container">
         <img src="src/APCLOGO.png" alt="APC Logo">
-        <span style="font-weight: bold; font-size: 18px;">APC 2027 RIVERS EAST  SENATORIAL DISTRICT</span>
+        <span style="font-weight: 800; font-size: 16px; color: #ffffff;">APC 2027 RIVERS EAST SENATORIAL DISTRICT</span>
       </div>
       <ul class="nav-links">
         <li><a href="campaign-landing.html">Home</a></li>
-        
-        
         <li><a href="news-media.html">News</a></li>
-         
         <li><a href="faqs.html">FAQs</a></li>
-       
       </ul>
     </div>
   </nav>
@@ -343,35 +98,37 @@
     <h1 class="page-title">Contact Us</h1>
 
     <div class="contact-grid">
-      <!-- Left: Contact Form -->
+      <!-- Left: Contact Form sending direct to Campaign Email via Formspree API -->
       <div class="contact-form-wrapper">
-        <form id="contactForm" onsubmit="handleContactSubmit(event)">
+        <form id="contactForm" action="https://formspree.io/f/xdeezqzd" method="POST" onsubmit="handleContactEmailSubmit(event)">
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter your full name" required>
           </div>
 
           <div class="form-group">
             <label for="phone">Phone / Email</label>
-            <input type="text" id="phone" class="form-control" placeholder="Enter phone number or email address" required>
+            <input type="text" name="contact" id="phone" class="form-control" placeholder="Enter phone number or email address" required>
           </div>
 
           <div class="form-group">
-            <label for="comments">Comments</label>
-            <textarea id="comments" class="form-control" placeholder="Write your message or inquiry here..." required></textarea>
+            <label for="comments">Comments / Message</label>
+            <textarea name="message" id="comments" class="form-control" placeholder="Write your message or inquiry here..." required></textarea>
           </div>
 
-          <button type="submit" class="btn-submit">Submit</button>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <i class="fa-solid fa-paper-plane"></i> Send Message to Campaign Email
+          </button>
+          
+          <div id="formStatusMsg"></div>
         </form>
       </div>
 
       <!-- Right: OCTOPUS Campaign Custom Branding Banner -->
       <div class="octopus-banner-wrapper">
         <div class="octopus-title">
-          <!-- First 'O' is APC Logo -->
           <img src="src/APCLOGO.png" alt="APC Logo" class="octopus-logo-inline">
           <span>C</span><span>T</span>
-          <!-- Second 'O' is Senate Seal / Coat of Arms Logo -->
           <img src="src/Senatelogo.png" alt="Senate Seal" class="octopus-logo-inline">
           <span>P</span><span>U</span><span>S</span>
         </div>
@@ -384,34 +141,76 @@
   <footer>
     <div class="footer-content">
       <div class="footer-brand">
-        <img src="src/APCLOGO.png" alt="APC Logo">
-        <img src="src/Senatelogo.png" alt="Senate Seal Logo">
-        <p style="font-size: 13px; line-height: 1.4;">Official Campaign Website for Senator Allwell Onyesoh Rivers East 2027. Register, get informed and take part in building a better Rivers East.</p>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <img src="src/APCLOGO.png" alt="APC Logo">
+          <img src="src/Senatelogo.png" alt="Senate Seal Logo">
+        </div>
+        <p style="font-size: 13px; line-height: 1.4; color: #cbd5e1; margin-top: 10px;">Official Campaign Website for Senator Allwell Onyesoh Rivers East 2027.</p>
       </div>
       <div class="footer-links">
         <h4>QUICK LINKS</h4>
         <ul>
-          <li><a href="press-social-hub.html">News</a></li>
+          <li><a href="campaign-landing.html">Home</a></li>
           <li><a href="faqs.html">FAQs</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="news-media.html">News</a></li>
         </ul>
       </div>
-      <div class="footer-accounts">
-        
+    </div>
   </footer>
 
-  <!-- Floating Chat Support Button -->
-  <a href="javascript:void(0)" onclick="alert('Live Support Agent connection initiated. How can we help your campaign?')" class="chat-support-btn">
-    <i class="fa-solid fa-comment-dots"></i> Chat with Support
-  </a>
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6ae272c01609583475218d6a/1k6290gsv';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    function handleContactSubmit(event) {
+    /* EMAIL API SUBMISSION (Forms deliver straight to campaign inbox) */
+    async function handleContactEmailSubmit(event) {
       event.preventDefault();
-      const name = document.getElementById('name').value;
-      alert(`Thank you, ${name}! Your message has been received by the Senator Allwell Onyesoh campaign team. We will get back to you shortly.`);
-      document.getElementById('contactForm').reset();
+      
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const statusMsg = document.getElementById('formStatusMsg');
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
+
+      const formData = new FormData(form);
+
+      try {
+        // Send request asynchronously to Email API
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          statusMsg.className = 'status-success';
+          statusMsg.innerText = "Thank you! Your message has been sent directly to Senator Allwell Onyesoh's campaign email inbox.";
+          statusMsg.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (error) {
+        statusMsg.className = 'status-error';
+        statusMsg.innerText = "Error sending message. Please try again or check your connection.";
+        statusMsg.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message to Campaign Email';
+      }
     }
   </script>
 </body>
