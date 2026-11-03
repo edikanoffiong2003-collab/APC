@@ -562,12 +562,45 @@
   </div>
 </div>
 
-<!-- JAVASCRIPT LOGIC CONTROLLER -->
+<!-- JAVASCRIPT LOGIC CONTROLLER (Connected to Cloud Database) -->
 <script>
+  // Initialize Firebase (Ensure Firebase SDKs are loaded in <head>)
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
+
+  const STORAGE_KEY = 'apc_rivers_east_user';
   const VOTER_DB_KEY = 'apc_pledged_voters_list';
 
-  // Retrieve or Generate Unique Campaign Agent ID
+  // Get current logged-in user's phone number or campaign ID
+  function getLoggedInUserPhone() {
+    const storedUser = localStorage.getItem(STORAGE_KEY);
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      return user.phone ? user.phone.replace(/[^0-9]/g, '') : null;
+    }
+    return null;
+  }
+
+  // Retrieve or Generate Unique Campaign Agent ID (Linked to User Profile)
   function getAgentId() {
+    const storedUser = localStorage.getItem(STORAGE_KEY);
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      if (user.campaignId) return user.campaignId;
+      if (user.phone) return user.phone.replace(/[^0-9]/g, '');
+    }
+    
     let agentId = localStorage.getItem('campaign_agent_id');
     if (!agentId) {
       agentId = 'ALLWELL-' + Math.floor(100000 + Math.random() * 900000);
@@ -602,32 +635,41 @@
     });
   }
 
-  // Capture incoming recruits from WhatsApp referral link
-  function checkReferral() {
+  // Capture incoming recruits from WhatsApp referral link & Save to Cloud
+  async function checkReferral() {
     const urlParams = new URLSearchParams(window.location.search);
     const ref = urlParams.get('ref');
     
     if (ref) {
-      // Prompt referred user to quickly log their pledge
       const supporterName = prompt("Welcome! You were invited to join Senator Allwell Onyesoh's campaign roster. Please enter your Full Name:");
       if (supporterName) {
         const supporterPhone = prompt("Enter your WhatsApp/Phone Number:");
         const supporterLga = prompt("Enter your LGA (e.g. Obio/Akpor, Ikwerre, Etche, Okrika):") || "Rivers East";
 
         if (supporterName && supporterPhone) {
+          const cleanPhone = supporterPhone.replace(/[^0-9]/g, '');
           const newVoter = {
-            id: Date.now(),
+            id: String(Date.now()),
             name: supporterName,
-            phone: supporterPhone,
+            phone: cleanPhone,
             lga: supporterLga,
             dateLogged: new Date().toLocaleDateString()
           };
 
-          let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
-          voterList.push(newVoter);
-          localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
-          
-          alert(`Thank you ${supporterName}! You have been added to the campaign roster.`);
+          try {
+            // Save to the referrer agent's pledges collection in Cloud DB
+            await db.collection('voters').doc(ref).collection('pledges').doc(newVoter.id).set(newVoter);
+
+            // Also save locally
+            let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+            voterList.push(newVoter);
+            localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+            
+            alert(`Thank you ${supporterName}! You have been added to the campaign roster.`);
+          } catch (err) {
+            console.error("Error logging recruit:", err);
+          }
+
           // Clean URL parameter
           window.history.replaceState({}, document.title, window.location.pathname);
         }
@@ -641,8 +683,8 @@
     loadVoterDashboard();
   });
 
-  // Handle Form Submission for "Submit 20-Voter Pledge"
-  function handlePledgeSubmit(event) {
+  // Handle Form Submission for "Submit 20-Voter Pledge" (Cloud-Connected)
+  async function handlePledgeSubmit(event) {
     event.preventDefault();
 
     const nameInput = document.getElementById('supporterName');
@@ -654,36 +696,63 @@
       return;
     }
 
+    const userPhone = getLoggedInUserPhone();
     const newVoter = {
-      id: Date.now(),
+      id: String(Date.now()),
       name: nameInput.value,
-      phone: phoneInput.value,
+      phone: phoneInput.value.replace(/[^0-9]/g, ''),
       lga: lgaSelect.value,
       dateLogged: new Date().toLocaleDateString()
     };
 
-    // Save to LocalStorage
-    let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
-    voterList.push(newVoter);
-    localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+    try {
+      // Save to Firebase Cloud Database if logged in
+      if (userPhone) {
+        await db.collection('voters').doc(userPhone).collection('pledges').doc(newVoter.id).set(newVoter);
+      }
 
-    // Clear Form Inputs
-    nameInput.value = '';
-    phoneInput.value = '';
-    lgaSelect.value = '';
+      // Save to LocalStorage fallback
+      let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+      voterList.push(newVoter);
+      localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
 
-    // Refresh Dashboard UI
-    loadVoterDashboard();
-    alert(`Success! ${newVoter.name} has been logged under your campaign profile.`);
+      // Clear Form Inputs
+      nameInput.value = '';
+      phoneInput.value = '';
+      lgaSelect.value = '';
+
+      // Refresh Dashboard UI
+      loadVoterDashboard();
+      alert(`Success! ${newVoter.name} has been logged under your campaign profile.`);
+    } catch (error) {
+      console.error("Error adding voter:", error);
+      alert("Failed to save voter to server. Please check your network connection.");
+    }
   }
 
-  // Load & Render Dashboard Table & Progress Bar
-  function loadVoterDashboard() {
-    const voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+  // Load & Render Dashboard Table & Progress Bar from Cloud Database
+  async function loadVoterDashboard() {
     const tableBody = document.getElementById('voterTableBody');
     const emptyMsg = document.getElementById('emptyRosterMsg');
     const countNum = document.getElementById('voterCountNum');
     const progressBar = document.getElementById('voterProgressBar');
+
+    let voterList = [];
+    const userPhone = getLoggedInUserPhone();
+
+    if (userPhone) {
+      try {
+        // Fetch real-time pledges from Firebase Cloud
+        const snapshot = await db.collection('voters').doc(userPhone).collection('pledges').get();
+        snapshot.forEach(doc => voterList.push(doc.data()));
+        localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+      } catch (err) {
+        console.error("Error loading pledges from cloud:", err);
+        voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+      }
+    } else {
+      voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+    }
 
     // Update Counter & Progress Meter
     const totalCount = voterList.length;
@@ -710,7 +779,8 @@
       const row = document.createElement('tr');
 
       const waMsg = encodeURIComponent(`Hello ${voter.name}, thank you for standing with Senator Allwell Onyesoh for Rivers East 2027! Ensure your PVC is ready for Election Day.`);
-      const waUrl = `https://wa.me/${voter.phone.replace(/[^0-9]/g, '')}?text=${waMsg}`;
+      const cleanPhone = voter.phone ? voter.phone.replace(/[^0-9]/g, '') : '';
+      const waUrl = `https://wa.me/${cleanPhone}?text=${waMsg}`;
 
       row.innerHTML = `
         <td class="cell-index">${index + 1}</td>
@@ -722,7 +792,7 @@
           <a href="${waUrl}" target="_blank" class="btn-whatsapp">
             <i class="fa-brands fa-whatsapp"></i> WhatsApp
           </a>
-          <button onclick="deleteVoter(${voter.id})" class="btn-delete" title="Remove voter">
+          <button onclick="deleteVoter('${voter.id}')" class="btn-delete" title="Remove voter">
             <i class="fa-solid fa-trash"></i>
           </button>
         </td>
@@ -731,13 +801,25 @@
     });
   }
 
-  // Delete Voter Function
-  function deleteVoter(id) {
+  // Delete Voter Function (Synced to Cloud)
+  async function deleteVoter(id) {
     if (confirm('Are you sure you want to remove this voter from your roster?')) {
-      let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
-      voterList = voterList.filter(v => v.id !== id);
-      localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
-      loadVoterDashboard();
+      const userPhone = getLoggedInUserPhone();
+
+      try {
+        if (userPhone) {
+          await db.collection('voters').doc(userPhone).collection('pledges').doc(String(id)).delete();
+        }
+
+        let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+        voterList = voterList.filter(v => String(v.id) !== String(id));
+        localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+
+        loadVoterDashboard();
+      } catch (err) {
+        console.error("Error deleting voter:", err);
+        alert("Failed to delete voter from server.");
+      }
     }
   }
 

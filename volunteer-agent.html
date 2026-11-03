@@ -75,130 +75,153 @@
   </div>
 
  <script>
-    const STORAGE_KEY = 'apc_rivers_east_user';
-    const VOTER_DB_KEY = 'apc_pledged_voters_list';
+  // Initialize Firebase (Ensure Firebase SDKs are loaded in <head>)
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-    // Database of LGAs and their respective Wards (Rivers East 8 LGAs)
-    const wardDatabase = {
-      emohua: [
-        "Ogbakiri I", "Ogbakiri II", "Emohua I", "Emohua II", "Obelle", 
-        "Ibaa", "Rundele", "Rumuekpe", "Elele Alimini", "Omudioga / Akpadu", 
-        "Egbeda", "Ubimini", "Odegu I", "Odegu II"
-      ],
-      etche: [
-        "Afara", "Egbu", "Igbo I", "Igbo II", "Igbo III", 
-        "Egwi / Opiro", "Nihi", "Odufor", "Obibi / Akwukabi", "Obite", 
-        "Okehi", "Ozuzu", "Ulakwo", "Igbodo", "Akwa / Odogwa", 
-        "Akpoku / Umuoye", "Ndashi", "Mba", "Owu"
-      ],
-      ikwerre: [
-        "Isiokpo I", "Isiokpo II", "Elele I", "Elele II", "Omerelu", 
-        "Apani", "Umuanwa", "Ubima", "Omagwa", "Omademe / Ipo", 
-        "Ozuaha", "Igwuruta", "Aluu"
-      ],
-      obioakpor: [
-        "Oro-Igwe", "Rumuodara", "Rumuokwu (2B)", "Rumuodomaya (3A)", "Elelenwo (3B)", 
-        "Worji", "Rumuokoro", "Rumuomasi", "Rumueme (7A)", "Rumueme (7B)", 
-        "Rumueme (7C)", "Rumuigbo (8A)", "Rumukwuta (8B)", "Rukpokwu", 
-        "Choba", "Ozuoba / Ogbogoro", "Rumuolumeni"
-      ],
-      ogubolo: [
-        "Ogu I", "Ogu II", "Ogu III", "Ogu IV", "Ogu V", 
-        "Ogu VI", "Bolo I", "Bolo II", "Bolo III", "Bolo IV", 
-        "Wakama", "Ele"
-      ],
-      okrika: [
-        "Okrika I", "Okrika II", "Okrika III", "Okrika IV", "Okrika V", 
-        "Okrika VI", "Okrika VII", "Ogan", "Kalio", "Ogoloma I", 
-        "Ogoloma II", "Ogoloma III"
-      ],
-      omuma: [
-        "Eberi-Dikeomuuo Community", "Ariraniiri / Owu-Ahia Community", "Obiohia Community", "Ohimogho Community", "Oyoro", 
-        "Ofeh Community", "Umuogba I Community", "Umuogba II Community", "Obibi / Ajuloke Community", "Umuajuloke Community"
-      ],
-      portharcourt: [
-        "Oromineke / Ezimgbu", "Orogbum", "Oroabali", "Ogbunabali", "Port Harcourt Township I", 
-        "Port Harcourt Township II (or VI)", "Port Harcourt VII", "Ochiri / Rumukalagbor", "Oroworukwo", "Nkpolu Oroworukwo", 
-        "Rumuwoji (One)", "Rumuwoji (Two)", "Rumuwoji (Three)", "Mgbundukwu (One)", "Mgbundukwu (Two)", 
-        "Rumuobiekwe", "Diobu", "Nkpolu Oroworukwo Two", "Elekahia", "Abuloma / Amadi-Ama"
-      ]
-    };
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
 
-    function updateWards() {
-      const lgaSelect = document.getElementById('agentLga');
-      const wardSelect = document.getElementById('agentWard');
-      if (!lgaSelect || !wardSelect) return;
+  const STORAGE_KEY = 'apc_rivers_east_user';
+  const VOTER_DB_KEY = 'apc_pledged_voters_list';
 
-      const selectedLga = lgaSelect.value;
-      wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
+  // Database of LGAs and their respective Wards (Rivers East 8 LGAs)
+  const wardDatabase = {
+    emohua: [
+      "Ogbakiri I", "Ogbakiri II", "Emohua I", "Emohua II", "Obelle", 
+      "Ibaa", "Rundele", "Rumuekpe", "Elele Alimini", "Omudioga / Akpadu", 
+      "Egbeda", "Ubimini", "Odegu I", "Odegu II"
+    ],
+    etche: [
+      "Afara", "Egbu", "Igbo I", "Igbo II", "Igbo III", 
+      "Egwi / Opiro", "Nihi", "Odufor", "Obibi / Akwukabi", "Obite", 
+      "Okehi", "Ozuzu", "Ulakwo", "Igbodo", "Akwa / Odogwa", 
+      "Akpoku / Umuoye", "Ndashi", "Mba", "Owu"
+    ],
+    ikwerre: [
+      "Isiokpo I", "Isiokpo II", "Elele I", "Elele II", "Omerelu", 
+      "Apani", "Umuanwa", "Ubima", "Omagwa", "Omademe / Ipo", 
+      "Ozuaha", "Igwuruta", "Aluu"
+    ],
+    obioakpor: [
+      "Oro-Igwe", "Rumuodara", "Rumuokwu (2B)", "Rumuodomaya (3A)", "Elelenwo (3B)", 
+      "Worji", "Rumuokoro", "Rumuomasi", "Rumueme (7A)", "Rumueme (7B)", 
+      "Rumueme (7C)", "Rumuigbo (8A)", "Rumukwuta (8B)", "Rukpokwu", 
+      "Choba", "Ozuoba / Ogbogoro", "Rumuolumeni"
+    ],
+    ogubolo: [
+      "Ogu I", "Ogu II", "Ogu III", "Ogu IV", "Ogu V", 
+      "Ogu VI", "Bolo I", "Bolo II", "Bolo III", "Bolo IV", 
+      "Wakama", "Ele"
+    ],
+    okrika: [
+      "Okrika I", "Okrika II", "Okrika III", "Okrika IV", "Okrika V", 
+      "Okrika VI", "Okrika VII", "Ogan", "Kalio", "Ogoloma I", 
+      "Ogoloma II", "Ogoloma III"
+    ],
+    omuma: [
+      "Eberi-Dikeomuuo Community", "Ariraniiri / Owu-Ahia Community", "Obiohia Community", "Ohimogho Community", "Oyoro", 
+      "Ofeh Community", "Umuogba I Community", "Umuogba II Community", "Obibi / Ajuloke Community", "Umuajuloke Community"
+    ],
+    portharcourt: [
+      "Oromineke / Ezimgbu", "Orogbum", "Oroabali", "Ogbunabali", "Port Harcourt Township I", 
+      "Port Harcourt Township II (or VI)", "Port Harcourt VII", "Ochiri / Rumukalagbor", "Oroworukwo", "Nkpolu Oroworukwo", 
+      "Rumuwoji (One)", "Rumuwoji (Two)", "Rumuwoji (Three)", "Mgbundukwu (One)", "Mgbundukwu (Two)", 
+      "Rumuobiekwe", "Diobu", "Nkpolu Oroworukwo Two", "Elekahia", "Abuloma / Amadi-Ama"
+    ]
+  };
 
-      if (selectedLga && wardDatabase[selectedLga]) {
-        wardDatabase[selectedLga].forEach(ward => {
-          const option = document.createElement("option");
-          option.value = ward;
-          option.textContent = ward;
-          wardSelect.appendChild(option);
-        });
-        wardSelect.disabled = false;
-      } else {
-        wardSelect.disabled = true;
+  function updateWards() {
+    const lgaSelect = document.getElementById('agentLga');
+    const wardSelect = document.getElementById('agentWard');
+    if (!lgaSelect || !wardSelect) return;
+
+    const selectedLga = lgaSelect.value;
+    wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
+
+    if (selectedLga && wardDatabase[selectedLga]) {
+      wardDatabase[selectedLga].forEach(ward => {
+        const option = document.createElement("option");
+        option.value = ward;
+        option.textContent = ward;
+        wardSelect.appendChild(option);
+      });
+      wardSelect.disabled = false;
+    } else {
+      wardSelect.disabled = true;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Pre-fill form details if user registered via auth system
+    const storedUser = localStorage.getItem(STORAGE_KEY);
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      if (user.name && document.getElementById('agentName')) document.getElementById('agentName').value = user.name;
+      if (user.phone && document.getElementById('agentPhone')) document.getElementById('agentPhone').value = user.phone;
+      
+      if (user.lga && document.getElementById('agentLga')) {
+        const lgaSelect = document.getElementById('agentLga');
+        lgaSelect.value = user.lga;
+        updateWards(); // Populate wards based on stored LGA
+        
+        if (user.ward && document.getElementById('agentWard')) {
+          document.getElementById('agentWard').value = user.ward;
+        }
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // 1. Pre-fill form details if user registered via auth system
-      const storedUser = localStorage.getItem(STORAGE_KEY);
-      if (storedUser) {
-        const user = JSON.parse(storedUser);
-        if (user.name && document.getElementById('agentName')) document.getElementById('agentName').value = user.name;
-        if (user.phone && document.getElementById('agentPhone')) document.getElementById('agentPhone').value = user.phone;
-        
-        if (user.lga && document.getElementById('agentLga')) {
-          const lgaSelect = document.getElementById('agentLga');
-          lgaSelect.value = user.lga;
-          updateWards(); // Populate wards based on stored LGA
-          
-          if (user.ward && document.getElementById('agentWard')) {
-            document.getElementById('agentWard').value = user.ward;
-          }
-        }
+    // 2. Check if user arrived via a shared WhatsApp referral link (?ref=...)
+    const urlParams = new URLSearchParams(window.location.search);
+    const refAgent = urlParams.get('ref');
+    if (refAgent) {
+      sessionStorage.setItem('referred_by_agent', refAgent);
+    }
+  });
+
+  // ✅ UPDATED FUNCTION: Syncs Agent application & Referral recruits to Cloud Database
+  async function handleAgentRegistration(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('agentName').value;
+    const rawPhone = document.getElementById('agentPhone').value;
+    const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
+    const lga = document.getElementById('agentLga').value;
+    const ward = document.getElementById('agentWard').value;
+    const pu = document.getElementById('agentPu') ? document.getElementById('agentPu').value : '';
+    const pvcStatus = document.getElementById('agentPvcStatus') ? document.getElementById('agentPvcStatus').value : 'Verified';
+
+    // Retrieve existing account or generate new profile
+    let existingUser = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+    existingUser.name = name || existingUser.name;
+    existingUser.phone = cleanPhone || existingUser.phone;
+    existingUser.lga = lga || existingUser.lga;
+    existingUser.ward = ward || existingUser.ward;
+    existingUser.puCode = pu;
+    existingUser.pvcStatus = pvcStatus;
+    existingUser.isAgent = true;
+    existingUser.tier = 'Verified PU Agent';
+    
+    if (!existingUser.campaignId) {
+      existingUser.campaignId = 'APC-2027-' + Math.floor(1000 + Math.random() * 9000);
+    }
+
+    try {
+      // 1. SAVE AGENT STATUS TO CLOUD DATABASE (Works cross-device)
+      if (cleanPhone) {
+        await db.collection('voters').doc(cleanPhone).set(existingUser, { merge: true });
       }
 
-      // 2. Check if user arrived via a shared WhatsApp referral link (?ref=...)
-      const urlParams = new URLSearchParams(window.location.search);
-      const refAgent = urlParams.get('ref');
-      if (refAgent) {
-        sessionStorage.setItem('referred_by_agent', refAgent);
-      }
-    });
-
-    function handleAgentRegistration(event) {
-      event.preventDefault();
-
-      const name = document.getElementById('agentName').value;
-      const phone = document.getElementById('agentPhone').value;
-      const lga = document.getElementById('agentLga').value;
-      const ward = document.getElementById('agentWard').value;
-      const pu = document.getElementById('agentPu') ? document.getElementById('agentPu').value : '';
-      const pvcStatus = document.getElementById('agentPvcStatus') ? document.getElementById('agentPvcStatus').value : 'Verified';
-
-      // Retrieve existing account or generate new profile
-      let existingUser = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-
-      existingUser.name = name || existingUser.name;
-      existingUser.phone = phone || existingUser.phone;
-      existingUser.lga = lga || existingUser.lga;
-      existingUser.ward = ward || existingUser.ward;
-      existingUser.puCode = pu;
-      existingUser.pvcStatus = pvcStatus;
-      existingUser.isAgent = true;
-      existingUser.tier = 'Verified PU Agent';
-      
-      if (!existingUser.campaignId) {
-        existingUser.campaignId = 'APC-2027-' + Math.floor(1000 + Math.random() * 9000);
-      }
-
-      // Save updated profile state
+      // 2. Save updated profile locally on current device
       localStorage.setItem(STORAGE_KEY, JSON.stringify(existingUser));
 
       // 3. Handle referral signups if user registered via an agent's WhatsApp link
@@ -207,12 +230,15 @@
         const newVoter = {
           id: Date.now(),
           name: name,
-          phone: phone,
+          phone: cleanPhone,
           lga: lga,
           dateLogged: new Date().toLocaleDateString()
         };
 
-        // Save to agent-specific recruit tracking & global roster to update live targets
+        // Save referral record to Cloud Database under the agent's recruiter account
+        await db.collection('voters').doc(refAgent).collection('recruits').add(newVoter);
+
+        // Save locally as fallback
         const agentRecruitsKey = 'recruits_' + refAgent;
         let agentRecruits = JSON.parse(localStorage.getItem(agentRecruitsKey)) || [];
         agentRecruits.push(newVoter);
@@ -232,13 +258,17 @@
 
       // Redirect to mobilize.html
       window.location.href = 'mobilize.html';
+    } catch (error) {
+      console.error("Agent registration error:", error);
+      alert("Error saving agent application. Please check your internet connection.");
     }
-  </script>
+  }
+</script>
 
-  <!-- Google Translate Hidden Container & Scripts -->
-  <div id="google_translate_element" style="display:none;"></div>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  <script src="translations.js"></script>
-  <script src="style.js"></script>
+<!-- Google Translate Hidden Container & Scripts -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="translations.js"></script>
+<script src="style.js"></script>
 </body>
 </html>
