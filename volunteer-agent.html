@@ -74,8 +74,10 @@
     </form>
   </div>
 
- <script>
-  // Initialize Firebase (Ensure Firebase SDKs are loaded in <head>)
+<script>
+  // ==========================================
+  // 1. SAFE FIREBASE INITIALIZATION
+  // ==========================================
   const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -85,15 +87,23 @@
     appId: "YOUR_APP_ID"
   };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  let db = null;
+  // Guard check prevents unhandled ReferenceError if script tags fail to load
+  if (typeof firebase !== 'undefined') {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    db = firebase.firestore();
+  } else {
+    console.warn("Firebase SDK not loaded in <head>. Running in local storage mode.");
   }
-  const db = firebase.firestore();
 
   const STORAGE_KEY = 'apc_rivers_east_user';
   const VOTER_DB_KEY = 'apc_pledged_voters_list';
 
-  // Database of LGAs and their respective Wards (Rivers East 8 LGAs)
+  // ==========================================
+  // 2. RIVERS EAST LGAS & WARDS DATABASE
+  // ==========================================
   const wardDatabase = {
     emohua: [
       "Ogbakiri I", "Ogbakiri II", "Emohua I", "Emohua II", "Obelle", 
@@ -144,7 +154,8 @@
     const wardSelect = document.getElementById('agentWard');
     if (!lgaSelect || !wardSelect) return;
 
-    const selectedLga = lgaSelect.value;
+    // Clean input string to guarantee clean lookup against database keys
+    const selectedLga = lgaSelect.value.toLowerCase().replace(/[^a-z]/g, '');
     wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
 
     if (selectedLga && wardDatabase[selectedLga]) {
@@ -154,13 +165,24 @@
         option.textContent = ward;
         wardSelect.appendChild(option);
       });
+      wardSelect.removeAttribute('disabled');
       wardSelect.disabled = false;
     } else {
+      wardSelect.innerHTML = '<option value="">-- Choose LGA First --</option>';
       wardSelect.disabled = true;
     }
   }
 
+  // ==========================================
+  // 3. INITIALIZATION & PRE-FILL LOGIC
+  // ==========================================
   document.addEventListener('DOMContentLoaded', () => {
+    // Attach explicit listener to LGA dropdown
+    const lgaSelect = document.getElementById('agentLga');
+    if (lgaSelect) {
+      lgaSelect.addEventListener('change', updateWards);
+    }
+
     // 1. Pre-fill form details if user registered via auth system
     const storedUser = localStorage.getItem(STORAGE_KEY);
     if (storedUser) {
@@ -169,8 +191,8 @@
       if (user.phone && document.getElementById('agentPhone')) document.getElementById('agentPhone').value = user.phone;
       
       if (user.lga && document.getElementById('agentLga')) {
-        const lgaSelect = document.getElementById('agentLga');
-        lgaSelect.value = user.lga;
+        const cleanLga = user.lga.toLowerCase().replace(/[^a-z]/g, '');
+        lgaSelect.value = cleanLga;
         updateWards(); // Populate wards based on stored LGA
         
         if (user.ward && document.getElementById('agentWard')) {
@@ -187,7 +209,9 @@
     }
   });
 
-  // ✅ UPDATED FUNCTION: Syncs Agent application & Referral recruits to Cloud Database
+  // ==========================================
+  // 4. REGISTRATION HANDLER
+  // ==========================================
   async function handleAgentRegistration(event) {
     event.preventDefault();
 
@@ -199,7 +223,6 @@
     const pu = document.getElementById('agentPu') ? document.getElementById('agentPu').value : '';
     const pvcStatus = document.getElementById('agentPvcStatus') ? document.getElementById('agentPvcStatus').value : 'Verified';
 
-    // Retrieve existing account or generate new profile
     let existingUser = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
     existingUser.name = name || existingUser.name;
@@ -216,8 +239,8 @@
     }
 
     try {
-      // 1. SAVE AGENT STATUS TO CLOUD DATABASE (Works cross-device)
-      if (cleanPhone) {
+      // 1. SAVE AGENT STATUS TO CLOUD DATABASE (If Firebase is initialized)
+      if (db && cleanPhone) {
         await db.collection('voters').doc(cleanPhone).set(existingUser, { merge: true });
       }
 
@@ -235,10 +258,10 @@
           dateLogged: new Date().toLocaleDateString()
         };
 
-        // Save referral record to Cloud Database under the agent's recruiter account
-        await db.collection('voters').doc(refAgent).collection('recruits').add(newVoter);
+        if (db) {
+          await db.collection('voters').doc(refAgent).collection('recruits').add(newVoter);
+        }
 
-        // Save locally as fallback
         const agentRecruitsKey = 'recruits_' + refAgent;
         let agentRecruits = JSON.parse(localStorage.getItem(agentRecruitsKey)) || [];
         agentRecruits.push(newVoter);
@@ -255,8 +278,6 @@
       }
 
       alert('Polling Unit Agent application complete! Redirecting to your Grassroots Mobilization Hub...');
-
-      // Redirect to mobilize.html
       window.location.href = 'mobilize.html';
     } catch (error) {
       console.error("Agent registration error:", error);
