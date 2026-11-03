@@ -36,7 +36,8 @@
 
       <div class="form-group">
         <label data-translate="label_lga">Local Government Area (LGA):</label>
-        <select id="agentLga" onchange="updateWards()" required>
+        <!-- Removed inline onchange to prevent double-firing -->
+        <select id="agentLga" required>
           <option value="">Select LGA</option>
           <option value="etche">Etche</option>
           <option value="omuma">Omuma</option>
@@ -88,7 +89,6 @@
   };
 
   let db = null;
-  // Guard check prevents unhandled ReferenceError if script tags fail to load
   if (typeof firebase !== 'undefined') {
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
@@ -154,7 +154,6 @@
     const wardSelect = document.getElementById('agentWard');
     if (!lgaSelect || !wardSelect) return;
 
-    // Clean input string to guarantee clean lookup against database keys
     const selectedLga = lgaSelect.value.toLowerCase().replace(/[^a-z]/g, '');
     wardSelect.innerHTML = '<option value="">-- Select Ward --</option>';
 
@@ -177,23 +176,21 @@
   // 3. INITIALIZATION & PRE-FILL LOGIC
   // ==========================================
   document.addEventListener('DOMContentLoaded', () => {
-    // Attach explicit listener to LGA dropdown
     const lgaSelect = document.getElementById('agentLga');
     if (lgaSelect) {
       lgaSelect.addEventListener('change', updateWards);
     }
 
-    // 1. Pre-fill form details if user registered via auth system
     const storedUser = localStorage.getItem(STORAGE_KEY);
     if (storedUser) {
       const user = JSON.parse(storedUser);
       if (user.name && document.getElementById('agentName')) document.getElementById('agentName').value = user.name;
       if (user.phone && document.getElementById('agentPhone')) document.getElementById('agentPhone').value = user.phone;
       
-      if (user.lga && document.getElementById('agentLga')) {
+      if (user.lga && lgaSelect) {
         const cleanLga = user.lga.toLowerCase().replace(/[^a-z]/g, '');
         lgaSelect.value = cleanLga;
-        updateWards(); // Populate wards based on stored LGA
+        updateWards();
         
         if (user.ward && document.getElementById('agentWard')) {
           document.getElementById('agentWard').value = user.ward;
@@ -201,7 +198,6 @@
       }
     }
 
-    // 2. Check if user arrived via a shared WhatsApp referral link (?ref=...)
     const urlParams = new URLSearchParams(window.location.search);
     const refAgent = urlParams.get('ref');
     if (refAgent) {
@@ -239,15 +235,12 @@
     }
 
     try {
-      // 1. SAVE AGENT STATUS TO CLOUD DATABASE (If Firebase is initialized)
       if (db && cleanPhone) {
         await db.collection('voters').doc(cleanPhone).set(existingUser, { merge: true });
       }
 
-      // 2. Save updated profile locally on current device
       localStorage.setItem(STORAGE_KEY, JSON.stringify(existingUser));
 
-      // 3. Handle referral signups if user registered via an agent's WhatsApp link
       const refAgent = sessionStorage.getItem('referred_by_agent');
       if (refAgent) {
         const newVoter = {
@@ -289,7 +282,8 @@
 <!-- Google Translate Hidden Container & Scripts -->
 <div id="google_translate_element" style="display:none;"></div>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<script src="translations.js"></script>
-<script src="style.js"></script>
+<!-- Make sure translations.js file exists in root or comment out if unused -->
+<script src="translations.js" onerror="console.warn('translations.js not found, skipping.');"></script>
+<script src="style.js" onerror="console.warn('style.js not found, skipping.');"></script>
 </body>
 </html>
