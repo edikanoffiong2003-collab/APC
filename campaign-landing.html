@@ -620,71 +620,88 @@ body {
   </div>
 </section>
 
-  <!-- Live Broadcast & Financial Support Section -->
+ <!-- Live Broadcast & Financial Support Section -->
   <section class="campaign-interactive-section" id="live-and-support" style="padding: 3.5rem 0;">
     <div class="container">
       
-      <!-- Live Campaign Broadcast Stream -->
-      <div class="interactive-card live-stream-card" style="margin-bottom: 2rem;">
-        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <!-- Live Campaign Broadcast Stream Card -->
+      <div class="interactive-card live-stream-card" style="margin-bottom: 2rem; background: #0f172a; border-radius: 12px; padding: 1.5rem; color: #fff; border: 1px solid #1e293b; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 1rem;">
           <div>
-            <span class="badge-live"><i class="fa-solid fa-circle"></i> LIVE NOW</span>
-            <h3 style="margin: 0; display: inline-block; margin-left: 8px;" data-translate="live_stream_heading"><i class="fa-solid fa-tv"></i> Campaign Live Stream</h3>
+            <span class="badge-live" style="background: #16a34a; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;"><i class="fa-solid fa-circle" style="font-size: 0.5rem; color: #4ade80; margin-right: 4px;"></i> LIVE NOW</span>
+            <h3 style="margin: 0; display: inline-block; margin-left: 8px; font-size: 1.25rem;" data-translate="live_stream_heading"><i class="fa-solid fa-tv"></i> Campaign Live Stream</h3>
           </div>
-          <a href="livesteam.html" class="btn-primary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none; border-radius: 4px;" data-translate="live_stream_btn">
+          <a href="livesteam.html" class="btn-primary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none; border-radius: 4px; color: #38bdf8; font-weight: 600;" data-translate="live_stream_btn">
             Full Interactive Feed <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
         
-        <p data-translate="live_stream_desc">Watch Senator Allwell Onyesoh’s live town halls, rallies, and legislative briefings directly from Rivers East..</p>
+        <p data-translate="live_stream_desc" style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.2rem;">Watch Senator Allwell Onyesoh’s live town halls, rallies, and legislative briefings directly from Rivers East.</p>
         
-        <div class="video-embed-container">
-          <iframe 
-            src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" 
-            title="Senator Allwell Onyesoh Live Stream" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
+        <!-- CLICKABLE EVENT FLYER INSTEAD OF BROKEN IFRAME -->
+        <div onclick="openNewsModal('live-stream-modal')" style="position: relative; cursor: pointer; border-radius: 10px; overflow: hidden; border: 2px solid #334155; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.01)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="youtubeflyer.jpg" alt="Senator Allwell Onyesoh Live Stream Flyer" style="width: 100%; height: 280px; object-fit: cover; display: block;" />
+          
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42,0.95) 15%, rgba(15,23,42,0.4) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;">
+            
+            <!-- Play Button Overlay Center -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(220, 38, 38, 0.9); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+              <i class="fa-solid fa-play" style="color: #fff; font-size: 1.6rem; margin-left: 3px;"></i>
+            </div>
+
+            <span style="font-size: 0.75rem; color: #4ade80; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Featured Broadcast / Town Hall</span>
+            <h4 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; margin: 0; line-height: 1.3;">Rivers East Legislative Town Hall & Constituency Engagement</h4>
+            <span style="font-size: 0.82rem; color: #cbd5e1; margin-top: 6px;"><i class="fa-regular fa-calendar-days"></i> Click to launch live stream, public Q&A & transcripts</span>
+          </div>
         </div>
 
-        <div style="margin-top: 1rem; text-align: center;">
-          <a href="livesteam.html" class="btn-primary" style="background: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;" data-translate="live_chat_btn">
+        <div style="margin-top: 1.2rem; text-align: center;">
+          <a href="livesteam.html" class="btn-primary" style="background: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block; width: 100%; box-sizing: border-box;" data-translate="live_chat_btn">
             <i class="fa-solid fa-comments"></i> Open Live Stream Chat & Public Q&A
           </a>
         </div>
       </div>
 
-      <div class="interactive-card live-stream-card" style="margin-bottom: 2rem;">
-        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <!-- Live Social Media Feeds Card -->
+      <div class="interactive-card live-stream-card" style="margin-bottom: 2rem; background: #0f172a; border-radius: 12px; padding: 1.5rem; color: #fff; border: 1px solid #1e293b; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 1rem;">
           <div>
-            <span class="badge-live"><i class="fa-solid fa-circle"></i> LIVE NOW</span>
-            <h3 style="margin: 0; display: inline-block; margin-left: 8px;" data-translate="live_stream_heading"><i class="fa-solid fa-tv"></i> Campaign Live Stream</h3>
+            <span class="badge-live" style="background: #2563eb; color: #fff; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase;"><i class="fa-solid fa-circle" style="font-size: 0.5rem; color: #60a5fa; margin-right: 4px;"></i> SOCIAL FEED</span>
+            <h3 style="margin: 0; display: inline-block; margin-left: 8px; font-size: 1.25rem;" data-translate="live_stream_heading"><i class="fa-solid fa-share-nodes"></i> Social Media Feed</h3>
           </div>
-          <a href="news-media.html" class="btn-primary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none; border-radius: 4px;" data-translate="live_stream_btn">
+          <a href="news-media.html" class="btn-primary" style="font-size: 0.85rem; padding: 6px 14px; text-decoration: none; border-radius: 4px; color: #38bdf8; font-weight: 600;" data-translate="live_stream_btn">
             Full Interactive Feed <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
         
-        <p data-translate="live_stream_desc">View senator Allwell Onyesoh Live Social Media Feeds. </p>
+        <p data-translate="live_stream_desc" style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.2rem;">View Senator Allwell Onyesoh’s Live Social Media Feeds and updates.</p>
         
-        <div class="video-embed-container">
-          <iframe 
-            src="socialmediaxxx" 
-            title="Senator Allwell Onyesoh Live Stream" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>
+        <!-- CLICKABLE SOCIAL FLYER -->
+        <div onclick="openNewsModal('social-media-modal')" style="position: relative; cursor: pointer; border-radius: 10px; overflow: hidden; border: 2px solid #334155; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.01)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="socialmedialflyer.jpg" alt="Senator Allwell Onyesoh Social Media Feed Flyer" style="width: 100%; height: 280px; object-fit: cover; display: block;" />
+          
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,23,42,0.95) 15%, rgba(15,23,42,0.4) 60%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem;">
+            
+            <!-- Play/View Icon Badge Center -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(37, 99, 235, 0.9); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+              <i class="fa-solid fa-photo-film" style="color: #fff; font-size: 1.5rem;"></i>
+            </div>
+
+            <span style="font-size: 0.75rem; color: #60a5fa; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">Official Channels & Updates</span>
+            <h4 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; margin: 0; line-height: 1.3;">Connect, Follow & Interact Via His Social Platforms</h4>
+            <span style="font-size: 0.82rem; color: #cbd5e1; margin-top: 6px;"><i class="fa-solid fa-arrow-pointer"></i> Click to view live social media highlights</span>
+          </div>
         </div>
 
-        <div style="margin-top: 1rem; text-align: center;">
-          <a href="news-media.html" class="btn-primary" style="background: #28a745; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block;" data-translate="live_chat_btn">
-            <i class="fa-solid fa-comments"></i> Open Live news. 
+        <div style="margin-top: 1.2rem; text-align: center;">
+          <a href="news-media.html" class="btn-primary" style="background: #2563eb; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: 700; display: inline-block; width: 100%; box-sizing: border-box;" data-translate="live_chat_btn">
+            <i class="fa-solid fa-globe"></i> Open Live News & Media Feeds
           </a>
         </div>
       </div>
 
+    </div>
+  </section>
      
 
     </div>
