@@ -384,23 +384,23 @@
 <body>
 
   <!-- NAVIGATION BAR -->
-<nav class="navbar" style="background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0.5rem 1.5rem; position: sticky; top: 0; z-index: 1000;">
-  <div class="nav-container" style="max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
-    
-    <!-- BRAND / LOGO SECTION -->
-    <div class="logo" style="display: flex; align-items: center;">
-      <a href="index.html" class="brand-link" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
-        <img src="src/APCLOGO.png" alt="APC Logo" class="apc-logo-img" style="height: 38px; width: auto; object-fit: contain;">
-        <div class="brand-text" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1.1;">
-          <span class="brand-title" style="font-size: 1.15rem; font-weight: 800; color: #1e293b; letter-spacing: -0.3px;">
-            <span class="apc-green" style="color: #2e7d32;">APC</span> 2027
-          </span>
-          <span class="tag" data-translate="nav_tag" style="background-color: #1d4ed8; color: #ffffff; font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; margin-top: 2px; white-space: nowrap;">
-            RIVERS EAST SENATORIAL DISTRICT
-          </span>
-        </div>
-      </a>
-    </div>
+  <nav class="navbar" style="background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0.5rem 1.5rem; position: sticky; top: 0; z-index: 1000;">
+    <div class="nav-container" style="max-width: 1320px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+      
+      <!-- BRAND / LOGO SECTION -->
+      <div class="logo" style="display: flex; align-items: center;">
+        <a href="index.html" class="brand-link" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+          <img src="src/APCLOGO.png" alt="APC Logo" class="apc-logo-img" style="height: 38px; width: auto; object-fit: contain;">
+          <div class="brand-text" style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1.1;">
+            <span class="brand-title" style="font-size: 1.15rem; font-weight: 800; color: #1e293b; letter-spacing: -0.3px;">
+              <span class="apc-green" style="color: #2e7d32;">APC</span> 2027
+            </span>
+            <span class="tag" data-translate="nav_tag" style="background-color: #1d4ed8; color: #ffffff; font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; margin-top: 2px; white-space: nowrap;">
+              RIVERS EAST SENATORIAL DISTRICT
+            </span>
+          </div>
+        </a>
+      </div>
 
       <ul class="nav-links">
         <li><a href="campaign-landing.html" data-translate="nav_home">Home</a></li>
@@ -409,18 +409,15 @@
         <li><a href="news-media.html" data-translate="nav_news">News & Media</a></li>
 
         <!-- ACCOUNTS DROPDOWN -->
-      <li class="nav-dropdown">
-        <button class="dropdown-toggle" onclick="toggleNavDropdown(event)" type="button">
-          <span data-translate="nav_accounts">Accounts</span> <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
-        </button>
-        <div class="dropdown-menu-nav" id="accountsDropdown">
-          <a href="mobilization.html" data-translate="nav_auth">Ward Leader Portal</a>
-        <a href="auth-system.html" data-translate="nav_mobilize">Grassroots Mobilization</a>
-          <div class="dropdown-divider"></div>
-          <a href="https://votesenatorallwell.com.ng" target="_blank" data-translate="nav_join">Join Movement</a>
-        </div>
-      </li>
-            </div>
+        <li class="nav-dropdown">
+          <button class="dropdown-toggle" onclick="toggleNavDropdown(event)" type="button">
+            <span data-translate="nav_accounts">Accounts</span> <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i>
+          </button>
+          <div class="dropdown-menu-nav" id="accountsDropdown">
+            <a href="mobilization.html" data-translate="nav_auth">Ward Leader Portal</a>
+            <a href="auth-system.html" data-translate="nav_mobilize">Grassroots Mobilization</a>
+            <div class="dropdown-divider"></div>
+            <a href="https://votesenatorallwell.com.ng" target="_blank" data-translate="nav_join">Join Movement</a>
           </div>
         </li>
       </ul>
@@ -430,19 +427,19 @@
   <!-- JAVASCRIPT FOR DROPDOWNS -->
   <script>
     function toggleNavDropdown(event) {
-      event.stopPropagation();
+      if (event) event.stopPropagation();
       var dropdown = document.getElementById("accountsDropdown");
       var langMenu = document.getElementById("langMenu");
       if (langMenu) langMenu.classList.remove("show");
-      dropdown.classList.toggle("show");
+      if (dropdown) dropdown.classList.toggle("show");
     }
 
-    function toggleLangMenu() {
-      event.stopPropagation();
+    function toggleLangMenu(event) {
+      if (event) event.stopPropagation();
       var langMenu = document.getElementById("langMenu");
       var accountsDropdown = document.getElementById("accountsDropdown");
       if (accountsDropdown) accountsDropdown.classList.remove("show");
-      langMenu.classList.toggle("show");
+      if (langMenu) langMenu.classList.toggle("show");
     }
 
     window.addEventListener('click', function() {
@@ -453,8 +450,6 @@
     });
   </script>
 
-</body>
-</html>
   <div class="main-container">
     <div class="hero-banner">
       <div class="badge-target" data-translate="mob_target_badge"><i class="fa-solid fa-bullseye"></i> Goal: 1 Supporter = 20 Registered Voters</div>
@@ -509,76 +504,81 @@
     </div>
 
     <!-- WHATSAPP SHARE & RECRUITMENT LINK GENERATOR -->
-<div class="mobilization-card" style="background: #ffffff; padding: 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-  <h3 style="margin-top: 0; color: #1e293b;">Mobilize Supporters via WhatsApp</h3>
-  <p style="color: #64748b; font-size: 14px;">Share your personalized campaign link across your WhatsApp groups and social media. Anyone who clicks your link and registers will automatically be added to your live 20-voter target roster below!</p>
-  
-  <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-    <button onclick="shareCampaignLink()" class="btn-whatsapp" style="background: #25D366; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
-      <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Share Link on WhatsApp
-    </button>
-    <button onclick="copyCampaignLink()" style="background: #0f172a; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
-      <i class="fa-solid fa-copy"></i> Copy Referral Link
-    </button>
-  </div>
-</div>
-
-<!-- AGENT VOTER ROSTER DASHBOARD CONTAINER -->
-<div class="voter-dashboard-container">
-  <div class="dashboard-header">
-    <div>
-      <h3 class="dashboard-title">My Registered 20-Voter Roster</h3>
-      <p class="dashboard-subtitle">Manage, track, and contact supporters pledged under your Campaign ID.</p>
+    <div class="mobilization-card" style="background: #ffffff; padding: 20px; border-radius: 8px; margin-top: 25px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: 1px solid #cbd5e1;">
+      <h3 style="margin-top: 0; color: #1e293b;">Mobilize Supporters via WhatsApp</h3>
+      <p style="color: #64748b; font-size: 14px; margin-top: 6px;">Share your personalized campaign link across your WhatsApp groups and social media. Anyone who clicks your link and registers will automatically be added to your live 20-voter target roster below!</p>
+      
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+        <button type="button" onclick="shareCampaignLink()" class="btn-whatsapp" style="background: #25D366; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Share Link on WhatsApp
+        </button>
+        <button type="button" onclick="copyCampaignLink()" style="background: #0f172a; color: white; padding: 10px 18px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-copy"></i> Copy Referral Link
+        </button>
+      </div>
     </div>
-    <div class="target-badge">
-      Target: <span id="voterCountNum">0</span> / 20 Logged
+
+    <!-- AGENT VOTER ROSTER DASHBOARD CONTAINER -->
+    <div class="voter-dashboard-container">
+      <div class="dashboard-header">
+        <div>
+          <h3 class="dashboard-title">My Registered 20-Voter Roster</h3>
+          <p class="dashboard-subtitle">Manage, track, and contact supporters pledged under your Campaign ID.</p>
+        </div>
+        <div class="target-badge">
+          Target: <span id="voterCountNum">0</span> / 20 Logged
+        </div>
+      </div>
+
+      <div class="progress-bar-track">
+        <div id="voterProgressBar" class="progress-bar-fill"></div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="voters-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Supporter Name</th>
+              <th>Phone / WhatsApp</th>
+              <th>LGA</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="voterTableBody">
+            <!-- Dynamic voter entries will populate here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="emptyRosterMsg" class="empty-roster-msg">
+        <i class="fa-solid fa-users-slash empty-icon"></i>
+        <p>No voters pledged yet. Use the form above or share your WhatsApp link to log your first supporter for Senator Allwell Onyesoh!</p>
+      </div>
     </div>
   </div>
-
-  <div class="progress-bar-track">
-    <div id="voterProgressBar" class="progress-bar-fill"></div>
-  </div>
-
-  <div class="table-responsive">
-    <table class="voters-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Supporter Name</th>
-          <th>Phone / WhatsApp</th>
-          <th>LGA</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="voterTableBody">
-        <!-- Dynamic voter entries will populate here -->
-      </tbody>
-    </table>
-  </div>
-
-  <div id="emptyRosterMsg" class="empty-roster-msg">
-    <i class="fa-solid fa-users-slash empty-icon"></i>
-    <p>No voters pledged yet. Use the form above or share your WhatsApp link to log your first supporter for Senator Allwell Onyesoh!</p>
-  </div>
-</div>
 
 <!-- JAVASCRIPT LOGIC CONTROLLER (Connected to Cloud Database) -->
 <script>
   // Initialize Firebase (Ensure Firebase SDKs are loaded in <head>)
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyDOrDCu_c9M7L81XV6dNq0pvKoohH-N8_A",
+    authDomain: "votesenatorallwell-2027-73b12.firebaseapp.com",
+    projectId: "votesenatorallwell-2027-73b12",
+    storageBucket: "votesenatorallwell-2027-73b12.firebasestorage.app",
+    messagingSenderId: "318788860819",
+    appId: "1:318788860819:web:4e545c2fa95a23c597c666",
+    measurementId: "G-9HWZWCXJ0E"
   };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  let db = null;
+  if (typeof firebase !== 'undefined') {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    db = firebase.firestore();
   }
-  const db = firebase.firestore();
 
   const STORAGE_KEY = 'apc_rivers_east_user';
   const VOTER_DB_KEY = 'apc_pledged_voters_list';
@@ -587,19 +587,25 @@
   function getLoggedInUserPhone() {
     const storedUser = localStorage.getItem(STORAGE_KEY);
     if (storedUser) {
-      const user = JSON.parse(storedUser);
-      return user.phone ? user.phone.replace(/[^0-9]/g, '') : null;
+      try {
+        const user = JSON.parse(storedUser);
+        return user.phone ? user.phone.replace(/[^0-9]/g, '') : null;
+      } catch (e) {
+        return null;
+      }
     }
     return null;
   }
 
-  // Retrieve or Generate Unique Campaign Agent ID (Linked to User Profile)
+  // Retrieve or Generate Unique Campaign Agent ID (Linked to User Profile or Guest Session)
   function getAgentId() {
     const storedUser = localStorage.getItem(STORAGE_KEY);
     if (storedUser) {
-      const user = JSON.parse(storedUser);
-      if (user.campaignId) return user.campaignId;
-      if (user.phone) return user.phone.replace(/[^0-9]/g, '');
+      try {
+        const user = JSON.parse(storedUser);
+        if (user.campaignId) return String(user.campaignId);
+        if (user.phone) return user.phone.replace(/[^0-9]/g, '');
+      } catch (e) {}
     }
     
     let agentId = localStorage.getItem('campaign_agent_id');
@@ -610,11 +616,16 @@
     return agentId;
   }
 
+  // Get active Cloud Firestore document ID (logged-in phone or Agent ID)
+  function getCloudOwnerId() {
+    return getLoggedInUserPhone() || getAgentId();
+  }
+
   // Generate Personalized WhatsApp Recruitment Link
   function getReferralUrl() {
-    const agentId = getAgentId();
+    const agentId = getCloudOwnerId();
     const baseUrl = window.location.origin + window.location.pathname;
-    return `${baseUrl}?ref=${agentId}`;
+    return `${baseUrl}?ref=${encodeURIComponent(agentId)}`;
   }
 
   // Share Link directly on WhatsApp
@@ -629,11 +640,15 @@
   // Copy Referral Link to Clipboard
   function copyCampaignLink() {
     const url = getReferralUrl();
-    navigator.clipboard.writeText(url).then(() => {
-      alert('Referral link copied to clipboard!\n\n' + url);
-    }).catch(() => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Referral link copied to clipboard!\n\n' + url);
+      }).catch(() => {
+        prompt('Copy your referral link:', url);
+      });
+    } else {
       prompt('Copy your referral link:', url);
-    });
+    }
   }
 
   // Capture incoming recruits from WhatsApp referral link & Save to Cloud
@@ -647,28 +662,34 @@
         const supporterPhone = prompt("Enter your WhatsApp/Phone Number:");
         const supporterLga = prompt("Enter your LGA (e.g. Obio/Akpor, Ikwerre, Etche, Okrika):") || "Rivers East";
 
-        if (supporterName && supporterPhone) {
+        if (supporterName.trim() && supporterPhone && supporterPhone.trim()) {
           const cleanPhone = supporterPhone.replace(/[^0-9]/g, '');
           const newVoter = {
             id: String(Date.now()),
-            name: supporterName,
+            name: supporterName.trim(),
             phone: cleanPhone,
-            lga: supporterLga,
+            lga: supporterLga.trim(),
             dateLogged: new Date().toLocaleDateString()
           };
 
           try {
             // Save to the referrer agent's pledges collection in Cloud DB
-            await db.collection('voters').doc(ref).collection('pledges').doc(newVoter.id).set(newVoter);
+            if (db) {
+              await db.collection('voters').doc(ref).collection('pledges').doc(newVoter.id).set(newVoter);
+            }
 
-            // Also save locally
-            let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
-            voterList.push(newVoter);
-            localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+            // Also save locally if testing on the same browser
+            if (ref === getCloudOwnerId()) {
+              let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+              voterList.push(newVoter);
+              localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+              loadVoterDashboard();
+            }
             
-            alert(`Thank you ${supporterName}! You have been added to the campaign roster.`);
+            alert(`Thank you ${newVoter.name}! You have been added to the campaign roster.`);
           } catch (err) {
             console.error("Error logging recruit:", err);
+            alert("Your pledge was recorded locally, though cloud sync had a connection issue.");
           }
 
           // Clean URL parameter
@@ -692,24 +713,24 @@
     const phoneInput = document.getElementById('supporterPhone');
     const lgaSelect = document.getElementById('supporterLga');
 
-    if (!nameInput.value || !phoneInput.value || !lgaSelect.value) {
+    if (!nameInput.value.trim() || !phoneInput.value.trim() || !lgaSelect.value) {
       alert('Please fill in all voter details.');
       return;
     }
 
-    const userPhone = getLoggedInUserPhone();
+    const ownerId = getCloudOwnerId();
     const newVoter = {
       id: String(Date.now()),
-      name: nameInput.value,
+      name: nameInput.value.trim(),
       phone: phoneInput.value.replace(/[^0-9]/g, ''),
       lga: lgaSelect.value,
       dateLogged: new Date().toLocaleDateString()
     };
 
     try {
-      // Save to Firebase Cloud Database if logged in
-      if (userPhone) {
-        await db.collection('voters').doc(userPhone).collection('pledges').doc(newVoter.id).set(newVoter);
+      // Save to Firebase Cloud Database
+      if (db && ownerId) {
+        await db.collection('voters').doc(ownerId).collection('pledges').doc(newVoter.id).set(newVoter);
       }
 
       // Save to LocalStorage fallback
@@ -723,11 +744,19 @@
       lgaSelect.value = '';
 
       // Refresh Dashboard UI
-      loadVoterDashboard();
+      await loadVoterDashboard();
       alert(`Success! ${newVoter.name} has been logged under your campaign profile.`);
     } catch (error) {
       console.error("Error adding voter:", error);
-      alert("Failed to save voter to server. Please check your network connection.");
+      // Save locally even if offline
+      let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
+      voterList.push(newVoter);
+      localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
+      nameInput.value = '';
+      phoneInput.value = '';
+      lgaSelect.value = '';
+      loadVoterDashboard();
+      alert(`Saved ${newVoter.name} locally! (Cloud sync will retry when online.)`);
     }
   }
 
@@ -739,12 +768,12 @@
     const progressBar = document.getElementById('voterProgressBar');
 
     let voterList = [];
-    const userPhone = getLoggedInUserPhone();
+    const ownerId = getCloudOwnerId();
 
-    if (userPhone) {
+    if (db && ownerId) {
       try {
         // Fetch real-time pledges from Firebase Cloud
-        const snapshot = await db.collection('voters').doc(userPhone).collection('pledges').get();
+        const snapshot = await db.collection('voters').doc(ownerId).collection('pledges').get();
         snapshot.forEach(doc => voterList.push(doc.data()));
         localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
       } catch (err) {
@@ -805,18 +834,18 @@
   // Delete Voter Function (Synced to Cloud)
   async function deleteVoter(id) {
     if (confirm('Are you sure you want to remove this voter from your roster?')) {
-      const userPhone = getLoggedInUserPhone();
+      const ownerId = getCloudOwnerId();
 
       try {
-        if (userPhone) {
-          await db.collection('voters').doc(userPhone).collection('pledges').doc(String(id)).delete();
+        if (db && ownerId) {
+          await db.collection('voters').doc(ownerId).collection('pledges').doc(String(id)).delete();
         }
 
         let voterList = JSON.parse(localStorage.getItem(VOTER_DB_KEY)) || [];
         voterList = voterList.filter(v => String(v.id) !== String(id));
         localStorage.setItem(VOTER_DB_KEY, JSON.stringify(voterList));
 
-        loadVoterDashboard();
+        await loadVoterDashboard();
       } catch (err) {
         console.error("Error deleting voter:", err);
         alert("Failed to delete voter from server.");
