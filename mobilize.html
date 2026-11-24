@@ -559,6 +559,7 @@
     </div>
   </div>
 
+
 <!-- JAVASCRIPT LOGIC CONTROLLER (Connected to Cloud Database) -->
 <script>
   // Initialize Firebase (Ensure Firebase SDKs are loaded in <head>)
@@ -621,10 +622,11 @@
     return getLoggedInUserPhone() || getAgentId();
   }
 
-  // Generate Personalized WhatsApp Recruitment Link
+  // Generate Personalized WhatsApp Recruitment Link (without .html)
   function getReferralUrl() {
     const agentId = getCloudOwnerId();
-    const baseUrl = window.location.origin + window.location.pathname;
+    const cleanPath = window.location.pathname.replace(/\.html$/i, '');
+    const baseUrl = window.location.origin + cleanPath;
     return `${baseUrl}?ref=${encodeURIComponent(agentId)}`;
   }
 
@@ -822,7 +824,7 @@
           <a href="${waUrl}" target="_blank" class="btn-whatsapp">
             <i class="fa-brands fa-whatsapp"></i> WhatsApp
           </a>
-          <button onclick="deleteVoter('${voter.id}')" class="btn-delete" title="Remove voter">
+          <button type="button" onclick="deleteVoter('${voter.id}')" class="btn-delete" title="Remove voter">
             <i class="fa-solid fa-trash"></i>
           </button>
         </td>
